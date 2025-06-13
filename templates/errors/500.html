@@ -1,0 +1,45 @@
+{% extends "base_public_new.html" %}
+{% load static %}
+
+{% block title %}Server Error - Casino Partners{% endblock %}
+
+{% block main_content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0"><i class="fas fa-exclamation-circle me-2"></i>Server Error</h4>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-server text-danger fa-4x mb-3"></i>
+                        <h5 class="card-title">Internal Server Error</h5>
+                    </div>
+                    <p class="card-text">
+                        We're sorry, but something went wrong on our end. Our team has been notified and is working to fix the issue.
+                    </p>
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        Please try again in a few minutes or contact our support team if the problem persists.
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="{% url 'index' %}" class="btn btn-primary">
+                            <i class="fas fa-home me-2"></i>Return to Home
+                        </a>
+                        <a href="{% url 'contact_page' %}" class="btn btn-outline-secondary ms-2">
+                            <i class="fas fa-envelope me-2"></i>Contact Support
+                        </a>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    <small>
+                        <i class="fas fa-clock me-1"></i>
+                        Error occurred at: {% now "F j, Y, g:i a" %}
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

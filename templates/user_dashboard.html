@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}User Dashboard - Casino Partner{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Welcome Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card bg-gradient-primary text-white">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-user-circle fa-3x me-3"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h2 class="card-title mb-1">Welcome, {{ request.user.get_full_name|default:request.user.username }}!</h2>
+                            <p class="card-text mb-0">Track your activity and manage your profile</p>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <a href="{% url 'user_profile' %}" class="btn btn-light">
+                                <i class="fas fa-user-edit me-2"></i>Edit Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="stats-icon bg-primary">
+                                <i class="fas fa-mouse-pointer"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h3 class="mb-0">{{ total_clicks }}</h3>
+                            <p class="text-muted mb-0">Total Clicks</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="stats-icon bg-success">
+                                <i class="fas fa-user-check"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h3 class="mb-0">{{ casino_user.is_approved|yesno:"Approved,Pending" }}</h3>
+                            <p class="text-muted mb-0">Account Status</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="stats-icon bg-info">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h3 class="mb-0">{{ request.user.date_joined|date:"M Y" }}</h3>
+                            <p class="text-muted mb-0">Member Since</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="row">
+        <!-- Click History -->
+        <div class="col-lg-8 mb-4">
+            <div class="card">
+                <div class="card-header bg-white">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Recent Click History</h5>
+                        <a href="{% url 'user_clicks' %}" class="btn btn-sm btn-outline-primary">
+                            View All <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    {% if click_history %}
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Card</th>
+                                        <th>Date</th>
+                                        <th>IP Address</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for click in click_history %}
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                {% if click.card.image %}
+                                                    <img src="{{ click.card.image.url }}" alt="{{ click.card.title }}" class="rounded me-2" style="width: 40px; height: 40px; object-fit: cover;">
+                                                {% endif %}
+                                                <span>{{ click.card.title }}</span>
+                                            </div>
+                                        </td>
+                                        <td>{{ click.click_date|date:"M d, Y" }} {{ click.click_time|time:"H:i" }}</td>
+                                        <td>{{ click.ip_address }}</td>
+                                        <td>
+                                            <a href="{% url 'redirect_to_card_link' click.card.id %}" class="btn btn-sm btn-outline-primary" target="_blank">
+                                                <i class="fas fa-external-link-alt"></i> Visit
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="text-center py-4">
+                            <i class="fas fa-history fa-3x text-muted mb-3"></i>
+                            <p class="text-muted">No click history available.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Blog Posts -->
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header bg-white">
+                    <h5 class="card-title mb-0">Recent Blog Posts</h5>
+                </div>
+                <div class="card-body">
+                    {% if recent_posts %}
+                        {% for post in recent_posts %}
+                            <div class="blog-post mb-3">
+                                <h6 class="mb-1">
+                                    <a href="{% url 'blog_detail' post.slug %}" class="text-decoration-none">
+                                        {{ post.title }}
+                                    </a>
+                                </h6>
+                                <small class="text-muted">{{ post.published_at|date:"M d, Y" }}</small>
+                                {% if not forloop.last %}<hr class="my-3">{% endif %}
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="text-center py-4">
+                            <i class="fas fa-newspaper fa-3x text-muted mb-3"></i>
+                            <p class="text-muted">No recent blog posts available.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.bg-gradient-primary {
+    background: var(--gradient-primary);
+}
+
+.blog-post a {
+    color: var(--text-dark);
+    transition: var(--transition-fast);
+}
+
+.blog-post a:hover {
+    color: var(--primary-color);
+}
+
+.btn-outline-primary {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+    background: var(--gradient-primary);
+    border-color: transparent;
+    color: var(--white-color);
+}
+</style>
+{% endblock %} 

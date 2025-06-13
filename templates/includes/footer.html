@@ -1,0 +1,203 @@
+<!-- Footer Section -->
+<footer class="footer bg-dark text-light py-5 mt-auto">
+    <div class="container">
+        <div class="row">
+            <!-- Company Info -->
+            <div class="col-lg-4 mb-4 mb-lg-0">
+                <h5 class="text-gold mb-4">Casino Partners</h5>
+                <p class="mb-3">Your trusted partner for premium casino affiliate marketing. Join us to earn big with top-tier brands.</p>
+                {% if site_settings %}
+                    <div class="social-links d-flex gap-3 mt-4">
+                        {% if site_settings.facebook_url %}
+                            <a href="{{ site_settings.facebook_url }}" target="_blank" class="social-icon">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        {% endif %}
+                        
+                        {% if site_settings.twitter_url %}
+                            <a href="{{ site_settings.twitter_url }}" target="_blank" class="social-icon">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        {% endif %}
+                        
+                        {% if site_settings.instagram_url %}
+                            <a href="{{ site_settings.instagram_url }}" target="_blank" class="social-icon">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        {% endif %}
+                        
+                        {% if site_settings.linkedin_url %}
+                            <a href="{{ site_settings.linkedin_url }}" target="_blank" class="social-icon">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        {% endif %}
+                        
+                        {% if site_settings.telegram_url %}
+                            <a href="{{ site_settings.telegram_url }}" target="_blank" class="social-icon">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <!-- Quick Links -->
+            <div class="col-lg-4 mb-4 mb-lg-0">
+                <h5 class="text-gold mb-4">Quick Links</h5>
+                <ul class="list-unstyled footer-links">
+                    <li class="mb-2">
+                        <a href="{% url 'index' %}" class="text-light text-decoration-none hover-gold">
+                            <i class="fas fa-home me-2 text-gold"></i>Home
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="{% url 'about_page' %}" class="text-light text-decoration-none hover-gold">
+                            <i class="fas fa-info-circle me-2 text-gold"></i>About Us
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="{% url 'contact_page' %}" class="text-light text-decoration-none hover-gold">
+                            <i class="fas fa-envelope me-2 text-gold"></i>Contact Us
+                        </a>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="mb-2">
+                            <a href="{% if user.is_staff or user.is_superuser %}{% url 'dashboard' %}{% endif %}" class="text-light text-decoration-none hover-gold">
+                                <i class="fas fa-tachometer-alt me-2 text-gold"></i>Dashboard
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{% url 'logout' %}" class="text-light text-decoration-none hover-gold">
+                                <i class="fas fa-sign-out-alt me-2 text-gold"></i>Logout
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="mb-2">
+                            <a href="{% url 'signin' %}" class="text-light text-decoration-none hover-gold">
+                                <i class="fas fa-sign-in-alt me-2 text-gold"></i>Sign In
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{% url 'signup' %}" class="text-light text-decoration-none hover-gold">
+                                <i class="fas fa-user-plus me-2 text-gold"></i>Sign Up
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+            
+            <!-- Contact Info -->
+            <div class="col-lg-4">
+                <h5 class="text-gold mb-4">Contact Us</h5>
+                {% if contact %}
+                    <ul class="list-unstyled footer-contact">
+                        {% if contact.email %}
+                            <li class="mb-3 d-flex align-items-start">
+                                <i class="fas fa-envelope text-gold me-3 mt-1"></i>
+                                <span>{{ contact.email }}</span>
+                            </li>
+                        {% endif %}
+                        
+                        {% if contact.phone %}
+                            <li class="mb-3 d-flex align-items-start">
+                                <i class="fas fa-phone-alt text-gold me-3 mt-1"></i>
+                                <span>{{ contact.phone }}</span>
+                            </li>
+                        {% endif %}
+                        
+                        {% if contact.address %}
+                            <li class="mb-3 d-flex align-items-start">
+                                <i class="fas fa-map-marker-alt text-gold me-3 mt-1"></i>
+                                <span>{{ contact.address }}</span>
+                            </li>
+                        {% endif %}
+                    </ul>
+                {% else %}
+                    <p class="text-muted">Contact information not available.</p>
+                {% endif %}
+            </div>
+        </div>
+        
+        <hr class="my-4 border-secondary">
+        
+        <!-- Copyright & Legal Links -->
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                <p class="mb-0">
+                    {% if site_settings and site_settings.copyright_text %}
+                        {{ site_settings.copyright_text }}
+                    {% else %}
+                        &copy; {% now "Y" %} Casino Partners. All rights reserved.
+                    {% endif %}
+                </p>
+            </div>
+            <div class="col-md-6">
+                <ul class="list-inline text-center text-md-end mb-0">
+                    <li class="list-inline-item me-3">
+                        <a href="#" class="text-light text-decoration-none hover-gold">Terms of Service</a>
+                    </li>
+                    <li class="list-inline-item me-3">
+                        <a href="#" class="text-light text-decoration-none hover-gold">Privacy Policy</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="text-light text-decoration-none hover-gold">Responsible Gaming</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .text-gold {
+        color: var(--primary-color, #FFD700);
+    }
+    
+    .hover-gold:hover {
+        color: var(--primary-color, #FFD700) !important;
+        transition: color 0.3s ease;
+    }
+    
+    .social-icon {
+        width: 36px;
+        height: 36px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary-color, #FFD700);
+        transition: all 0.3s ease;
+    }
+    
+    .social-icon:hover {
+        background-color: var(--primary-color, #FFD700);
+        color: #212529;
+        transform: translateY(-3px);
+    }
+    
+    .footer-links a, .footer-contact li {
+        transition: all 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+        padding-left: 5px;
+    }
+    
+    .footer {
+        position: relative;
+        z-index: 1;
+    }
+    
+    .footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffd700' fill-opacity='0.05'%3E%3Cpath d='M36 34c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4m0-16c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4m16 16c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4m0-16c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4m-32 32c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4m0-16c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4m16 16c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4m0-16c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        opacity: 0.1;
+        z-index: -1;
+    }
+</style>

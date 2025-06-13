@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <!-- Dashboard Header -->
+    <div class="dashboard-header">
+        <div>
+            <h2 class="dashboard-title">Admin Dashboard</h2>
+            <p class="dashboard-subtitle">Welcome back, {{ request.user.username }}! Here's what's happening with your site.</p>
+        </div>
+        <div class="dashboard-actions">
+            <a href="{% url 'add_card' %}" class="btn-dashboard primary">
+                <i class="fas fa-plus"></i> Add New Card
+            </a>
+            <a href="#" class="btn-dashboard outline-primary" data-bs-toggle="modal" data-bs-target="#settingsModal">
+                <i class="fas fa-cog"></i> Site Settings
+            </a>
+        </div>
+    </div>
+    
+    <!-- System Status Section -->
+    <div class="dashboard-container mb-4">
+        <div class="dashboard-col-12">
+            <div class="dashboard-card">
+                <div class="dashboard-card-header">
+                    <h3 class="dashboard-card-title">
+                        <i class="fas fa-server"></i> System Status
+                    </h3>
+                    <span class="dashboard-card-subtitle">Last updated: {% now "F j, Y, g:i a" %}</span>
+                </div>
+                <div class="dashboard-card-body">
+                    <div class="row g-3">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="d-flex align-items-center">
+                                <div class="status-badge success me-2">
+                                    <i class="fas fa-check-circle"></i> Online
+                                </div>
+                                <span class="text-muted">Website Status</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="d-flex align-items-center">
+                                <div class="status-badge success me-2">
+                                    <i class="fas fa-database"></i> Connected
+                                </div>
+                                <span class="text-muted">Database</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="d-flex align-items-center">
+                                <div class="status-badge success me-2">
+                                    <i class="fas fa-shield-alt"></i> Secure
+                                </div>
+                                <span class="text-muted">Security</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="d-flex align-items-center">
+                                {% if site_settings.maintenance_mode %}
+                                <div class="status-badge warning me-2">
+                                    <i class="fas fa-tools"></i> Maintenance
+                                </div>
+                                {% else %}
+                                <div class="status-badge success me-2">
+                                    <i class="fas fa-users"></i> Public
+                                </div>
+                                {% endif %}
+                                <span class="text-muted">Site Mode</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

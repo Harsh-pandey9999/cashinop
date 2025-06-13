@@ -1,0 +1,592 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="section hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4 text-gradient animate-on-scroll">About Casino Partners</h1>
+                <p class="lead mb-4 animate-on-scroll">We are a leading provider of online gaming solutions, committed to delivering exceptional experiences to our partners and players worldwide.</p>
+                <div class="d-flex gap-3 animate-on-scroll">
+                    <a href="{% url 'contact_page' %}" class="btn btn-primary glow-effect">Contact Us</a>
+                    <a href="{% url 'signup' %}" class="btn btn-outline-primary">Join Us</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-hero-image animate-on-scroll">
+                    {% if abouts and abouts.0.image %}
+                    <img src="{{ abouts.0.image.url }}" alt="About Casino Partners" class="img-fluid rounded-4 shadow-lg floating">
+                    {% else %}
+                    <div class="placeholder-image rounded-4 shadow-lg">
+                        <i class="fas fa-image fa-4x"></i>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Story Section -->
+<section class="section story-section bg-light">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2 class="text-gradient">Our Story</h2>
+            <p class="lead">From humble beginnings to industry leadership</p>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="story-content animate-on-scroll">
+                    <h3 class="mb-4">A Journey of Innovation</h3>
+                    <p>Founded in 2010, Casino Partners began with a simple mission: to revolutionize the online gaming industry through innovation and excellence. Over the years, we've grown from a small team of passionate individuals to a global leader in gaming solutions.</p>
+                    <p>Our commitment to quality, security, and user experience has helped us build lasting relationships with partners worldwide. Today, we continue to push boundaries and set new standards in the industry.</p>
+                    <div class="story-milestones mt-4">
+                        <div class="milestone animate-on-scroll">
+                            <div class="milestone-year">2010</div>
+                            <div class="milestone-text">Company Founded</div>
+                        </div>
+                        <div class="milestone animate-on-scroll">
+                            <div class="milestone-year">2015</div>
+                            <div class="milestone-text">Global Expansion</div>
+                        </div>
+                        <div class="milestone animate-on-scroll">
+                            <div class="milestone-year">2020</div>
+                            <div class="milestone-text">Platform Innovation</div>
+                        </div>
+                        <div class="milestone animate-on-scroll">
+                            <div class="milestone-year">2024</div>
+                            <div class="milestone-text">Industry Leadership</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="story-image animate-on-scroll">
+                    <img src="{% static 'img/about-story.jpg' %}" alt="Our Story" class="img-fluid rounded-4 shadow-lg">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mission & Vision Section -->
+<section class="section mission-vision-section">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card mission-card animate-on-scroll">
+                    <div class="card-body">
+                        <div class="mission-icon">
+                            <i class="fas fa-bullseye fa-3x"></i>
+                        </div>
+                        <h3 class="mb-4">Our Mission</h3>
+                        <p>To provide innovative and secure gaming solutions that empower our partners to deliver exceptional experiences to players worldwide. We strive to be at the forefront of technological advancement while maintaining the highest standards of integrity and customer service.</p>
+                        <ul class="mission-list">
+                            <li><i class="fas fa-check"></i> Innovation in Gaming</li>
+                            <li><i class="fas fa-check"></i> Security First</li>
+                            <li><i class="fas fa-check"></i> Customer Excellence</li>
+                            <li><i class="fas fa-check"></i> Global Reach</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card vision-card animate-on-scroll">
+                    <div class="card-body">
+                        <div class="vision-icon">
+                            <i class="fas fa-eye fa-3x"></i>
+                        </div>
+                        <h3 class="mb-4">Our Vision</h3>
+                        <p>To be the global leader in online gaming solutions, recognized for our innovation, reliability, and commitment to excellence. We envision a future where gaming brings people together and creates opportunities for growth and entertainment.</p>
+                        <ul class="vision-list">
+                            <li><i class="fas fa-check"></i> Industry Leadership</li>
+                            <li><i class="fas fa-check"></i> Technological Excellence</li>
+                            <li><i class="fas fa-check"></i> Global Impact</li>
+                            <li><i class="fas fa-check"></i> Sustainable Growth</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values Section -->
+<section class="section values-section bg-light">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2 class="text-gradient">Our Values</h2>
+            <p class="lead">The principles that guide our success</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="card value-card animate-on-scroll">
+                    <div class="card-body text-center">
+                        <div class="value-icon">
+                            <i class="fas fa-handshake fa-3x"></i>
+                        </div>
+                        <h3>Integrity</h3>
+                        <p>We conduct our business with honesty, transparency, and ethical standards.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card value-card animate-on-scroll">
+                    <div class="card-body text-center">
+                        <div class="value-icon">
+                            <i class="fas fa-lightbulb fa-3x"></i>
+                        </div>
+                        <h3>Innovation</h3>
+                        <p>We constantly push boundaries to create better gaming experiences.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card value-card animate-on-scroll">
+                    <div class="card-body text-center">
+                        <div class="value-icon">
+                            <i class="fas fa-users fa-3x"></i>
+                        </div>
+                        <h3>Collaboration</h3>
+                        <p>We work together to achieve common goals and drive success.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card value-card animate-on-scroll">
+                    <div class="card-body text-center">
+                        <div class="value-icon">
+                            <i class="fas fa-chart-line fa-3x"></i>
+                        </div>
+                        <h3>Excellence</h3>
+                        <p>We strive for the highest quality in everything we do.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="section team-section">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2 class="text-gradient">Our Leadership Team</h2>
+            <p class="lead">Meet the people behind our success</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card team-card animate-on-scroll">
+                    <div class="card-body text-center">
+                        <div class="team-image-wrapper">
+                            <img src="{% static 'img/team-1.jpg' %}" alt="John Smith" class="rounded-circle mb-4">
+                        </div>
+                        <h3>John Smith</h3>
+                        <p class="text-muted">Chief Executive Officer</p>
+                        <p class="mb-4">With over 20 years of experience in the gaming industry, John leads our company with vision and expertise.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card team-card animate-on-scroll">
+                    <div class="card-body text-center">
+                        <div class="team-image-wrapper">
+                            <img src="{% static 'img/team-2.jpg' %}" alt="Sarah Johnson" class="rounded-circle mb-4">
+                        </div>
+                        <h3>Sarah Johnson</h3>
+                        <p class="text-muted">Chief Technology Officer</p>
+                        <p class="mb-4">Sarah drives our technological innovation and ensures we stay ahead of industry trends.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card team-card animate-on-scroll">
+                    <div class="card-body text-center">
+                        <div class="team-image-wrapper">
+                            <img src="{% static 'img/team-3.jpg' %}" alt="Michael Chen" class="rounded-circle mb-4">
+                        </div>
+                        <h3>Michael Chen</h3>
+                        <p class="text-muted">Chief Operations Officer</p>
+                        <p class="mb-4">Michael oversees our global operations and ensures smooth delivery of our services.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Achievements Section -->
+<section class="section achievements-section bg-light">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2 class="text-gradient">Our Achievements</h2>
+            <p class="lead">Milestones that define our success</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="achievement-card text-center animate-on-scroll">
+                    <div class="achievement-icon">
+                        <i class="fas fa-trophy fa-3x"></i>
+                    </div>
+                    <h3 class="counter">50+</h3>
+                    <p>Industry Awards</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="achievement-card text-center animate-on-scroll">
+                    <div class="achievement-icon">
+                        <i class="fas fa-globe fa-3x"></i>
+                    </div>
+                    <h3 class="counter">100+</h3>
+                    <p>Global Partners</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="achievement-card text-center animate-on-scroll">
+                    <div class="achievement-icon">
+                        <i class="fas fa-users fa-3x"></i>
+                    </div>
+                    <h3 class="counter">1M+</h3>
+                    <p>Happy Players</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="achievement-card text-center animate-on-scroll">
+                    <div class="achievement-icon">
+                        <i class="fas fa-star fa-3x"></i>
+                    </div>
+                    <h3 class="counter">99%</h3>
+                    <p>Customer Satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section cta-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="mb-4 text-gradient">Join Our Journey</h2>
+                <p class="lead mb-4">Be part of our success story and grow your gaming business with us.</p>
+                <div class="cta-buttons">
+                    <a href="{% url 'signup' %}" class="btn btn-primary btn-lg glow-effect">Get Started</a>
+                    <a href="{% url 'contact_page' %}" class="btn btn-outline-primary btn-lg">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* General Styles */
+.section {
+    padding: 80px 0;
+    position: relative;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title h2 {
+    margin-bottom: 15px;
+}
+
+/* Hero Section */
+.hero-section {
+    padding-top: 120px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.about-hero-image {
+    position: relative;
+}
+
+.about-hero-image img {
+    transition: transform 0.3s ease;
+}
+
+.about-hero-image:hover img {
+    transform: scale(1.02);
+}
+
+/* Story Section */
+.story-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.story-milestones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.milestone {
+    background: #fff;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.milestone:hover {
+    transform: translateY(-5px);
+}
+
+.milestone-year {
+    font-weight: 700;
+    color: #4a90e2;
+    font-size: 1.2rem;
+}
+
+.milestone-text {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+/* Mission & Vision Cards */
+.mission-card, .vision-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    height: 100%;
+}
+
+.mission-card:hover, .vision-card:hover {
+    transform: translateY(-5px);
+}
+
+.mission-icon, .vision-icon {
+    color: #4a90e2;
+    margin-bottom: 20px;
+}
+
+.mission-list, .vision-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.mission-list li, .vision-list li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mission-list i, .vision-list i {
+    color: #4a90e2;
+}
+
+/* Values Section */
+.value-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.value-icon {
+    color: #4a90e2;
+    margin-bottom: 20px;
+}
+
+/* Team Section */
+.team-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.team-image-wrapper {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 20px;
+}
+
+.team-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 5px solid #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.social-link {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+    color: #6c757d;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background: #4a90e2;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+/* Achievements Section */
+.achievement-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.achievement-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.achievement-icon {
+    color: #4a90e2;
+    margin-bottom: 20px;
+}
+
+.counter {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+/* Animations */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 991.98px) {
+    .section {
+        padding: 60px 0;
+    }
+    
+    .hero-section {
+        padding-top: 100px;
+    }
+    
+    .story-milestones {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .section {
+        padding: 40px 0;
+    }
+    
+    .section-title {
+        margin-bottom: 40px;
+    }
+    
+    .team-image-wrapper {
+        width: 120px;
+        height: 120px;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    // Observe all elements with animate-on-scroll class
+    document.querySelectorAll('.animate-on-scroll').forEach((el) => observer.observe(el));
+
+    // Counter animation
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+        const target = parseInt(counter.innerText);
+        let count = 0;
+        const duration = 2000; // 2 seconds
+        const increment = target / (duration / 16); // 60fps
+
+        const updateCount = () => {
+            if (count < target) {
+                count += increment;
+                counter.innerText = Math.ceil(count);
+                requestAnimationFrame(updateCount);
+            } else {
+                counter.innerText = target;
+            }
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    updateCount();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        observer.observe(counter);
+    });
+});
+</script>
+{% endblock %}

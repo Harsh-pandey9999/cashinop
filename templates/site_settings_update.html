@@ -1,0 +1,355 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+  <div class="card mb-4">
+    <div class="card-header">
+      <h2 class="text-xl font-bold">⚙️ Site Settings</h2>
+    </div>
+    <div class="card-body p-4">
+      {% if messages %}
+        <div class="mb-4">
+          {% for message in messages %}
+            <div class="alert alert-success mb-3 p-3 rounded">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <form method="POST" enctype="multipart/form-data" class="space-y-4">
+        {% csrf_token %}
+        
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <h3 class="mb-3 border-bottom pb-2">General Settings</h3>
+            
+            <div class="mb-3">
+              <label for="site_name" class="form-label">Site Name</label>
+              <input
+                type="text"
+                id="site_name"
+                name="site_name"
+                required
+                value="{{ site_settings.site_name|default:'' }}"
+                class="form-control"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="description" class="form-label">Site Description</label>
+              <textarea
+                id="description"
+                name="description"
+                rows="3"
+                required
+                class="form-control"
+              >{{ site_settings.description|default:'' }}</textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="footer_text" class="form-label">Footer Text</label>
+              <textarea
+                id="footer_text"
+                name="footer_text"
+                rows="2"
+                class="form-control"
+              >{{ site_settings.footer_text|default:'' }}</textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="copyright_text" class="form-label">Copyright Text</label>
+              <input
+                type="text"
+                id="copyright_text"
+                name="copyright_text"
+                value="{{ site_settings.copyright_text|default:'' }}"
+                class="form-control"
+              />
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-4">
+            <h3 class="mb-3 border-bottom pb-2">Appearance</h3>
+            
+            <div class="mb-3">
+              <label for="logo" class="form-label">Site Logo</label>
+              <input
+                type="file"
+                id="logo"
+                name="logo"
+                accept="image/*"
+                class="form-control"
+              />
+              {% if site_settings.logo %}
+                <div class="mt-2 p-2 border rounded d-flex align-items-center">
+                  <img src="{{ site_settings.logo.url }}" alt="Site Logo" class="me-3" style="max-height: 50px;" />
+                  <span class="text-muted">Current logo</span>
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="mb-3">
+              <label for="favicon" class="form-label">Favicon</label>
+              <input
+                type="file"
+                id="favicon"
+                name="favicon"
+                accept="image/*"
+                class="form-control"
+              />
+              {% if site_settings.favicon %}
+                <div class="mt-2 p-2 border rounded d-flex align-items-center">
+                  <img src="{{ site_settings.favicon.url }}" alt="Favicon" class="me-3" style="max-height: 32px;" />
+                  <span class="text-muted">Current favicon</span>
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="mb-3">
+              <label for="primary_color" class="form-label">Primary Color</label>
+              <input
+                type="color"
+                id="primary_color"
+                name="primary_color"
+                value="{{ site_settings.primary_color|default:'#ffd700' }}"
+                class="form-control form-control-color"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="secondary_color" class="form-label">Secondary Color</label>
+              <input
+                type="color"
+                id="secondary_color"
+                name="secondary_color"
+                value="{{ site_settings.secondary_color|default:'#121212' }}"
+                class="form-control form-control-color"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 mb-4">
+            <h3 class="mb-3 border-bottom pb-2">Social Media Links</h3>
+            
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="facebook_url" class="form-label"><i class="fab fa-facebook me-2"></i>Facebook URL</label>
+                <input
+                  type="url"
+                  id="facebook_url"
+                  name="facebook_url"
+                  value="{{ site_settings.facebook_url|default:'' }}"
+                  class="form-control"
+                  placeholder="https://facebook.com/your-page"
+                />
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label for="twitter_url" class="form-label"><i class="fab fa-twitter me-2"></i>Twitter URL</label>
+                <input
+                  type="url"
+                  id="twitter_url"
+                  name="twitter_url"
+                  value="{{ site_settings.twitter_url|default:'' }}"
+                  class="form-control"
+                  placeholder="https://twitter.com/your-handle"
+                />
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label for="instagram_url" class="form-label"><i class="fab fa-instagram me-2"></i>Instagram URL</label>
+                <input
+                  type="url"
+                  id="instagram_url"
+                  name="instagram_url"
+                  value="{{ site_settings.instagram_url|default:'' }}"
+                  class="form-control"
+                  placeholder="https://instagram.com/your-handle"
+                />
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label for="linkedin_url" class="form-label"><i class="fab fa-linkedin me-2"></i>LinkedIn URL</label>
+                <input
+                  type="url"
+                  id="linkedin_url"
+                  name="linkedin_url"
+                  value="{{ site_settings.linkedin_url|default:'' }}"
+                  class="form-control"
+                  placeholder="https://linkedin.com/company/your-company"
+                />
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label for="youtube_url" class="form-label"><i class="fab fa-youtube me-2"></i>YouTube URL</label>
+                <input
+                  type="url"
+                  id="youtube_url"
+                  name="youtube_url"
+                  value="{{ site_settings.youtube_url|default:'' }}"
+                  class="form-control"
+                  placeholder="https://youtube.com/your-channel"
+                />
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label for="telegram_url" class="form-label"><i class="fab fa-telegram me-2"></i>Telegram URL</label>
+                <input
+                  type="url"
+                  id="telegram_url"
+                  name="telegram_url"
+                  value="{{ site_settings.telegram_url|default:'' }}"
+                  class="form-control"
+                  placeholder="https://t.me/your-channel"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 mb-4">
+            <h3 class="mb-3 border-bottom pb-2">Display Settings</h3>
+            
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <div class="form-check form-switch">
+                  <input
+                    type="checkbox"
+                    id="show_footer"
+                    name="show_footer"
+                    class="form-check-input"
+                    {% if site_settings.show_footer %}checked{% endif %}
+                  />
+                  <label for="show_footer" class="form-check-label">Show Footer</label>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <div class="form-check form-switch">
+                  <input
+                    type="checkbox"
+                    id="show_email_in_header"
+                    name="show_email_in_header"
+                    class="form-check-input"
+                    {% if site_settings.show_email_in_header %}checked{% endif %}
+                  />
+                  <label for="show_email_in_header" class="form-check-label">Show Email in Header</label>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <div class="form-check form-switch">
+                  <input
+                    type="checkbox"
+                    id="show_phone_in_header"
+                    name="show_phone_in_header"
+                    class="form-check-input"
+                    {% if site_settings.show_phone_in_header %}checked{% endif %}
+                  />
+                  <label for="show_phone_in_header" class="form-check-label">Show Phone in Header</label>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <div class="form-check form-switch">
+                  <input
+                    type="checkbox"
+                    id="show_address_in_footer"
+                    name="show_address_in_footer"
+                    class="form-check-input"
+                    {% if site_settings.show_address_in_footer %}checked{% endif %}
+                  />
+                  <label for="show_address_in_footer" class="form-check-label">Show Address in Footer</label>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <div class="form-check form-switch">
+                  <input
+                    type="checkbox"
+                    id="enable_dark_mode"
+                    name="enable_dark_mode"
+                    class="form-check-input"
+                    {% if site_settings.enable_dark_mode %}checked{% endif %}
+                  />
+                  <label for="enable_dark_mode" class="form-check-label">Enable Dark Mode</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 mb-4">
+            <h3 class="mb-3 border-bottom pb-2">System Settings</h3>
+            
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <div class="form-check form-switch">
+                  <input
+                    type="checkbox"
+                    id="maintenance_mode"
+                    name="maintenance_mode"
+                    class="form-check-input"
+                    {% if site_settings.maintenance_mode %}checked{% endif %}
+                  />
+                  <label for="maintenance_mode" class="form-check-label">Maintenance Mode</label>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <div class="form-check form-switch">
+                  <input
+                    type="checkbox"
+                    id="allow_registration"
+                    name="allow_registration"
+                    class="form-check-input"
+                    {% if site_settings.allow_registration %}checked{% endif %}
+                  />
+                  <label for="allow_registration" class="form-check-label">Allow Registration</label>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <div class="form-check form-switch">
+                  <input
+                    type="checkbox"
+                    id="auto_approve_users"
+                    name="auto_approve_users"
+                    class="form-check-input"
+                    {% if site_settings.auto_approve_users %}checked{% endif %}
+                  />
+                  <label for="auto_approve_users" class="form-check-label">Auto-approve Users</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="maintenance_message" class="form-label">Maintenance Message</label>
+              <textarea
+                id="maintenance_message"
+                name="maintenance_message"
+                rows="2"
+                class="form-control"
+              >{{ site_settings.maintenance_message|default:'' }}</textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-end mt-4">
+          <button
+            type="submit"
+            class="btn btn-primary px-4"
+          >
+            <i class="fas fa-save me-2"></i> Save Settings
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+  <div class="card mb-4">
+    <div class="card-header">
+      <h2 class="text-xl font-bold"><i class="fas fa-phone-alt me-2"></i> Contact Information</h2>
+    </div>
+    <div class="card-body p-4">
+      {% if messages %}
+        <div class="mb-4">
+          {% for message in messages %}
+            <div class="alert alert-success mb-3 p-3 rounded">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <form method="POST" class="space-y-4">
+        {% csrf_token %}
+        
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div class="mb-3">
+              <label for="email" class="form-label"><i class="fas fa-envelope me-2"></i>Email Address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                value="{{ contact.email|default:'' }}"
+                class="form-control"
+                placeholder="contact@example.com"
+              />
+              <div class="form-text text-muted">This email will be displayed on your website for contact purposes</div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-4">
+            <div class="mb-3">
+              <label for="phone" class="form-label"><i class="fas fa-mobile-alt me-2"></i>Phone Number</label>
+              <input
+                type="text"
+                id="phone"
+                name="phone"
+                required
+                value="{{ contact.phone|default:'' }}"
+                class="form-control"
+                placeholder="+1 (123) 456-7890"
+              />
+              <div class="form-text text-muted">Include country code for international visibility</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="address" class="form-label"><i class="fas fa-map-marker-alt me-2"></i>Address</label>
+          <textarea
+            id="address"
+            name="address"
+            rows="3"
+            required
+            class="form-control"
+            placeholder="123 Casino Street, Las Vegas, NV 89109"
+          >{{ contact.address|default:'' }}</textarea>
+          <div class="form-text text-muted">Your business address will be displayed on the contact page</div>
+        </div>
+
+        <div class="d-flex justify-content-end mt-4">
+          <button
+            type="submit"
+            class="btn btn-primary px-4"
+          >
+            <i class="fas fa-save me-2"></i> Save Contact Info
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2 class="text-xl font-bold"><i class="fas fa-info-circle me-2"></i> Contact Information Preview</h2>
+    </div>
+    <div class="card-body p-4">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="p-4 border rounded">
+            <h3 class="mb-3 border-bottom pb-2">How Your Contact Info Will Appear</h3>
+            
+            {% if contact %}
+              <div class="d-flex align-items-center mb-3">
+                <div class="stat-icon me-3">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div>
+                  <h5 class="mb-0">Email</h5>
+                  <p class="mb-0">{{ contact.email }}</p>
+                </div>
+              </div>
+              
+              <div class="d-flex align-items-center mb-3">
+                <div class="stat-icon me-3">
+                  <i class="fas fa-phone"></i>
+                </div>
+                <div>
+                  <h5 class="mb-0">Phone</h5>
+                  <p class="mb-0">{{ contact.phone }}</p>
+                </div>
+              </div>
+              
+              <div class="d-flex align-items-center">
+                <div class="stat-icon me-3">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div>
+                  <h5 class="mb-0">Address</h5>
+                  <p class="mb-0">{{ contact.address }}</p>
+                </div>
+              </div>
+            {% else %}
+              <p class="text-muted">No contact information has been set up yet. Fill out the form to see a preview.</p>
+            {% endif %}
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="p-4 h-100 d-flex flex-column justify-content-center">
+            <h3 class="mb-3">Tips for Contact Information</h3>
+            <ul class="list-group">
+              <li class="list-group-item d-flex align-items-center">
+                <i class="fas fa-check-circle text-success me-2"></i>
+                Use a professional email address that's checked regularly
+              </li>
+              <li class="list-group-item d-flex align-items-center">
+                <i class="fas fa-check-circle text-success me-2"></i>
+                Include international dialing code for global accessibility
+              </li>
+              <li class="list-group-item d-flex align-items-center">
+                <i class="fas fa-check-circle text-success me-2"></i>
+                Provide a complete address for trust and credibility
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

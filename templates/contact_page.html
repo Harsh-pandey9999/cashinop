@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="section hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Get in Touch</h1>
+                <p class="lead mb-4">Have questions? We're here to help. Reach out to our team and we'll get back to you as soon as possible.</p>
+                <div class="contact-info">
+                    {% if contact %}
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-map-marker-alt fa-2x me-3"></i>
+                        <div>
+                            <h5 class="mb-1">Our Location</h5>
+                            <p class="mb-0">{{ contact.address }}</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-phone fa-2x me-3"></i>
+                        <div>
+                            <h5 class="mb-1">Phone Number</h5>
+                            <p class="mb-0">{{ contact.phone }}</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-envelope fa-2x me-3"></i>
+                        <div>
+                            <h5 class="mb-1">Email Address</h5>
+                            <p class="mb-0">{{ contact.email }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="contact-form-wrapper">
+                    <form method="POST" class="contact-form">
+                        {% csrf_token %}
+                        <div class="mb-4">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" class="form-control" id="subject" name="subject" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Map Section -->
+<section class="section map-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="map-wrapper">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.30591910525!2d-74.25986432970718!3d40.697149422113014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1645564750981!5m2!1sen!2s" 
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .hero-section {
+        padding-top: 8rem;
+        background: linear-gradient(135deg, var(--current-bg) 0%, var(--current-card) 100%);
+    }
+
+    .contact-info {
+        background: linear-gradient(135deg, var(--current-card), var(--current-bg));
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: var(--current-glow);
+    }
+
+    .contact-info i {
+        color: var(--current-primary);
+    }
+
+    .contact-form-wrapper {
+        background: linear-gradient(135deg, var(--current-card), var(--current-bg));
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: var(--current-glow);
+    }
+
+    .form-control {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: var(--current-text);
+        padding: 0.75rem 1rem;
+    }
+
+    .form-control:focus {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: var(--current-primary);
+        color: var(--current-text);
+        box-shadow: 0 0 0 0.25rem rgba(var(--current-primary-rgb), 0.25);
+    }
+
+    .form-label {
+        color: var(--current-text);
+        font-weight: 500;
+    }
+
+    .map-wrapper {
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: var(--current-glow);
+    }
+
+    @media (max-width: 991.98px) {
+        .hero-section {
+            padding-top: 6rem;
+        }
+
+        .contact-form-wrapper {
+            margin-top: 2rem;
+        }
+    }
+</style>
+{% endblock %}

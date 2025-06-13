@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Approval</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+    <div class="bg-gray-800 rounded-xl shadow-lg p-8 w-full max-w-md">
+        <h2 class="text-2xl font-semibold mb-6 text-center">User Approval</h2>
+
+        <div class="space-y-4">
+            {% for key, value in user.items %}
+                <div class="flex justify-between border-b border-gray-700 pb-2">
+                    <span class="font-medium text-gray-400">{{ key }}:</span>
+                    <span class="text-right text-gray-100">{{ value }}</span>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Approve Button -->
+        <form action="{% url 'approve_user' username %}" method="POST" class="mt-6">
+            {% csrf_token %}
+            <button type="submit" class="w-full py-2 px-4 bg-green-600 hover:bg-green-500 rounded-md text-white font-semibold transition duration-200">
+                Approve User
+            </button>
+        </form>
+    </div>
+</body>
+</html>

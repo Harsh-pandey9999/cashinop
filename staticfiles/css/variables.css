@@ -1,0 +1,88 @@
+/* CSS Variables for consistent design throughout the platform */
+:root {
+  /* Colors - Enhanced Vibrant, Glowy Theme */
+  --primary-color: #FF0066;
+  --primary-hover: #FF3385;
+  --primary-glow: 0 0 20px rgba(255, 0, 102, 0.5);
+  --secondary-color: #00FFFF;
+  --secondary-hover: #33FFFF;
+  --secondary-glow: 0 0 20px rgba(0, 255, 255, 0.5);
+  --background-dark: #1A1A2E;
+  --background-light: #2A2A4A;
+  --background-darker: #0A0A1A;
+  --text-light: #FFFFFF;
+  --text-muted: #B8B8D4;
+  --border-color: rgba(255, 0, 102, 0.2);
+  --danger-color: #FF3C5C;
+  --danger-glow: 0 0 15px rgba(255, 60, 92, 0.5);
+  --success-color: #39FF14;
+  --success-glow: 0 0 15px rgba(57, 255, 20, 0.5);
+  --warning-color: #FFD700;
+  --warning-glow: 0 0 15px rgba(255, 215, 0, 0.5);
+  
+  /* Typography - Modern, Clean Fonts */
+  --font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-family-heading: 'Montserrat', 'Inter', sans-serif;
+  --font-size-base: 1rem;
+  --font-size-sm: 0.875rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+  
+  /* Border Radius */
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.375rem;
+  --border-radius-lg: 0.5rem;
+  --border-radius-xl: 0.75rem;
+  --border-radius-2xl: 1rem;
+  --border-radius-full: 9999px;
+  
+  /* Shadows - Enhanced Glow Effects */
+  --shadow-sm: 0 1px 2px 0 rgba(255, 0, 102, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(255, 0, 102, 0.2), 0 2px 4px -1px rgba(255, 0, 102, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(255, 0, 102, 0.3), 0 4px 6px -2px rgba(255, 0, 102, 0.2);
+  --shadow-xl: 0 20px 25px -5px rgba(255, 0, 102, 0.4), 0 10px 10px -5px rgba(255, 0, 102, 0.3);
+  
+  /* Transitions - Smooth Animations */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Z-index */
+  --z-index-dropdown: 1000;
+  --z-index-sticky: 1020;
+  --z-index-fixed: 1030;
+  --z-index-modal-backdrop: 1040;
+  --z-index-modal: 1050;
+  --z-index-popover: 1060;
+  --z-index-tooltip: 1070;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  --gradient-hover: linear-gradient(135deg, var(--primary-hover), var(--secondary-hover));
+  --gradient-glow: 0 0 30px rgba(255, 0, 102, 0.3), 0 0 60px rgba(0, 255, 255, 0.3);
+  
+  /* Glass Effect */
+  --glass-background: rgba(26, 26, 46, 0.8);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  --glass-blur: blur(8px);
+}

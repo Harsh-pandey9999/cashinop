@@ -1,0 +1,40 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static jazzmin %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <style>
+        .content-wrapper {
+            margin-left: 0 !important;
+        }
+        .main-header {
+            margin-left: 0 !important;
+        }
+        .content {
+            margin: 0 auto;
+            max-width: 1200px;
+            padding: 20px;
+        }
+        .card {
+            box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2);
+            margin-bottom: 20px;
+        }
+    </style>
+{% endblock %}
+
+{% block sidebar %}{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">{% trans 'About Information' %}</h3>
+            </div>
+            <div class="card-body">
+                {% block form_content %}
+                    {{ block.super }}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %} 

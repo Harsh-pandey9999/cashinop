@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    body {
+        background: linear-gradient(135deg, #0f0f0f, #1a1a1a, #2a2a2a);
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: #e5e7eb;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .container {
+        max-width: 100%;
+        width: 90%;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 1rem;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .user-card {
+        background: rgba(20, 20, 20, 0.6);
+        padding: 1rem 1.5rem;
+        border-radius: 0.75rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .user-card:hover {
+        background: rgba(40, 40, 40, 0.8);
+    }
+
+    .username {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #f1f5f9;
+    }
+
+    .approve-button {
+        background-color: #22c55e;
+        color: #ffffff;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        transition: background 0.3s ease;
+        font-weight: 500;
+    }
+
+    .approve-button:hover {
+        background-color: #16a34a;
+    }
+
+    h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: #f8fafc;
+    }
+
+    .empty-message {
+        color: #94a3b8;
+        text-align: center;
+        font-style: italic;
+    }
+</style>
+
+<div class="container">
+    <h2>Pending Users</h2>
+    <ul class="space-y-4">
+        {% for pending in users %}
+        <li class="user-card">
+            
+            <span class="username"><a href="{% url 'approve_user_details' pending.username %}">{{ pending.username }}</a></span>
+            <form method="POST" action="{% url 'approve_user' pending.username %}">
+                {% csrf_token %}
+                <button type="submit" class="approve-button">Approve</button>
+            </form>
+        </li>
+        {% empty %}
+        <li class="empty-message">No users pending approval.</li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

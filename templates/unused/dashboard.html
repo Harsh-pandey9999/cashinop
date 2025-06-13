@@ -1,0 +1,898 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<div class="container-fluid py-4">
+    <!-- Modern Dashboard Header -->
+    <div class="dashboard-header d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="dashboard-title fw-bold text-gold">Admin Control Panel</h2>
+            <p class="dashboard-subtitle text-light">Welcome back, {{ request.user.username }}! Here's what's happening with your site.</p>
+        </div>
+        <div class="dashboard-actions d-flex gap-2">
+            <a href="{% url 'add_post' %}" class="btn btn-gold">
+                <i class="fas fa-plus-circle"></i> New Card
+            </a>
+            <a href="#" class="btn btn-outline-gold" data-bs-toggle="modal" data-bs-target="#settingsModal">
+                <i class="fas fa-cog"></i> Settings
+            </a>
+        </div>
+    </div>
+    
+    <!-- Admin Control Tabs -->
+    <div class="admin-tabs mb-4 bg-dark-gradient rounded-3 p-2 d-flex">
+        <div class="admin-tab active"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</div>
+        <div class="admin-tab"><i class="fas fa-chart-bar me-2"></i>Analytics</div>
+        <div class="admin-tab"><i class="fas fa-sliders-h me-2"></i>Controls</div>
+        <div class="admin-tab"><i class="fas fa-cog me-2"></i>Settings</div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="admin-card">
+                <div class="admin-card-header">
+                    <h4 class="m-0">Welcome, {{ request.user.username }} <i class="fas fa-hand-sparkles text-gold ms-2"></i></h4>
+                    <span class="text-muted">{{ now|date:"l, F j, Y" }}</span>
+                </div>
+                <div class="admin-card-body">
+                    <p>Here's an overview of your casino affiliate platform. Use the sidebar to navigate to different sections.</p>
+                    
+                    <!-- Quick System Status -->
+                    <div class="mt-3 d-flex flex-wrap gap-3">
+                        <div class="system-status-badge success"><i class="fas fa-check-circle me-1"></i> System: Online</div>
+                        <div class="system-status-badge primary"><i class="fas fa-database me-1"></i> Database: Connected</div>
+                        <div class="system-status-badge info"><i class="fas fa-shield-alt me-1"></i> Security: Active</div>
+                        <div class="system-status-badge warning"><i class="fas fa-bell me-1"></i> Notifications: {{ total_users|default:0 }} Pending</div>
+                        <div class="system-status-badge secondary"><i class="fas fa-clock me-1"></i> Last Backup: 2 hours ago</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3 mb-4">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div>
+                    <h3 class="mb-0">{{ total_users }}</h3>
+                    <p class="text-muted mb-0">Total Users</p>
+                </div>
+                <div class="ms-auto">
+                    <a href="{% url 'manage_users' %}" class="btn btn-sm btn-gold">Manage</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-user-check"></i>
+                </div>
+                <div>
+                    <h3 class="mb-0">{{ total_users|default:0 }}</h3>
+                    <p class="text-muted mb-0">Pending Approvals</p>
+                </div>
+                <div class="ms-auto">
+                    <a href="{% url 'approve_users' %}" class="btn btn-sm btn-gold">Review</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-dice"></i>
+                </div>
+                <div>
+                    <h3 class="mb-0">{{ total_posts }}</h3>
+                    <p class="text-muted mb-0">Total Casino Cards</p>
+                </div>
+                <div class="ms-auto">
+                    <a href="{% url 'posts' %}" class="btn btn-sm btn-gold">View</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div>
+                    <h3 class="mb-0">{{ active_posts }}</h3>
+                    <p class="text-muted mb-0">Active Cards</p>
+                </div>
+                <div class="ms-auto">
+                    <a href="{% url 'add_post' %}" class="btn btn-sm btn-gold">Add New</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="row mb-4">
+        <div class="col-md-8 mb-4">
+            <div class="admin-card h-100">
+                <div class="admin-card-header">
+                    <h5 class="m-0"><i class="fas fa-chart-line me-2"></i>Visitor Analytics</h5>
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-gold dropdown-toggle" type="button" id="chartOptions" data-bs-toggle="dropdown" aria-expanded="false">
+                            Last 7 Days
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="chartOptions">
+                            <li><a class="dropdown-item active" href="#">Last 7 Days</a></li>
+                            <li><a class="dropdown-item" href="#">Last 30 Days</a></li>
+                            <li><a class="dropdown-item" href="#">Last 90 Days</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Custom Range</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="admin-card-body">
+                    <canvas id="visitorChart" height="250"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="admin-card h-100">
+                <div class="admin-card-header">
+                    <h5 class="m-0"><i class="fas fa-bolt me-2"></i>Quick Actions</h5>
+                </div>
+                <div class="admin-card-body p-0">
+                    <div class="quick-actions-list">
+                        <a href="{% url 'add_post' %}" class="quick-action-item">
+                            <div class="quick-action-icon bg-success-soft">
+                                <i class="fas fa-plus-circle text-success"></i>
+                            </div>
+                            <div class="quick-action-content">
+                                <h6 class="mb-0">Add New Casino Card</h6>
+                                <small class="text-muted">Create a new casino affiliate card</small>
+                            </div>
+                            <i class="fas fa-chevron-right text-muted"></i>
+                        </a>
+                        <a href="{% url 'approve_users' %}" class="quick-action-item">
+                            <div class="quick-action-icon bg-primary-soft">
+                                <i class="fas fa-user-check text-primary"></i>
+                            </div>
+                            <div class="quick-action-content">
+                                <h6 class="mb-0">Approve Pending Users</h6>
+                                <small class="text-muted">{{ total_users|default:0 }} users waiting for approval</small>
+                            </div>
+                            <i class="fas fa-chevron-right text-muted"></i>
+                        </a>
+                        <a href="{% url 'site_settings_update' %}" class="quick-action-item">
+                            <div class="quick-action-icon bg-warning-soft">
+                                <i class="fas fa-cog text-warning"></i>
+                            </div>
+                            <div class="quick-action-content">
+                                <h6 class="mb-0">Update Site Settings</h6>
+                                <small class="text-muted">Modify global site configuration</small>
+                            </div>
+                            <i class="fas fa-chevron-right text-muted"></i>
+                        </a>
+                        <a href="{% url 'contact_update' %}" class="quick-action-item">
+                            <div class="quick-action-icon bg-info-soft">
+                                <i class="fas fa-phone-alt text-info"></i>
+                            </div>
+                            <div class="quick-action-content">
+                                <h6 class="mb-0">Update Contact Info</h6>
+                                <small class="text-muted">Change contact details and social links</small>
+                            </div>
+                            <i class="fas fa-chevron-right text-muted"></i>
+                        </a>
+                        <a href="/" target="_blank" class="quick-action-item">
+                            <div class="quick-action-icon bg-secondary-soft">
+                                <i class="fas fa-external-link-alt text-secondary"></i>
+                            </div>
+                            <div class="quick-action-content">
+                                <h6 class="mb-0">View Live Site</h6>
+                                <small class="text-muted">See how your site looks to visitors</small>
+                            </div>
+                            <i class="fas fa-chevron-right text-muted"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Admin Controls -->
+    <div class="row mb-4">
+        <div class="col-md-6 mb-4">
+            <div class="admin-card h-100">
+                <div class="admin-card-header">
+                    <h5 class="m-0"><i class="fas fa-sliders-h me-2"></i>Site Controls</h5>
+                </div>
+                <div class="admin-card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+                        <div>
+                            <h6 class="mb-0">Maintenance Mode</h6>
+                            <small class="text-muted">Put site in maintenance mode</small>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+                        <div>
+                            <h6 class="mb-0">User Registration</h6>
+                            <small class="text-muted">Allow new user registrations</small>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+                        <div>
+                            <h6 class="mb-0">Auto-approve Users</h6>
+                            <small class="text-muted">Automatically approve new users</small>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+                        <div>
+                            <h6 class="mb-0">Email Notifications</h6>
+                            <small class="text-muted">Send admin email notifications</small>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="mb-0">Cache Management</h6>
+                            <small class="text-muted">Clear site cache</small>
+                        </div>
+                        <button class="btn btn-sm btn-outline-gold">Clear Cache</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="admin-card h-100">
+                <div class="admin-card-header">
+                    <h5 class="m-0"><i class="fas fa-palette me-2"></i>Theme Settings</h5>
+                </div>
+                <div class="admin-card-body">
+                    <div class="mb-3">
+                        <label class="form-label">Primary Color</label>
+                        <div class="color-picker-wrapper">
+                            <div class="color-preview" style="background-color: #ffd700;"></div>
+                            <input type="text" class="form-control" value="#ffd700">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Background Color</label>
+                        <div class="color-picker-wrapper">
+                            <div class="color-preview" style="background-color: #121212;"></div>
+                            <input type="text" class="form-control" value="#121212">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Font Family</label>
+                        <select class="form-select">
+                            <option selected>Segoe UI</option>
+                            <option>Roboto</option>
+                            <option>Open Sans</option>
+                            <option>Poppins</option>
+                        </select>
+                    </div>
+                    <div class="d-flex justify-content-end mt-4">
+                        <button class="btn btn-gold">Apply Theme</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="row">
+        <div class="col-12">
+            <div class="admin-card">
+                <div class="admin-card-header">
+                    <h5 class="m-0"><i class="fas fa-history me-2"></i>Recent Activity</h5>
+                    <div class="admin-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search activities...">
+                    </div>
+                </div>
+                <div class="admin-card-body">
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>User</th>
+                                    <th>Action</th>
+                                    <th>Status</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Sample data - in a real app, this would be populated from the database -->
+                                <tr>
+                                    <td>{{ now|date:"M d, Y" }}</td>
+                                    <td>{{ request.user.username }}</td>
+                                    <td>Logged in</td>
+                                    <td><span class="badge bg-success">Success</span></td>
+                                    <td><button class="btn btn-sm btn-outline-gold">View</button></td>
+                                </tr>
+                                <tr>
+                                    <td>{{ now|date:"M d, Y" }}</td>
+                                    <td>System</td>
+                                    <td>Updated site settings</td>
+                                    <td><span class="badge bg-primary">Info</span></td>
+                                    <td><button class="btn btn-sm btn-outline-gold">View</button></td>
+                                </tr>
+                                <tr>
+                                    <td>{{ now|date:"M d, Y" }}</td>
+                                    <td>Admin</td>
+                                    <td>Added new casino card</td>
+                                    <td><span class="badge bg-success">Success</span></td>
+                                    <td><button class="btn btn-sm btn-outline-gold">View</button></td>
+                                </tr>
+                                <tr>
+                                    <td>{{ now|date:"M d, Y" }}</td>
+                                    <td>User123</td>
+                                    <td>Requested approval</td>
+                                    <td><span class="badge bg-warning">Pending</span></td>
+                                    <td><button class="btn btn-sm btn-outline-gold">View</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="admin-pagination mt-4">
+                        <div class="admin-pagination-item"><i class="fas fa-chevron-left"></i></div>
+                        <div class="admin-pagination-item active">1</div>
+                        <div class="admin-pagination-item">2</div>
+                        <div class="admin-pagination-item">3</div>
+                        <div class="admin-pagination-item">...</div>
+                        <div class="admin-pagination-item">10</div>
+                        <div class="admin-pagination-item"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Site Settings Modal -->
+<div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="modal-title" id="settingsModalLabel"><i class="fas fa-cog me-2 text-gold"></i>Site Settings</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="siteSettingsForm" method="post" action="{% url 'site_settings_update' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="admin-tabs mb-4">
+                        <div class="admin-tab active" data-tab="general"><i class="fas fa-sliders-h me-2"></i>General</div>
+                        <div class="admin-tab" data-tab="appearance"><i class="fas fa-palette me-2"></i>Appearance</div>
+                        <div class="admin-tab" data-tab="footer"><i class="fas fa-shoe-prints me-2"></i>Footer</div>
+                        <div class="admin-tab" data-tab="social"><i class="fas fa-share-alt me-2"></i>Social Media</div>
+                        <div class="admin-tab" data-tab="seo"><i class="fas fa-search me-2"></i>SEO</div>
+                        <div class="admin-tab" data-tab="advanced"><i class="fas fa-tools me-2"></i>Advanced</div>
+                    </div>
+                    
+                    <!-- General Settings Tab -->
+                    <div class="tab-content active" id="general">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Site Name</label>
+                                    <input type="text" class="form-control" name="site_name" value="{{ site_settings.site_name }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Site Description</label>
+                                    <textarea class="form-control" name="description" rows="3">{{ site_settings.description }}</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Logo</label>
+                                    <div class="d-flex align-items-center gap-3 mb-2">
+                                        {% if site_settings.logo %}
+                                        <img src="{{ site_settings.logo.url }}" alt="Current Logo" class="img-thumbnail" style="max-height: 60px;">
+                                        {% else %}
+                                        <div class="text-muted">No logo uploaded</div>
+                                        {% endif %}
+                                    </div>
+                                    <input type="file" class="form-control" name="logo">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Favicon</label>
+                                    <div class="d-flex align-items-center gap-3 mb-2">
+                                        {% if site_settings.favicon %}
+                                        <img src="{{ site_settings.favicon.url }}" alt="Current Favicon" class="img-thumbnail" style="max-height: 32px;">
+                                        {% else %}
+                                        <div class="text-muted">No favicon uploaded</div>
+                                        {% endif %}
+                                    </div>
+                                    <input type="file" class="form-control" name="favicon">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Maintenance Mode</label>
+                                    <div class="d-flex align-items-center">
+                                        <label class="toggle-switch me-3">
+                                            <input type="checkbox" name="maintenance_mode" {% if site_settings.maintenance_mode %}checked{% endif %}>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                        <span>Enable maintenance mode</span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Maintenance Message</label>
+                                    <textarea class="form-control" name="maintenance_message" rows="3">{{ site_settings.maintenance_message }}</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">User Registration</label>
+                                    <div class="d-flex align-items-center">
+                                        <label class="toggle-switch me-3">
+                                            <input type="checkbox" name="allow_registration" {% if site_settings.allow_registration %}checked{% endif %}>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                        <span>Allow new user registrations</span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Auto-approve Users</label>
+                                    <div class="d-flex align-items-center">
+                                        <label class="toggle-switch me-3">
+                                            <input type="checkbox" name="auto_approve_users" {% if site_settings.auto_approve_users %}checked{% endif %}>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                        <span>Automatically approve new users</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Appearance Settings Tab -->
+                    <div class="tab-content" id="appearance">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Primary Color</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><div class="color-preview primary-preview"></div></span>
+                                        <input type="text" class="form-control" name="primary_color" value="{{ site_settings.primary_color|default:'#ffd700' }}">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Secondary Color</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><div class="color-preview secondary-preview"></div></span>
+                                        <input type="text" class="form-control" name="secondary_color" value="{{ site_settings.secondary_color|default:'#121212' }}">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Dark Mode</label>
+                                    <div class="d-flex align-items-center">
+                                        <label class="toggle-switch me-3">
+                                            <input type="checkbox" name="enable_dark_mode" {% if site_settings.enable_dark_mode %}checked{% endif %}>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                        <span>Enable dark mode by default</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Preview</label>
+                                    <div class="theme-preview p-3 dynamic-style-wrapper" style="border-radius: 8px;">
+                                        <div class="mb-3">
+                                            <h5 class="dynamic-text-color">Theme Preview</h5>
+                                            <p class="text-light">This is how your theme colors will look.</p>
+                                        </div>
+                                        <button class="btn dynamic-bg-color">Primary Button</button>
+                                        <button class="btn btn-outline-light ms-2">Secondary Button</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Footer Settings Tab -->
+                    <div class="tab-content" id="footer">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Footer Text</label>
+                                    <textarea class="form-control" name="footer_text" rows="3">{{ site_settings.footer_text }}</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Copyright Text</label>
+                                    <input type="text" class="form-control" name="copyright_text" value="{{ site_settings.copyright_text }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Show Footer</label>
+                                    <div class="d-flex align-items-center">
+                                        <label class="toggle-switch me-3">
+                                            <input type="checkbox" name="show_footer" {% if site_settings.show_footer %}checked{% endif %}>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                        <span>Display footer on all pages</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Show Address in Footer</label>
+                                    <div class="d-flex align-items-center">
+                                        <label class="toggle-switch me-3">
+                                            <input type="checkbox" name="show_address_in_footer" {% if site_settings.show_address_in_footer %}checked{% endif %}>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                        <span>Display address in footer</span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Show Email in Header</label>
+                                    <div class="d-flex align-items-center">
+                                        <label class="toggle-switch me-3">
+                                            <input type="checkbox" name="show_email_in_header" {% if site_settings.show_email_in_header %}checked{% endif %}>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                        <span>Display email in header</span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Show Phone in Header</label>
+                                    <div class="d-flex align-items-center">
+                                        <label class="toggle-switch me-3">
+                                            <input type="checkbox" name="show_phone_in_header" {% if site_settings.show_phone_in_header %}checked{% endif %}>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                        <span>Display phone in header</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Media Tab -->
+                    <div class="tab-content" id="social">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label"><i class="fab fa-facebook text-primary me-2"></i>Facebook URL</label>
+                                    <input type="url" class="form-control" name="facebook_url" value="{{ site_settings.facebook_url }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label"><i class="fab fa-twitter text-info me-2"></i>Twitter URL</label>
+                                    <input type="url" class="form-control" name="twitter_url" value="{{ site_settings.twitter_url }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label"><i class="fab fa-instagram text-danger me-2"></i>Instagram URL</label>
+                                    <input type="url" class="form-control" name="instagram_url" value="{{ site_settings.instagram_url }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label"><i class="fab fa-linkedin text-primary me-2"></i>LinkedIn URL</label>
+                                    <input type="url" class="form-control" name="linkedin_url" value="{{ site_settings.linkedin_url }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label"><i class="fab fa-youtube text-danger me-2"></i>YouTube URL</label>
+                                    <input type="url" class="form-control" name="youtube_url" value="{{ site_settings.youtube_url }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label"><i class="fab fa-telegram text-info me-2"></i>Telegram URL</label>
+                                    <input type="url" class="form-control" name="telegram_url" value="{{ site_settings.telegram_url }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- SEO Settings Tab -->
+                    <div class="tab-content" id="seo">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Meta Keywords</label>
+                                    <input type="text" class="form-control" name="meta_keywords" value="{{ site_settings.meta_keywords }}" placeholder="casino, gambling, slots, betting">
+                                    <small class="text-muted">Comma-separated list of keywords</small>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Meta Description</label>
+                                    <textarea class="form-control" name="meta_description" rows="3" placeholder="A brief description of your website for search engines">{{ site_settings.meta_description }}</textarea>
+                                    <small class="text-muted">Keep it under 160 characters for best results</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Google Analytics ID</label>
+                                    <input type="text" class="form-control" name="google_analytics_id" value="{{ site_settings.google_analytics_id }}" placeholder="UA-XXXXX-Y or G-XXXXXXXX">
+                                    <small class="text-muted">Your Google Analytics tracking ID</small>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">SEO Preview</label>
+                                    <div class="seo-preview p-3 border rounded">
+                                        <div style="color: #1a0dab; font-size: 18px; margin-bottom: 4px;">{{ site_settings.site_name }}</div>
+                                        <div style="color: #006621; font-size: 14px; margin-bottom: 4px;">yourwebsite.com</div>
+                                        <div style="color: #545454; font-size: 14px;">{{ site_settings.meta_description|default:'Add a meta description to improve your SEO' }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Advanced Settings Tab -->
+                    <div class="tab-content" id="advanced">
+                        <div class="alert alert-warning">
+                            <i class="fas fa-exclamation-triangle me-2"></i> Be careful when changing these settings as they can affect your site's functionality.
+                        </div>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Clear Cache</label>
+                                    <div class="d-grid">
+                                        <button type="button" class="btn btn-outline-danger" id="clearCacheBtn">
+                                            <i class="fas fa-trash-alt me-2"></i>Clear Site Cache
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Database Backup</label>
+                                    <div class="d-grid">
+                                        <button type="button" class="btn btn-outline-primary" id="backupDbBtn">
+                                            <i class="fas fa-database me-2"></i>Backup Database
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">CSRF Trusted Origins</label>
+                                    <textarea class="form-control" rows="3" readonly>{{ csrf_trusted_origins }}</textarea>
+                                    <small class="text-muted">These are set in your settings.py file</small>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Django Version</label>
+                                    <input type="text" class="form-control" value="{{ django_version }}" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" form="siteSettingsForm" class="btn btn-gold">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Get the current date for display
+    const now = new Date();
+    
+    // Visitor analytics chart
+    const ctx = document.getElementById('visitorChart').getContext('2d');
+    const visitorChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            datasets: [{
+                label: 'Visitors',
+                data: [65, 59, 80, 81, 56, 55, 40],
+                backgroundColor: 'rgba(255, 215, 0, 0.2)',
+                borderColor: '#ffd700',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true,
+                pointBackgroundColor: '#ffd700',
+                pointRadius: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    ticks: { color: '#cbd5e1' },
+                    grid: { color: 'rgba(255,255,255,0.05)' }
+                },
+                y: {
+                    ticks: { color: '#cbd5e1' },
+                    grid: { color: 'rgba(255,255,255,0.05)' },
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: { color: '#cbd5e1' }
+                }
+            }
+        }
+    });
+    
+    // Tab functionality
+    document.querySelectorAll('.admin-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+    
+    // Toggle switches functionality
+    document.querySelectorAll('.toggle-switch input').forEach(toggle => {
+        toggle.addEventListener('change', function() {
+            // In a real application, this would send an AJAX request to update settings
+            console.log('Toggle changed:', this.checked);
+        });
+    });
+    
+    // Settings Modal Tab Functionality
+    document.querySelectorAll('.admin-tabs .admin-tab[data-tab]').forEach(tab => {
+        tab.addEventListener('click', function() {
+            // Remove active class from all tabs
+            document.querySelectorAll('.admin-tabs .admin-tab[data-tab]').forEach(t => {
+                t.classList.remove('active');
+            });
+            
+            // Add active class to clicked tab
+            this.classList.add('active');
+            
+            // Hide all tab content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Show the corresponding tab content
+            const tabId = this.getAttribute('data-tab');
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+    
+    // Initialize color previews with values from inputs
+    function initColorPreviews() {
+        // Set primary color preview
+        const primaryInput = document.querySelector('input[name="primary_color"]');
+        const primaryPreview = document.querySelector('.primary-preview');
+        if (primaryInput && primaryPreview) {
+            primaryPreview.style.backgroundColor = primaryInput.value;
+            document.documentElement.style.setProperty('--primary-color', primaryInput.value);
+        }
+        
+        // Set secondary color preview
+        const secondaryInput = document.querySelector('input[name="secondary_color"]');
+        const secondaryPreview = document.querySelector('.secondary-preview');
+        if (secondaryInput && secondaryPreview) {
+            secondaryPreview.style.backgroundColor = secondaryInput.value;
+            document.documentElement.style.setProperty('--background-dark', secondaryInput.value);
+        }
+    }
+    
+    // Run initialization when DOM is loaded
+    document.addEventListener('DOMContentLoaded', initColorPreviews);
+    
+    // Color picker preview functionality
+    document.querySelectorAll('input[name="primary_color"], input[name="secondary_color"]').forEach(input => {
+        input.addEventListener('input', function() {
+            // Update the color preview
+            const previewClass = this.name === 'primary_color' ? '.primary-preview' : '.secondary-preview';
+            const previewElement = document.querySelector(previewClass);
+            if (previewElement) {
+                previewElement.style.backgroundColor = this.value;
+            }
+            
+            // Update CSS variables for dynamic theme preview
+            if (this.name === 'primary_color') {
+                document.documentElement.style.setProperty('--primary-color', this.value);
+            } else if (this.name === 'secondary_color') {
+                document.documentElement.style.setProperty('--background-dark', this.value);
+            }
+        });
+    });
+    
+    // Clear cache button functionality
+    const clearCacheBtn = document.getElementById('clearCacheBtn');
+    if (clearCacheBtn) {
+        clearCacheBtn.addEventListener('click', function() {
+            this.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Clearing Cache...';
+            this.disabled = true;
+            
+            // Simulate cache clearing (in a real app, this would be an AJAX request)
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-check-circle me-2"></i>Cache Cleared!';
+                this.classList.remove('btn-outline-danger');
+                this.classList.add('btn-success');
+                
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-trash-alt me-2"></i>Clear Site Cache';
+                    this.classList.remove('btn-success');
+                    this.classList.add('btn-outline-danger');
+                    this.disabled = false;
+                }, 2000);
+            }, 1500);
+        });
+    }
+    
+    // Database backup button functionality
+    const backupDbBtn = document.getElementById('backupDbBtn');
+    if (backupDbBtn) {
+        backupDbBtn.addEventListener('click', function() {
+            this.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Backing Up Database...';
+            this.disabled = true;
+            
+            // Simulate database backup (in a real app, this would be an AJAX request)
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-check-circle me-2"></i>Backup Complete!';
+                this.classList.remove('btn-outline-primary');
+                this.classList.add('btn-success');
+                
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-database me-2"></i>Backup Database';
+                    this.classList.remove('btn-success');
+                    this.classList.add('btn-outline-primary');
+                    this.disabled = false;
+                }, 2000);
+            }, 2000);
+        });
+    }
+</script>
+
+<style>
+    /* Tab content styling */
+    .tab-content {
+        display: none;
+    }
+    
+    .tab-content.active {
+        display: block;
+    }
+    
+    /* Color preview styling */
+    .color-preview {
+        width: 24px;
+        height: 24px;
+        border-radius: 4px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Color preview specific styles */
+    .primary-preview {
+        background-color: #ffd700;
+    }
+    
+    .secondary-preview {
+        background-color: #121212;
+    }
+    
+    /* SEO preview styling */
+    .seo-preview {
+        background-color: white;
+        border-radius: 4px;
+    }
+    
+    /* Fix for template interpolation in style attributes */
+    .dynamic-style-wrapper {
+        background-color: var(--background-lighter);
+    }
+    
+    .dynamic-text-color {
+        color: var(--primary-color);
+    }
+    
+    .dynamic-bg-color {
+        background-color: var(--primary-color);
+        color: #000;
+    }
+</style>
+
+{% endblock %}
