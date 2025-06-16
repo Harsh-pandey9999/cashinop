@@ -1,9 +1,170 @@
 {% load static %}
+<link rel="icon" type="image/x-icon" href="{% static 'img/favico.ico' %}">
+<style>
+    /* Glassmorphic Header Styles */
+    .floating-navbar {
+        background: rgba(26, 42, 108, 0.7) !important; /* Semi-transparent background */
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.18);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease-in-out;
+        transform: translateZ(0);
+        will-change: transform, box-shadow;
+    }
+    
+    .floating-navbar.scrolled {
+        background: rgba(26, 42, 108, 0.9) !important;
+        box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.25);
+        transform: translateY(-2px);
+    }
+    
+    .navbar-nav .nav-link {
+        position: relative;
+        padding: 0.5rem 1rem;
+        margin: 0 0.25rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+    
+    .navbar-nav .nav-link::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #4299e1, #9f7aea);
+        border-radius: 2px;
+        transform: translateX(-50%);
+        transition: all 0.3s ease;
+    }
+    
+    .navbar-nav .nav-link:hover::before {
+        width: 60%;
+    }
+    
+    .navbar-nav .nav-link i {
+        margin-right: 6px;
+        transition: transform 0.3s ease;
+    }
+    
+    .navbar-nav .nav-link:hover i {
+        transform: translateY(-2px);
+    }
+    
+    .brand-logo {
+        height: 45px;
+        width: auto;
+        max-width: 100%;
+        object-fit: contain;
+        transition: all 0.3s ease;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        transform-origin: center;
+    }
+    
+    .brand-logo:hover {
+        transform: scale(1.05) rotate(-2deg);
+        filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.2));
+    }
+    
+    .brand-text {
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        background: linear-gradient(45deg, #fff, #e2e8f0);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent; /* Fallback for non-WebKit browsers */
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .brand-text::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #4299e1, #9f7aea);
+        transition: width 0.3s ease;
+    }
+    
+    .navbar-brand:hover .brand-text::after {
+        width: 100%;
+    }
+    
+    @media (max-width: 768px) {
+        .brand-logo {
+            height: 38px;
+        }
+        .brand-text {
+            font-size: 1.2rem;
+        }
+    }
+</style>
+
+<script>
+    // Add floating effect on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+        const navbar = document.querySelector('.floating-navbar');
+        let lastScroll = 0;
+        
+        window.addEventListener('scroll', function() {
+            const currentScroll = window.pageYOffset;
+            
+            // Add/remove scrolled class based on scroll position
+            if (currentScroll > 10) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            // Hide/show navbar on scroll direction
+            if (currentScroll <= 0) {
+                navbar.style.transform = 'translateY(0)';
+                return;
+            }
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                // Scrolling down
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                // Scrolling up
+                navbar.style.transform = 'translateY(0)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+        
+        // Mobile menu close on click
+        const navLinks = document.querySelectorAll('.nav-link');
+        const menuToggle = document.getElementById('navbarNav');
+        const bsCollapse = new bootstrap.Collapse(menuToggle, {toggle: false});
+        
+        navLinks.forEach(l => l.addEventListener('click', () => {
+            if (menuToggle.classList.contains('show')) {
+                bsCollapse.toggle();
+            }
+        }));
+    });
+</script>
+
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top floating-navbar">
     <div class="container">
-        <a class="navbar-brand" href="{% url 'index' %}">
-            <img src="{% static 'img/logo.png' %}" alt="Cashino Partners" height="40" class="brand-logo">
-            <span class="brand-text">Cashino Partners</span>
+        <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}" style="padding: 5px 0;">
+            <div class="logo-container d-flex align-items-center">
+                <img src="{% static 'img/site_logo.jpeg' %}" 
+                     alt="Cashino Partners" 
+                     class="brand-logo">
+                <span class="brand-text ms-3">
+                    {{ site_settings.site_name|default:'Cashino Partners' }}
+                </span>
+            </div>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>

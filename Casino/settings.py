@@ -118,6 +118,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'Core.context_processors.site_settings',
             ],
             'builtins': [
                 'django.templatetags.static',
@@ -182,9 +183,15 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
+# Session settings
+SESSION_COOKIE_AGE = 1209600  # 2 weeks, in seconds
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+
 # Login URL
 LOGIN_URL = '/signin/'
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/admin/login/'
 
 # Jazzmin Settings
 JAZZMIN_SETTINGS = {

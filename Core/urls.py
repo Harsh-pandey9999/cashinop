@@ -44,6 +44,8 @@ admin_urlpatterns = [
 public_urlpatterns = [
     path('about/', views.about_page, name='about_page'),
     path('contact/', views.contact_page, name='contact_page'),
+    path('terms/', views.terms_page, name='terms'),
+    path('privacy/', views.privacy_page, name='privacy'),
     path('card/<uuid:card_id>/', views.redirect_to_card_link, name='redirect_to_card_link'),
 ]
 

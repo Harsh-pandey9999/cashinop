@@ -71,7 +71,7 @@
 
 /* Sidebar Styles */
 .sidebar {
-  width: 260px;
+  width: var(--sidebar-width);
   height: 100vh;
   position: fixed;
   top: 0;
@@ -84,6 +84,51 @@
   z-index: 1030;
   transition: all 0.3s ease;
   overflow: hidden;
+  transform: translateX(0);
+}
+
+/* Mobile sidebar toggle */
+.sidebar-toggle {
+  display: none;
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--primary-color);
+  color: var(--text-dark);
+  border: none;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  z-index: 1050;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 991.98px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  
+  .sidebar.show {
+    transform: translateX(0);
+  }
+  
+  .sidebar-toggle {
+    display: flex;
+  }
+  
+  /* Adjust main content when sidebar is open */
+  .main-content {
+    margin-left: 0 !important;
+    width: 100%;
+  }
+  
+  /* Show sidebar toggle on mobile */
+  .sidebar-toggle {
+    display: flex;
+  }
 }
 
 .sidebar-header {
@@ -1247,11 +1292,74 @@ input:checked + .toggle-slider:before {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 991.98px) {
+  /* Responsive tables */
+  .table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Card adjustments */
+  .card, .stat-card {
+    margin-bottom: 1rem;
+  }
+  
   .stat-card {
     flex-direction: column;
     text-align: center;
   }
+  
+  /* Form adjustments */
+  .form-row {
+    flex-direction: column;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .form-row > .col,
+  .form-row > [class*="col-"] {
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 1rem;
+  }
+  
+  /* Buttons */
+  .btn {
+    white-space: nowrap;
+  }
+  
+  /* Dashboard widgets */
+  .dashboard-widget {
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Adjust spacing */
+  .p-4 {
+    padding: 1rem !important;
+  }
+  
+  .mb-4, .my-4 {
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Modal adjustments */
+  .modal-dialog {
+    margin: 0.5rem;
+  }
+  
+  /* Responsive typography */
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+  h4 { font-size: 1.1rem; }
+  
+  /* Hide less important elements on mobile */
+  .d-none-mobile {
+    display: none !important;
+  }
+}
   
   .stat-icon {
     margin-bottom: 1rem;
@@ -1266,4 +1374,3 @@ input:checked + .toggle-slider:before {
     margin-top: 0.5rem;
     width: 100%;
   }
-}

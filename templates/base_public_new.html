@@ -14,5 +14,10 @@
 {% endblock %}
 
 {% block content %}
-{% block main_content %}{% endblock %}
-{% endblock %} 
+    {% block main_content %}{% endblock %}
+    {{ block.super }}
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+{% endblock %}

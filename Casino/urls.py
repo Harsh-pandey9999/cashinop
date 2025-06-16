@@ -21,15 +21,19 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 from django.views.generic.base import TemplateView
+from django.views.i18n import set_language
 from Core.views import custom_csrf_failure
 
 # Import sitemaps
 from .sitemaps import StaticSitemap, GameCardsSitemap, AboutSitemap
 
+# Import custom admin site
+from .admin import custom_admin_site
+
 # changing admin panel title and info
-admin.site.site_header = "Casino Admin"
-admin.site.site_title = "Casino Admin Portal"
-admin.site.index_title = "Welcome to Casino Game Portal"
+custom_admin_site.site_header = "Casino Admin"
+custom_admin_site.site_title = "Casino Admin Portal"
+custom_admin_site.index_title = "Welcome to Casino Game Portal"
 
 sitemaps = {
     'static': StaticSitemap,
@@ -38,8 +42,16 @@ sitemaps = {
 }
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # i18n patterns
+    path('i18n/', include('django.conf.urls.i18n')),
+    
+    # Admin URLs
+    path('admin/', custom_admin_site.urls),
+    
+    # Core URLs
     path('', include('Core.urls')),
+    
+    # Authentication URLs
     path('accounts/', include('django.contrib.auth.urls')),
     
     # SEO URLs

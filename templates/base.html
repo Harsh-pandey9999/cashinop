@@ -3,8 +3,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <meta name="theme-color" content="#1f2937">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>{% block title %}{{ site_settings.site_name|default:"Casino" }}{% endblock %}</title>
+    <style>
+      .text-gradient {
+        background: linear-gradient(to right, #fbbf24, #d97706);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+      }
+    </style>
     {% if site_settings.favicon %}
         <link rel="icon" type="image/x-icon" href="{{ site_settings.favicon.url }}">
     {% endif %}
@@ -19,101 +32,7 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    {% if request.path|slice:":6" == "/admin" %}
-        <!-- Admin Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="{% url 'admin_dashboard' %}">
-                    {% if site_settings.site_logo %}
-                        <img src="{{ site_settings.site_logo.url }}" alt="{{ site_settings.site_name }}" height="40">
-                    {% else %}
-                        {{ site_settings.site_name|default:"Admin Panel" }}
-                    {% endif %}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'admin_dashboard' %}">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'manage_users' %}">Users</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'posts' %}">Posts</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'site_settings_update' %}">Settings</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'index' %}">Visit Site</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'admin_logout' %}">Logout</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    {% else %}
-        <!-- Public Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="{% url 'index' %}">
-                    {% if site_settings.site_logo %}
-                        <img src="{{ site_settings.site_logo.url }}" alt="{{ site_settings.site_name }}" height="40">
-                    {% else %}
-                        {{ site_settings.site_name|default:"Casino" }}
-                    {% endif %}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'index' %}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'about_page' %}">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'contact_page' %}">Contact</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav">
-                        {% if user.is_authenticated %}
-                            {% if user.is_staff %}
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'admin_dashboard' %}">Admin Panel</a>
-                                </li>
-                            {% endif %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'user_dashboard' %}">Dashboard</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'user_profile' %}">Profile</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-                            </li>
-                        {% else %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'signin' %}">Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'signup' %}">Register</a>
-                            </li>
-                        {% endif %}
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    {% endif %}
+    {% include 'header.html' %}
 
     <main class="container mt-4">
         {% if messages %}
@@ -129,35 +48,7 @@
     </main>
 
     {% if not request.path|slice:":6" == "/admin" %}
-        <footer class="footer mt-5 py-3 bg-dark text-white">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <h5>About Us</h5>
-                        <p>{{ site_settings.footer_text|default:"Welcome to our casino platform." }}</p>
-                    </div>
-                    <div class="col-md-4">
-                        <h5>Quick Links</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="{% url 'index' %}" class="text-white">Home</a></li>
-                            <li><a href="{% url 'about_page' %}" class="text-white">About</a></li>
-                            <li><a href="{% url 'contact_page' %}" class="text-white">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4">
-                        <h5>Contact Info</h5>
-                        <ul class="list-unstyled">
-                            <li>Email: {{ site_settings.contact_email }}</li>
-                            <li>Phone: {{ site_settings.contact_phone }}</li>
-                            <li>Address: {{ site_settings.contact_address }}</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="text-center mt-3">
-                    <p class="mb-0">{{ site_settings.copyright_text|default:"© 2024 Casino. All rights reserved." }}</p>
-                </div>
-            </div>
-        </footer>
+        {% include 'includes/footer.html' %}
     {% endif %}
 
     <!-- jQuery -->
@@ -166,13 +57,66 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- AOS Animation -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <!-- Initialize AOS -->
     <script>
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
+      // Initialize AOS with custom settings
+      AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true,
+        mirror: false
+      });
+      
+      // Mobile menu toggle
+      document.addEventListener('DOMContentLoaded', function() {
+        // Toggle mobile menu
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+        
+        if (navbarToggler && navbarCollapse) {
+          navbarToggler.addEventListener('click', function() {
+            navbarCollapse.classList.toggle('show');
+            const expanded = navbarToggler.getAttribute('aria-expanded') === 'true' || false;
+            navbarToggler.setAttribute('aria-expanded', !expanded);
+          });
+          
+          // Close menu when clicking outside
+          document.addEventListener('click', function(event) {
+            if (!navbarToggler.contains(event.target) && !navbarCollapse.contains(event.target)) {
+              navbarCollapse.classList.remove('show');
+              navbarToggler.setAttribute('aria-expanded', 'false');
+            }
+          });
+        }
+        
+        // Admin sidebar toggle for mobile
+        const sidebarToggle = document.querySelector('.sidebar-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        
+        if (sidebarToggle && sidebar) {
+          sidebarToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('show');
+          });
+        }
+        
+        // Close sidebar when clicking outside on mobile
+        if (window.innerWidth < 992) {
+          document.addEventListener('click', function(event) {
+            if (sidebar && sidebarToggle && 
+                !sidebar.contains(event.target) && 
+                !sidebarToggle.contains(event.target)) {
+              sidebar.classList.remove('show');
+            }
+          });
+        }
+      });
+      
+      // Handle window resize
+      window.addEventListener('resize', function() {
+        const sidebar = document.querySelector('.sidebar');
+        if (window.innerWidth >= 992 && sidebar) {
+          sidebar.classList.remove('show');
+        }
+      });
     </script>
     {% block extra_js %}{% endblock %}
 </body>
@@ -291,7 +235,9 @@ body {
 .text-gradient {
     background: var(--gradient-primary);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
+    color: transparent;
 }
 
 .glow-effect {

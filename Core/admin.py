@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils import timezone
 from django.utils.html import format_html
 from django.urls import reverse
 from django.db.models import Count
@@ -20,6 +21,7 @@ from .models import (
     SystemLog,
     BlogPost
 )
+from .forms import BlogPostForm
 
 # Extend User Admin
 class CasinoUserInline(admin.StackedInline):
@@ -97,18 +99,51 @@ admin.site.register(User, UserAdmin)
 
 @admin.register(CasinoUser)
 class CasinoUserAdmin(admin.ModelAdmin):
-    list_display = ('username', 'email', 'first_name', 'last_name', 'is_approved', 'is_active', 'date_joined')
-    list_filter = ('is_approved', 'is_active', 'date_joined')
-    search_fields = ('username', 'email', 'first_name', 'last_name')
-    ordering = ('-date_joined',)
+    list_display = ('user__username', 'user__email', 'user__first_name', 'user__last_name', 'is_approved', 'user__is_active', 'user__date_joined')
+    list_filter = ('is_approved', 'user__is_active', 'user__date_joined')
+    search_fields = ('user__username', 'user__email', 'user__first_name', 'user__last_name')
+    ordering = ('-user__date_joined',)
     actions = ['approve_users', 'deactivate_users']
     
+    def user__username(self, obj):
+        return obj.user.username
+    user__username.short_description = 'Username'
+    user__username.admin_order_field = 'user__username'
+
+    def user__email(self, obj):
+        return obj.user.email
+    user__email.short_description = 'Email'
+    user__email.admin_order_field = 'user__email'
+
+    def user__first_name(self, obj):
+        return obj.user.first_name
+    user__first_name.short_description = 'First Name'
+    user__first_name.admin_order_field = 'user__first_name'
+
+    def user__last_name(self, obj):
+        return obj.user.last_name
+    user__last_name.short_description = 'Last Name'
+    user__last_name.admin_order_field = 'user__last_name'
+
+    def user__is_active(self, obj):
+        return obj.user.is_active
+    user__is_active.short_description = 'Active'
+    user__is_active.boolean = True
+    user__is_active.admin_order_field = 'user__is_active'
+
+    def user__date_joined(self, obj):
+        return obj.user.date_joined
+    user__date_joined.short_description = 'Date Joined'
+    user__date_joined.admin_order_field = 'user__date_joined'
+
     def approve_users(self, request, queryset):
-        queryset.update(is_approved=True)
+        updated = queryset.update(is_approved=True)
+        self.message_user(request, f"{updated} users have been approved.")
     approve_users.short_description = "Approve selected users"
-    
+
     def deactivate_users(self, request, queryset):
-        queryset.update(is_active=False)
+        updated = queryset.update(user__is_active=False)
+        self.message_user(request, f"{updated} users have been deactivated.")
     deactivate_users.short_description = "Deactivate selected users"
 
 @admin.register(GameCards)
@@ -158,18 +193,76 @@ class GameCardsAdmin(ImportExportModelAdmin):
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
-    list_display = ('email', 'phone', 'address', 'is_active', 'created_at', 'updated_at', 'created_by')
+    list_display = ('email', 'phone', 'is_active', 'created_at', 'updated_at', 'created_by')
     search_fields = ('email', 'phone', 'address')
     list_filter = ('is_active', 'created_at')
-    readonly_fields = ('created_at', 'updated_at')
+    readonly_fields = ('created_at', 'updated_at', 'created_by')
+    fieldsets = (
+        (None, {
+            'fields': ('email', 'phone', 'address', 'is_active')
+        }),
+        ('Advanced options', {
+            'classes': ('collapse',),
+            'fields': ('created_by', 'created_at', 'updated_at'),
+        }),
+    )
+    
+    def save_model(self, request, obj, form, change):
+        if not obj.pk:  # New instance
+            obj.created_by = request.user
+        obj.save()
+        
+    def has_delete_permission(self, request, obj=None):
+        return request.user.has_perm('Core.can_manage_contact')
+        
+    def has_add_permission(self, request):
+        return request.user.has_perm('Core.can_manage_contact')
+        
+    def has_change_permission(self, request, obj=None):
+        return request.user.has_perm('Core.can_manage_contact')
+        
+    def get_readonly_fields(self, request, obj=None):
+        if obj:  # Editing an existing object
+            return self.readonly_fields + ('created_by',)
+        return self.readonly_fields
 
 @admin.register(About)
 class AboutAdmin(admin.ModelAdmin):
     list_display = ('title', 'is_published', 'created_at', 'updated_at', 'created_by', 'published_at', 'slug')
     search_fields = ('title', 'content')
     list_filter = ('is_published', 'created_at')
-    readonly_fields = ('created_at', 'updated_at', 'slug')
+    readonly_fields = ('created_at', 'updated_at', 'slug', 'created_by')
+    fieldsets = (
+        (None, {
+            'fields': ('title', 'content', 'is_published')
+        }),
+        ('Advanced options', {
+            'classes': ('collapse',),
+            'fields': ('slug', 'created_by', 'published_at', 'created_at', 'updated_at'),
+        }),
+    )
     ordering = ('-created_at',)
+    
+    def save_model(self, request, obj, form, change):
+        if not obj.pk:  # New instance
+            obj.created_by = request.user
+        if 'is_published' in form.changed_data and obj.is_published and not obj.published_at:
+            obj.published_at = timezone.now()
+        obj.save()
+        
+    def has_delete_permission(self, request, obj=None):
+        return request.user.has_perm('Core.can_manage_about')
+        
+    def has_add_permission(self, request):
+        return request.user.has_perm('Core.can_manage_about')
+        
+    def has_change_permission(self, request, obj=None):
+        return request.user.has_perm('Core.can_manage_about')
+        
+    def get_readonly_fields(self, request, obj=None):
+        if obj:  # Editing an existing object
+            return self.readonly_fields + ('created_by',)
+        return self.readonly_fields
 
 @admin.register(SiteSettings)
 class SiteSettingsAdmin(admin.ModelAdmin):
@@ -265,10 +358,37 @@ class SystemLogAdmin(admin.ModelAdmin):
 
 @admin.register(BlogPost)
 class BlogPostAdmin(admin.ModelAdmin):
+    form = BlogPostForm
     list_display = ('title', 'author', 'created_at', 'updated_at', 'published', 'published_at', 'is_featured', 'view_count')
     search_fields = ('title', 'content', 'author__username')
     list_filter = ('published', 'created_at', 'is_featured')
-    prepopulated_fields = {'slug': ('title',)}
     date_hierarchy = 'created_at'
     ordering = ('-created_at',)
-    readonly_fields = ('created_at', 'updated_at', 'slug')
+    readonly_fields = ('created_at', 'updated_at', 'view_count')
+    fieldsets = (
+        ('Post Details', {
+            'fields': ('title', 'slug', 'content', 'featured_image')
+        }),
+        ('Publication', {
+            'fields': ('published', 'published_at', 'is_featured')
+        }),
+        ('SEO', {
+            'classes': ('collapse',),
+            'fields': ('meta_description', 'meta_keywords')
+        }),
+        ('Metadata', {
+            'classes': ('collapse',),
+            'fields': ('author', 'last_modified_by', 'created_at', 'updated_at', 'view_count')
+        }),
+    )
+    
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+        form.base_fields['author'].initial = request.user
+        return form
+    
+    def save_model(self, request, obj, form, change):
+        if not obj.pk:  # New post
+            obj.author = request.user
+        obj.last_modified_by = request.user
+        super().save_model(request, obj, form, change)

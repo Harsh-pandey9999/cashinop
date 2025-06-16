@@ -87,8 +87,8 @@ def index(request):
     }
     
     # Add site_logo for backward compatibility
-    if site_settings and site_settings.logo:
-        context["site_logo"] = site_settings.logo.url
+    if site_settings and site_settings.site_logo:
+        context["site_logo"] = site_settings.site_logo.url
     
     return render(request, "index.html", context)
 
