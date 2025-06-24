@@ -1,0 +1,488 @@
+<!-- Footer Section with Modern Design -->
+<footer class="footer text-light py-5 position-relative" style="background: linear-gradient(135deg, #1a2a6c 0%, #2c5282 50%, #4299e1 100%);">
+    <!-- Wave Shape -->
+    <div class="footer-wave">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+        </svg>
+    </div>
+    
+    <div class="container position-relative">
+        <div class="row g-4">
+            <!-- Company Info -->
+            <div class="col-lg-4 col-md-6">
+                <div class="footer-brand mb-4">
+                    {% if site_settings.site_logo %}
+                        <a href="/" class="d-inline-block mb-3">
+                            <img src="{{ site_settings.site_logo.url }}" alt="{{ site_settings.site_name }}" height="50" class="me-2">
+                        </a>
+                    {% else %}
+                        <a href="/" class="text-gradient fs-4 fw-bold d-inline-block mb-3">
+                            {{ site_settings.site_name|default:"Casino Partners" }}
+                        </a>
+                    {% endif %}
+                    <p class="text-white-50 mb-4">
+                        {{ site_settings.footer_text|default:"Your trusted partner for premium casino affiliate marketing. Join us to earn big with top-tier brands." }}
+                    </p>
+                    <div class="social-links d-flex gap-3">
+                        {% if site_settings.facebook_url %}
+                            <a href="{{ site_settings.facebook_url }}" target="_blank" class="social-link" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        {% endif %}
+                        {% if site_settings.twitter_url %}
+                            <a href="{{ site_settings.twitter_url }}" target="_blank" class="social-link" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        {% endif %}
+                        {% if site_settings.instagram_url %}
+                            <a href="{{ site_settings.instagram_url }}" target="_blank" class="social-link" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        {% endif %}
+                        {% if site_settings.linkedin_url %}
+                            <a href="{{ site_settings.linkedin_url }}" target="_blank" class="social-link" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        {% endif %}
+                        {% if site_settings.telegram_url %}
+                            <a href="{{ site_settings.telegram_url }}" target="_blank" class="social-link" aria-label="Telegram">
+                                <i class="fab fa-telegram-plane"></i>
+                            </a>
+                        {% endif %}
+                        {% if site_settings.youtube_url %}
+                            <a href="{{ site_settings.youtube_url }}" target="_blank" class="social-link" aria-label="YouTube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Links -->
+            <div class="col-lg-2 col-md-6">
+                <h5 class="footer-heading mb-4">Quick Links</h5>
+                <ul class="footer-links list-unstyled">
+                    <li><a href="{% url 'index' %}" class="text-white-50"><i class="fas fa-angle-right me-2"></i> Home</a></li>
+                    <li><a href="{% url 'about_page' %}" class="text-white-50"><i class="fas fa-angle-right me-2"></i> About Us</a></li>
+                    <li><a href="#" class="text-white-50"><i class="fas fa-angle-right me-2"></i> Games</a></li>
+                    <li><a href="#" class="text-white-50"><i class="fas fa-angle-right me-2"></i> Blog</a></li>
+                    <li><a href="{% url 'contact_page' %}" class="text-white-50"><i class="fas fa-angle-right me-2"></i> Contact</a></li>
+                </ul>
+            </div>
+            
+            <!-- Legal Links -->
+            <div class="col-lg-2 col-md-6">
+                <h5 class="footer-heading mb-4">Legal</h5>
+                <ul class="footer-links list-unstyled">
+                    <li><a href="{% url 'terms' %}" class="text-white-50"><i class="fas fa-file-contract me-2"></i> Terms of Service</a></li>
+                    <li><a href="{% url 'privacy' %}" class="text-white-50"><i class="fas fa-shield-alt me-2"></i> Privacy Policy</a></li>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="mb-2">
+                            <a href="{% if user.is_staff or user.is_superuser %}{% url 'admin_dashboard' %}{% endif %}" class="text-light text-decoration-none hover-gold">
+                                <i class="fas fa-tachometer-alt me-2 text-gold"></i>Dashboard
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{% url 'logout' %}" class="text-light text-decoration-none hover-gold">
+                                <i class="fas fa-sign-out-alt me-2 text-gold"></i>Logout
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="mb-2">
+                            <a href="{% url 'signin' %}" class="text-light text-decoration-none hover-gold">
+                                <i class="fas fa-sign-in-alt me-2 text-gold"></i>Sign In
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{% url 'signup' %}" class="text-light text-decoration-none hover-gold">
+                                <i class="fas fa-user-plus me-2 text-gold"></i>Sign Up
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+            
+            <!-- Contact & Newsletter -->
+            <div class="col-lg-4 col-md-6">
+                <h5 class="footer-heading mb-4">Contact Us</h5>
+                <div class="contact-info mb-4">
+                    <ul class="list-unstyled">
+                        {% if site_settings.contact_email %}
+                        <li class="mb-3">
+                            <div class="d-flex">
+                                <div class="contact-icon me-3">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h6 class="text-white mb-1">Email Us</h6>
+                                    <a href="mailto:{{ site_settings.contact_email }}" class="text-white-50">{{ site_settings.contact_email }}</a>
+                                </div>
+                            </div>
+                        </li>
+                        {% endif %}
+                        
+                        {% if site_settings.contact_phone %}
+                        <li class="mb-3">
+                            <div class="d-flex">
+                                <div class="contact-icon me-3">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h6 class="text-white mb-1">Call Us</h6>
+                                    <a href="tel:{{ site_settings.contact_phone|cut:' ' }}" class="text-white-50">{{ site_settings.contact_phone }}</a>
+                                </div>
+                            </div>
+                        </li>
+                        {% endif %}
+                        
+                        {% if site_settings.contact_address %}
+                        <li class="mb-3">
+                            <div class="d-flex">
+                                <div class="contact-icon me-3">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h6 class="text-white mb-1">Location</h6>
+                                    <span class="text-white-50">{{ site_settings.contact_address }}</span>
+                                </div>
+                            </div>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+                
+                <!-- Newsletter -->
+                <div class="newsletter">
+                    <h6 class="text-uppercase mb-3">Newsletter</h6>
+                    <form class="newsletter-form" action="#" method="post">
+                        {% csrf_token %}
+                        <div class="input-group mb-3">
+                            <input type="email" name="email" class="form-control bg-dark text-light border-secondary" placeholder="Your email" required>
+                            <button class="btn btn-primary px-4" type="submit">
+                                <i class="far fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="privacyCheck" required>
+                            <label class="form-check-label small text-white-50" for="privacyCheck">
+                                I agree to the <a href="#" class="text-primary text-decoration-underline">Privacy Policy</a>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <hr class="my-4 border-secondary">
+        
+        <!-- Copyright & Legal Links -->
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                <p class="mb-0">
+                    {% if site_settings and site_settings.copyright_text %}
+                        {{ site_settings.copyright_text }}
+                    {% else %}
+                        &copy; {% now "Y" %} Casino Partners. All rights reserved.
+                    {% endif %}
+                </p>
+            </div>
+            <div class="col-md-6">
+                <ul class="list-inline text-center text-md-end mb-0">
+                    <li class="list-inline-item me-3">
+                        <a href="#" class="text-light text-decoration-none hover-gold">Terms of Service</a>
+                    </li>
+                    <li class="list-inline-item me-3">
+                        <a href="#" class="text-light text-decoration-none hover-gold">Privacy Policy</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="text-light text-decoration-none hover-gold">Responsible Gaming</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+<style>
+    /* Base Styles */
+    :root {
+        --primary-color: #4299e1;
+        --secondary-color: #1a2a6c;
+        --dark-color: #0f0f1a;
+        --light-color: #f8f9fa;
+        --text-muted: #adb5bd;
+    }
+    
+    /* Footer Wave */
+    .footer-wave {
+        position: absolute;
+        top: -1px;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+    }
+    
+    .footer-wave svg {
+        position: relative;
+        display: block;
+        width: calc(100% + 1.3px);
+        height: 80px;
+    }
+    
+    .footer-wave .shape-fill {
+        fill: #0f0f1a;
+    }
+    
+    /* Footer Layout */
+    .footer {
+        position: relative;
+        overflow: hidden;
+        color: #fff;
+        padding-top: 80px;
+        margin-top: 100px;
+        background: linear-gradient(135deg, #1a2a6c 0%, #2c5282 50%, #4299e1 100%);
+    }
+    
+    .footer .footer-heading {
+        color: #fff;
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-bottom: 10px;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+    
+    .footer-heading:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50px;
+        height: 2px;
+        background-color: var(--primary-color);
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    /* Footer Links */
+    .footer-links {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .footer-links li {
+        margin-bottom: 12px;
+        position: relative;
+        padding-left: 0;
+        transition: all 0.3s ease;
+    }
+    
+    .footer-links a {
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-block;
+        position: relative;
+    }
+    
+    .footer-links a:before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 1px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--primary-color);
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    .footer-links a:hover, .footer-links a:focus {
+        color: #fff !important;
+        padding-left: 5px;
+        text-shadow: 0 0 10px rgba(255,255,255,0.5);
+    }
+    
+    .footer-links a:hover:before {
+        visibility: visible;
+        width: 100%;
+    }
+    
+    /* Contact Info */
+    .contact-icon {
+        width: 36px;
+        height: 36px;
+        background: rgba(255, 215, 0, 0.1);
+        color: var(--primary-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+    
+    /* Social Icons */
+    .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+    }
+    
+    .social-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff !important;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .social-link:hover {
+        background: rgba(255,255,255,0.3);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        color: #fff !important;
+    }
+    
+    /* Newsletter Form */
+    .newsletter .form-control {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #fff;
+        height: 48px;
+        border-radius: 30px 0 0 30px;
+        padding: 10px 20px;
+    }
+    
+    .newsletter .form-control:focus {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.25rem rgba(255, 215, 0, 0.25);
+    }
+    
+    .newsletter .btn {
+        border-radius: 0 30px 30px 0;
+        padding: 0 20px;
+        background: var(--primary-color);
+        color: #000;
+        font-weight: 600;
+        border: none;
+        transition: all 0.3s ease;
+    }
+    
+    .newsletter .btn:hover {
+        background: #fff;
+        transform: none;
+    }
+    
+    /* Footer Bottom */
+    .footer-bottom {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 20px 0;
+    }
+    
+    .footer-bottom a {
+        color: var(--text-muted);
+        transition: all 0.3s ease;
+    }
+    
+    .footer-bottom a:hover {
+        color: var(--primary-color);
+        text-decoration: none;
+    }
+    
+    /* Payment Methods */
+    .payment-methods img {
+        transition: all 0.3s ease;
+        opacity: 0.7;
+    }
+    
+    .payment-methods img:hover {
+        opacity: 1;
+        transform: translateY(-3px);
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 991.98px) {
+        .footer {
+            text-align: center;
+            padding-top: 60px;
+        }
+        
+        .footer-heading:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .contact-info .d-flex {
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .social-links {
+            justify-content: center;
+        }
+        
+        .newsletter-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+    }
+    
+    @media (max-width: 767.98px) {
+        .footer {
+            padding-top: 40px;
+        }
+        
+        .footer-wave svg {
+            height: 50px;
+        }
+    }
+    
+    .text-gold {
+        color: var(--primary-color, #FFD700);
+    }
+    
+    .hover-gold:hover {
+        color: var(--primary-color, #FFD700) !important;
+        transition: color 0.3s ease;
+    }
+    
+    .footer-links a, .footer-contact li {
+        transition: all 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+        padding-left: 5px;
+    }
+    
+    .footer {
+        position: relative;
+        z-index: 1;
+    }
+    
+    .footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffd700' fill-opacity='0.05'%3E%3Cpath d='M36 34c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4m0-16c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4m16 16c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4m0-16c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4m-32 32c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4m0-16c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4m16 16c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4m0-16c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        opacity: 0.1;
+        z-index: -1;
+    }
+</style>

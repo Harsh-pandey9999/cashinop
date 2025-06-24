@@ -1,0 +1,1739 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block extra_css %}
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+    /* Global Styles */
+    :root {
+        --primary-color: #4a90e2;
+        --secondary-color: #8e44ad;
+        --accent-color: #e74c3c;
+        --success-color: #2ecc71;
+        --warning-color: #f1c40f;
+        --text-dark: #2d3748;
+        --text-light: #4a5568;
+        --bg-light: #f8fafc;
+        --transition: all 0.3s ease;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        color: var(--text-dark);
+        line-height: 1.6;
+    }
+
+    .section {
+        padding: 5rem 0;
+        position: relative;
+    }
+
+    .section-title {
+        margin-bottom: 3.5rem;
+    }
+
+    .section-title h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .section-title .lead {
+        font-size: 1.25rem;
+        color: var(--text-light);
+    }
+
+    /* Enhanced Animations and Effects */
+    .hover-lift {
+        transition: var(--transition);
+    }
+    
+    .hover-lift:hover {
+        transform: translateY(-10px);
+    }
+    
+    .gradient-text {
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    .card-glow {
+        transition: var(--transition);
+    }
+    
+    .card-glow:hover {
+        box-shadow: 0 0 30px rgba(74, 144, 226, 0.2);
+    }
+
+    /* Enhanced Hero Section */
+    .hero-section {
+        min-height: 100vh;
+        padding: 8rem 0 6rem;
+        background: linear-gradient(135deg, rgba(26, 42, 108, 0.9) 0%, rgba(44, 82, 130, 0.9) 50%, rgba(66, 153, 225, 0.9) 100%);
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+    }
+    
+    .hero-section::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        z-index: 1;
+    }
+
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('{% static "img/pattern.png" %}') repeat;
+        opacity: 0.1;
+        animation: patternMove 20s linear infinite;
+    }
+
+    @keyframes patternMove {
+        0% { background-position: 0 0; }
+        100% { background-position: 100px 100px; }
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 3rem;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    }
+
+    .hero-content h1 {
+        font-size: 4rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        background: linear-gradient(45deg, #fff, #e2e8f0);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-content .lead {
+        font-size: 1.5rem;
+        margin-bottom: 2.5rem;
+        opacity: 0.9;
+        animation: fadeInUp 1s ease-out 0.2s backwards;
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        animation: fadeInUp 1s ease-out 0.4s backwards;
+    }
+
+    .hero-buttons .btn {
+        padding: 1rem 2.5rem;
+        font-weight: 600;
+        border-radius: 50px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-buttons .btn-primary {
+        background: linear-gradient(45deg, #4299e1, #2c5282);
+        border: none;
+    }
+
+    .hero-buttons .btn-outline-light {
+        border: 2px solid rgba(255, 255, 255, 0.8);
+        background: transparent;
+    }
+
+    .hero-buttons .btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+        transform: translateX(-100%);
+        transition: 0.5s;
+    }
+
+    .hero-buttons .btn:hover::before {
+        transform: translateX(100%);
+    }
+
+    .hero-buttons .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .hero-stats {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        margin-top: 4rem;
+        animation: fadeInUp 1s ease-out 0.6s backwards;
+    }
+
+    .stat-item {
+        text-align: center;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(45deg, #fff, #e2e8f0);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .stat-label {
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        opacity: 0.8;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .hero-content h1 {
+            font-size: 2.5rem;
+        }
+
+        .hero-content .lead {
+            font-size: 1.2rem;
+        }
+
+        .hero-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-stats {
+            flex-direction: column;
+            gap: 2rem;
+        }
+    }
+
+    /* Features Section */
+    .feature-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 2.5rem;
+        height: 100%;
+        transition: var(--transition);
+        border: 1px solid rgba(0,0,0,0.05);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .feature-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        opacity: 0;
+        transition: var(--transition);
+    }
+
+    .feature-card:hover::before {
+        opacity: 1;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    .feature-icon {
+        width: 90px;
+        height: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        color: white;
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .feature-icon::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+        transform: rotate(45deg);
+        transition: var(--transition);
+    }
+
+    .feature-card:hover .feature-icon::after {
+        transform: rotate(45deg) translate(50%, 50%);
+    }
+
+    /* Success Metrics Section */
+    .success-section {
+        background: var(--bg-light);
+    }
+
+    .success-counter {
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        line-height: 1;
+    }
+
+    .success-counter + h4 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Testimonials Section */
+    .testimonial-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 2rem;
+        height: 100%;
+        transition: var(--transition);
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .testimonial-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    .testimonial-card img {
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+        border: 3px solid var(--primary-color);
+    }
+
+    .testimonial-card h5 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+    }
+
+    /* Brands Section */
+    .brands-section {
+        background: #fff;
+    }
+
+    .brand-logo {
+        padding: 2rem;
+        transition: var(--transition);
+        max-height: 80px;
+        object-fit: contain;
+    }
+
+    .brand-logo:hover {
+        transform: scale(1.1);
+    }
+
+    /* FAQ Section */
+    .faq-section {
+        background: var(--bg-light);
+    }
+
+    .faq-item {
+        background: #fff;
+        border-radius: 15px;
+        margin-bottom: 1rem;
+        transition: var(--transition);
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .faq-item:hover {
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .faq-item .btn-link {
+        color: var(--text-dark);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        padding: 1.5rem;
+        width: 100%;
+        text-align: left;
+        position: relative;
+    }
+
+    .faq-item .btn-link::after {
+        content: '\f107';
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        position: absolute;
+        right: 1.5rem;
+        transition: var(--transition);
+    }
+
+    .faq-item .btn-link[aria-expanded="true"]::after {
+        transform: rotate(180deg);
+    }
+
+    .faq-item .collapse {
+        padding: 0 1.5rem 1.5rem;
+    }
+
+    /* Game Cards Section */
+    .game-card {
+        background: #fff;
+        border-radius: 20px;
+        overflow: hidden;
+        height: 100%;
+        transition: var(--transition);
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .game-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    .game-image-wrapper {
+        position: relative;
+        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    }
+
+    .game-image-wrapper img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .game-card-content {
+        padding: 1.5rem;
+    }
+
+    .game-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+    }
+
+    .game-stats {
+        display: flex;
+        gap: 1.5rem;
+        margin-top: 1rem;
+    }
+
+    .stat {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-light);
+    }
+
+    .stat i {
+        color: var(--primary-color);
+    }
+
+    /* Enhanced Get Started Section */
+    .get-started-section {
+        background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .get-started-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('{% static "img/pattern-light.png" %}') repeat;
+        opacity: 0.05;
+    }
+
+    .step-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 2.5rem;
+        height: 100%;
+        transition: var(--transition);
+        border: 1px solid rgba(0,0,0,0.05);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .step-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        opacity: 0;
+        transition: var(--transition);
+    }
+
+    .step-card:hover::before {
+        opacity: 1;
+    }
+
+    .step-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    .step-icon {
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        color: white;
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .step-icon::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+        transform: rotate(45deg);
+        transition: var(--transition);
+    }
+
+    .step-card:hover .step-icon::after {
+        transform: rotate(45deg) translate(50%, 50%);
+    }
+
+    .step-number {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 30px;
+        height: 30px;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+
+    /* Enhanced Platform Benefits Section */
+    .benefits-section {
+        background: #fff;
+        position: relative;
+    }
+
+    .benefit-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 2.5rem;
+        height: 100%;
+        transition: var(--transition);
+        border: 1px solid rgba(0,0,0,0.05);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .benefit-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--success-color), var(--primary-color));
+        opacity: 0;
+        transition: var(--transition);
+    }
+
+    .benefit-card:hover::before {
+        opacity: 1;
+    }
+
+    .benefit-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    .benefit-icon {
+        width: 70px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--success-color) 0%, var(--primary-color) 100%);
+        color: white;
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .benefit-icon::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+        transform: rotate(45deg);
+        transition: var(--transition);
+    }
+
+    .benefit-card:hover .benefit-icon::after {
+        transform: rotate(45deg) translate(50%, 50%);
+    }
+
+    /* New Tournament Section */
+    .tournament-section {
+        background: linear-gradient(135deg, #1a2a6c 0%, #2c5282 50%, #4299e1 100%);
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .tournament-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('{% static "img/pattern.png" %}') repeat;
+        opacity: 0.1;
+    }
+
+    .tournament-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 2rem;
+        height: 100%;
+        transition: var(--transition);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .tournament-card:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    .tournament-prize {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--warning-color);
+        margin-bottom: 1rem;
+    }
+
+    /* New Community Section */
+    .community-section {
+        background: var(--bg-light);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .community-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('{% static "img/pattern-light.png" %}') repeat;
+        opacity: 0.05;
+    }
+
+    .community-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 2rem;
+        height: 100%;
+        transition: var(--transition);
+        border: 1px solid rgba(0,0,0,0.05);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .community-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    .community-stats {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .stat-item {
+        text-align: center;
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+    }
+
+    .stat-label {
+        font-size: 0.875rem;
+        color: var(--text-light);
+    }
+
+    /* New Rewards Section */
+    .rewards-section {
+        background: #fff;
+        position: relative;
+    }
+
+    .reward-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 2rem;
+        height: 100%;
+        transition: var(--transition);
+        border: 1px solid rgba(0,0,0,0.05);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .reward-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--warning-color), var(--accent-color));
+        opacity: 0;
+        transition: var(--transition);
+    }
+
+    .reward-card:hover::before {
+        opacity: 1;
+    }
+
+    .reward-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    .reward-icon {
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--warning-color) 0%, var(--accent-color) 100%);
+        color: white;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 991.98px) {
+        .hero-content h1 {
+            font-size: 2.5rem;
+        }
+
+        .hero-content .lead {
+            font-size: 1.25rem;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+        }
+
+        .step-card,
+        .benefit-card,
+        .tournament-card,
+        .community-card,
+        .reward-card {
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    @media (max-width: 767.98px) {
+        .hero-section {
+            padding: 4rem 0;
+        }
+
+        .hero-content h1 {
+            font-size: 2rem;
+        }
+
+        .section {
+            padding: 3rem 0;
+        }
+
+        .feature-card,
+        .testimonial-card,
+        .game-card {
+            margin-bottom: 1.5rem;
+        }
+
+        .success-counter {
+            font-size: 2.5rem;
+        }
+
+        .step-icon,
+        .benefit-icon,
+        .reward-icon {
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+        }
+
+        .tournament-prize {
+            font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 575.98px) {
+        .hero-content h1 {
+            font-size: 1.75rem;
+        }
+
+        .hero-buttons .btn {
+            width: 100%;
+            margin-right: 0;
+        }
+
+        .section-title h2 {
+            font-size: 1.75rem;
+        }
+    }
+
+    /* Enhanced Game Icons Section */
+    .hero-game-icons {
+        margin-top: 4rem;
+        padding: 2rem 0;
+        position: relative;
+        animation: fadeInUp 1s ease-out 0.8s backwards;
+    }
+
+    .hero-game-icons::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    .game-icon-link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        transition: var(--transition);
+        position: relative;
+    }
+
+    .game-icon {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        aspect-ratio: 1;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-style: preserve-3d;
+        perspective: 1000px;
+    }
+
+    .game-icon::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, 
+            #ff3366, #ff6b6b, #4ecdc4, #45b7d1, 
+            #96c93d, #00b09b, #ff3366);
+        background-size: 400% 400%;
+        z-index: -1;
+        border-radius: 22px;
+        animation: gradientBorder 3s ease infinite;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    @keyframes gradientBorder {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .game-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        filter: brightness(0.9);
+    }
+
+    .icon-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1.5rem;
+        background: linear-gradient(to top, 
+            rgba(0, 0, 0, 0.9) 0%,
+            rgba(0, 0, 0, 0.7) 50%,
+            transparent 100%);
+        color: #fff;
+        transform: translateY(100%);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .game-name {
+        display: block;
+        font-weight: 700;
+        margin-bottom: 0.8rem;
+        font-size: 1.1rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+    }
+
+    .icon-stats {
+        display: flex;
+        gap: 1.5rem;
+        font-size: 0.9rem;
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+    }
+
+    .stat {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .stat i {
+        color: #ff3366;
+        font-size: 1.1rem;
+        text-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+    }
+
+    .icon-hover-effect {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, 
+            rgba(255, 51, 102, 0.2),
+            rgba(78, 205, 196, 0.2));
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        mix-blend-mode: overlay;
+    }
+
+    .game-icon:hover {
+        transform: translateY(-10px) rotateX(5deg);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .game-icon:hover::before {
+        opacity: 1;
+    }
+
+    .game-icon:hover .icon-overlay {
+        transform: translateY(0);
+    }
+
+    .game-icon:hover .game-name,
+    .game-icon:hover .icon-stats {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .game-icon:hover .icon-hover-effect {
+        opacity: 1;
+    }
+
+    .game-icon:hover img {
+        transform: scale(1.1);
+        filter: brightness(1.1);
+    }
+
+    .placeholder-image {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(45deg, #ff3366, #4ecdc4);
+        color: white;
+        font-size: 2rem;
+    }
+
+    .game-icon-link:nth-child(1) .game-icon { animation-delay: 0.1s; }
+    .game-icon-link:nth-child(2) .game-icon { animation-delay: 0.2s; }
+    .game-icon-link:nth-child(3) .game-icon { animation-delay: 0.3s; }
+    .game-icon-link:nth-child(4) .game-icon { animation-delay: 0.4s; }
+    .game-icon-link:nth-child(5) .game-icon { animation-delay: 0.5s; }
+    .game-icon-link:nth-child(6) .game-icon { animation-delay: 0.6s; }
+
+    @media (max-width: 768px) {
+        .hero-game-icons {
+            margin-top: 2rem;
+            padding: 1rem 0;
+        }
+
+        .game-icon {
+            margin-bottom: 1.5rem;
+        }
+
+        .game-name {
+            font-size: 1rem;
+        }
+
+        .icon-stats {
+            font-size: 0.8rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Welcome to Cashino Partners</h1>
+            <p class="lead">Your trusted partner in the world of gaming and entertainment. Experience excellence, innovation, and unmatched opportunities.</p>
+            <div class="hero-buttons">
+                <a href="{% url 'signup' %}" class="btn btn-primary">
+                    <i class="fas fa-rocket me-2"></i>Get Started
+                </a>
+                <a href="{% url 'about_page' %}" class="btn btn-outline-light">
+                    <i class="fas fa-info-circle me-2"></i>Learn More
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Active Partners</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Support</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">99%</div>
+                    <div class="stat-label">Satisfaction</div>
+                </div>
+            </div>
+            <div class="hero-game-icons">
+                <div class="row g-4">
+                    {% for card in cards|slice:":6" %}
+                    <div class="col-4">
+                        <a href="#game-{{ card.id }}" class="game-icon-link" data-card-id="{{ card.id }}">
+                            <div class="game-icon">
+                                {% if card.image %}
+                                <img src="{{ card.image.url }}" alt="{{ card.title }}" class="img-fluid">
+                                {% else %}
+                                <div class="placeholder-image">
+                                    <i class="fas fa-gamepad fa-3x"></i>
+                                </div>
+                                {% endif %}
+                                <div class="icon-overlay">
+                                    <span class="game-name">{{ card.title }}</span>
+                                    <div class="icon-stats">
+                                        <span class="stat"><i class="fas fa-users"></i> {{ card.players_count|default:"1.2K" }}</span>
+                                        <span class="stat"><i class="fas fa-star"></i> {{ card.rating|default:"4.8" }}</span>
+                                    </div>
+                                </div>
+                                <div class="icon-hover-effect"></div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section section">
+    <div class="container">
+        <div class="section-title">
+            <h2 class="text-gradient">Why Choose Cashinop Partners</h2>
+            <p class="lead">Experience gaming excellence with our premium features</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Advanced Security</h3>
+                    <p>State-of-the-art security measures to protect your gaming experience.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Premium Games</h3>
+                    <p>Exclusive access to the most exciting and high-quality games.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Round-the-clock dedicated support for all your gaming needs.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Enhanced Get Started Section -->
+<section class="get-started-section section">
+    <div class="container">
+        <div class="section-title text-center">
+            <h2 class="text-gradient">Get Started in 3 Easy Steps</h2>
+            <p class="lead">Begin your gaming journey with Cashinop Partners</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3>Create Account</h3>
+                    <p>Sign up in minutes with our simple registration process. Verify your email to get started.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Choose Games</h3>
+                    <p>Browse our extensive collection of premium games and select your favorites.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <h3>Start Playing</h3>
+                    <p>Join the action and start winning! Enjoy our regular tournaments and rewards.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Game Cards Section -->
+<section id="games" class="section game-cards-section">
+    <div class="container">
+        <div class="section-title">
+            <h2 class="text-gradient">Featured Games</h2>
+            <p class="lead">Explore our most popular gaming experiences</p>
+        </div>
+        <div class="row g-4">
+            {% for card in cards %}
+            <div id="game-{{ card.id }}" class="col-md-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1|multiply:100 }}">
+                <a href="{% url 'redirect_to_card_link' card.id %}" class="text-decoration-none">
+                    <div class="game-card" data-card-id="{{ card.id }}">
+                        <div class="game-card-inner">
+                            {% if card.image %}
+                            <div class="game-image-wrapper">
+                                <img src="{{ card.image.url }}" alt="{{ card.title }}" class="img-fluid rounded-top">
+                                <div class="game-overlay">
+                                    <button class="btn btn-primary view-details" data-card-id="{{ card.id }}">
+                                        <i class="fas fa-info-circle me-2"></i>View Details
+                                    </button>
+                                </div>
+                            </div>
+                            {% endif %}
+                            <div class="game-card-content">
+                                <h3 class="game-title">{{ card.title }}</h3>
+                                <p class="game-description">{{ card.description|truncatechars:100 }}</p>
+                                <div class="game-stats">
+                                    <div class="stat">
+                                        <i class="fas fa-users"></i>
+                                        <span>{{ card.players_count|default:"1.2K" }} Players</span>
+                                    </div>
+                                    <div class="stat">
+                                        <i class="fas fa-star"></i>
+                                        <span>{{ card.rating|default:"4.8" }}/5</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Enhanced Platform Benefits Section -->
+<section class="benefits-section section">
+    <div class="container">
+        <div class="section-title text-center">
+            <h2 class="text-gradient">Platform Benefits</h2>
+            <p class="lead">Experience the advantages of playing with us</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-3" data-aos="fade-up">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Growing Community</h3>
+                    <p>Join thousands of active players in our vibrant gaming community.</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>Regular Rewards</h3>
+                    <p>Earn rewards through daily bonuses, tournaments, and special events.</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Play anywhere, anytime with our fully responsive mobile platform.</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-sync"></i>
+                    </div>
+                    <h3>Regular Updates</h3>
+                    <p>Enjoy new games and features with our frequent platform updates.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- New Tournament Section -->
+<section class="tournament-section section">
+    <div class="container">
+        <div class="section-title text-center">
+            <h2 class="text-white">Upcoming Tournaments</h2>
+            <p class="lead text-white-50">Join our exciting tournaments and win big!</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up">
+                <div class="tournament-card">
+                    <div class="tournament-prize">$10,000</div>
+                    <h3>Weekend Championship</h3>
+                    <p>Join our biggest weekend tournament with massive prize pool.</p>
+                    <div class="mt-3">
+                        <span class="badge bg-warning me-2"><i class="fas fa-users me-1"></i> 500+ Players</span>
+                        <span class="badge bg-info"><i class="fas fa-clock me-1"></i> 48 Hours</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="tournament-card">
+                    <div class="tournament-prize">$5,000</div>
+                    <h3>Daily Challenge</h3>
+                    <p>Daily tournaments with guaranteed prize pools.</p>
+                    <div class="mt-3">
+                        <span class="badge bg-warning me-2"><i class="fas fa-users me-1"></i> 200+ Players</span>
+                        <span class="badge bg-info"><i class="fas fa-clock me-1"></i> 24 Hours</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="tournament-card">
+                    <div class="tournament-prize">$25,000</div>
+                    <h3>Monthly Masters</h3>
+                    <p>Our prestigious monthly tournament for top players.</p>
+                    <div class="mt-3">
+                        <span class="badge bg-warning me-2"><i class="fas fa-users me-1"></i> 1000+ Players</span>
+                        <span class="badge bg-info"><i class="fas fa-clock me-1"></i> 7 Days</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- New Community Section -->
+<section class="community-section section">
+    <div class="container">
+        <div class="section-title text-center">
+            <h2 class="text-gradient">Join Our Community</h2>
+            <p class="lead">Connect with fellow players and stay updated</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up">
+                <div class="community-card">
+                    <div class="benefit-icon">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <h3>Discord Community</h3>
+                    <p>Join our active Discord server to chat with players, get support, and stay updated.</p>
+                    <div class="community-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">10K+</div>
+                            <div class="stat-label">Members</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">24/7</div>
+                            <div class="stat-label">Support</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="community-card">
+                    <div class="benefit-icon">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <h3>Twitter Updates</h3>
+                    <p>Follow us on Twitter for the latest news, tournaments, and exclusive offers.</p>
+                    <div class="community-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">50K+</div>
+                            <div class="stat-label">Followers</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">Daily</div>
+                            <div class="stat-label">Updates</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="community-card">
+                    <div class="benefit-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <h3>YouTube Channel</h3>
+                    <p>Watch tutorials, tournament highlights, and gaming tips on our YouTube channel.</p>
+                    <div class="community-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">100K+</div>
+                            <div class="stat-label">Views</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">500+</div>
+                            <div class="stat-label">Videos</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- New Rewards Section -->
+<section class="rewards-section section">
+    <div class="container">
+        <div class="section-title text-center">
+            <h2 class="text-gradient">Exclusive Rewards</h2>
+            <p class="lead">Earn rewards as you play</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-3" data-aos="fade-up">
+                <div class="reward-card">
+                    <div class="reward-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Daily Bonus</h3>
+                    <p>Claim your daily bonus to boost your gameplay.</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="reward-card">
+                    <div class="reward-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Tournament Prizes</h3>
+                    <p>Win big in our regular tournaments.</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="reward-card">
+                    <div class="reward-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Loyalty Points</h3>
+                    <p>Earn points for every game you play.</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                <div class="reward-card">
+                    <div class="reward-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>Special Events</h3>
+                    <p>Participate in special events for exclusive rewards.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Success Metrics Section -->
+<section class="success-section section py-5">
+    <div class="container">
+        <div class="section-title text-center mb-5">
+            <h2 class="text-gradient">Our Success Story</h2>
+            <p class="lead">Numbers that speak for themselves</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-3" data-aos="fade-up">
+                <div class="text-center">
+                    <div class="success-counter" data-count="1000000">0</div>
+                    <h4>Active Players</h4>
+                    <p class="text-muted">Growing community</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-center">
+                    <div class="success-counter" data-count="500">0</div>
+                    <h4>Games Available</h4>
+                    <p class="text-muted">Premium selection</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="text-center">
+                    <div class="success-counter" data-count="98">0</div>
+                    <h4>Success Rate</h4>
+                    <p class="text-muted">Player satisfaction</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                <div class="text-center">
+                    <div class="success-counter" data-count="24">0</div>
+                    <h4>Hours Support</h4>
+                    <p class="text-muted">Always available</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- FAQ Section -->
+<section class="faq-section section py-5 bg-light">
+    <div class="container">
+        <div class="section-title text-center mb-5">
+            <h2 class="text-gradient">Frequently Asked Questions</h2>
+            <p class="lead">Find answers to common questions</p>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="accordion" id="faqAccordion">
+                    <div class="faq-item p-3" data-aos="fade-up">
+                        <h3 class="h5 mb-0">
+                            <button class="btn btn-link w-100 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                How do I get started with Cashinop Partners?
+                            </button>
+                        </h3>
+                        <div id="faq1" class="collapse show" data-bs-parent="#faqAccordion">
+                            <div class="pt-3">
+                                Simply create an account, verify your email, and you're ready to start playing! We offer a user-friendly onboarding process to get you started quickly.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item p-3" data-aos="fade-up" data-aos-delay="100">
+                        <h3 class="h5 mb-0">
+                            <button class="btn btn-link w-100 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                What payment methods do you accept?
+                            </button>
+                        </h3>
+                        <div id="faq2" class="collapse" data-bs-parent="#faqAccordion">
+                            <div class="pt-3">
+                                We accept various payment methods including credit cards, e-wallets, and cryptocurrency. All transactions are secure and encrypted.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item p-3" data-aos="fade-up" data-aos-delay="200">
+                        <h3 class="h5 mb-0">
+                            <button class="btn btn-link w-100 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                How do you ensure fair play?
+                            </button>
+                        </h3>
+                        <div id="faq3" class="collapse" data-bs-parent="#faqAccordion">
+                            <div class="pt-3">
+                                We use advanced algorithms and regular audits to ensure fair play. Our platform is regularly tested by independent third parties.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item p-3" data-aos="fade-up" data-aos-delay="300">
+                        <h3 class="h5 mb-0">
+                            <button class="btn btn-link w-100 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                What kind of support do you offer?
+                            </button>
+                        </h3>
+                        <div id="faq4" class="collapse" data-bs-parent="#faqAccordion">
+                            <div class="pt-3">
+                                We offer 24/7 customer support through live chat, email, and phone. Our dedicated team is always ready to assist you.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item p-3" data-aos="fade-up" data-aos-delay="400">
+                        <h3 class="h5 mb-0">
+                            <button class="btn btn-link w-100 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                Are there any age restrictions?
+                            </button>
+                        </h3>
+                        <div id="faq5" class="collapse" data-bs-parent="#faqAccordion">
+                            <div class="pt-3">
+                                Yes, you must be at least 18 years old to use our platform. We strictly enforce age verification to ensure compliance with regulations.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item p-3" data-aos="fade-up" data-aos-delay="500">
+                        <h3 class="h5 mb-0">
+                            <button class="btn btn-link w-100 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                                How do I participate in tournaments?
+                            </button>
+                        </h3>
+                        <div id="faq6" class="collapse" data-bs-parent="#faqAccordion">
+                            <div class="pt-3">
+                                Tournaments are regularly scheduled and announced on our platform. Simply register for the tournament of your choice and follow the instructions.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Game Details Modal -->
+<div class="modal fade" id="gameDetailsModal" tabindex="-1" aria-labelledby="gameDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title game-details-title" id="gameDetailsModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="game-details-image">
+                            <img src="" alt="" class="img-fluid rounded">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="game-details-content">
+                            <p class="game-details-description"></p>
+                            <div class="game-details-stats">
+                                <div class="stat">
+                                    <i class="fas fa-users"></i>
+                                    <span class="players-count"></span> Players
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-star"></i>
+                                    <span class="rating"></span>/5
+                                </div>
+                            </div>
+                            <div class="game-details-actions">
+                                <a href="#" class="btn btn-primary visit-game">
+                                    <i class="fas fa-play me-2"></i>Visit Game
+                                </a>
+                                <button class="btn btn-outline-primary share-game">
+                                    <i class="fas fa-share-alt me-2"></i>Share
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Counter Animation
+function animateCounter(element) {
+    const target = parseInt(element.getAttribute('data-count'));
+    const duration = 2000;
+    const step = target / (duration / 16);
+    let current = 0;
+    
+    const updateCounter = () => {
+        current += step;
+        if (current < target) {
+            element.textContent = Math.floor(current);
+            requestAnimationFrame(updateCounter);
+        } else {
+            element.textContent = target;
+        }
+    };
+    
+    updateCounter();
+}
+
+// Initialize counters when they come into view
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const counters = entry.target.querySelectorAll('.success-counter');
+            counters.forEach(counter => animateCounter(counter));
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.5 });
+
+// Observe success section
+const successSection = document.querySelector('.success-section');
+if (successSection) {
+    observer.observe(successSection);
+}
+
+// Enhanced FAQ Accordion
+document.querySelectorAll('.faq-item .btn-link').forEach(button => {
+    button.addEventListener('click', () => {
+        const icon = button.querySelector('i');
+        if (icon) {
+            icon.classList.toggle('fa-plus');
+            icon.classList.toggle('fa-minus');
+        }
+        
+        // Close other open items
+        const parent = button.closest('.accordion');
+        const openItems = parent.querySelectorAll('.collapse.show');
+        openItems.forEach(item => {
+            if (item !== button.nextElementSibling) {
+                item.classList.remove('show');
+                item.previousElementSibling.setAttribute('aria-expanded', 'false');
+            }
+        });
+    });
+});
+
+// Smooth Scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Intersection Observer for Animations
+const animateOnScroll = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+            animateOnScroll.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.1
+});
+
+document.querySelectorAll('.feature-card, .testimonial-card, .game-card, .faq-item').forEach(el => {
+    animateOnScroll.observe(el);
+});
+</script>
+{% endblock %}

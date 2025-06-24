@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Optional: add Bootstrap Icons for inputs -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<style>
+    .form-container {
+        max-width: 700px;
+        margin: 4rem auto 2rem;
+        background: rgba(25, 25, 25, 0.9);
+        padding: 2rem 2.5rem;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+        color: #e0e6f0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .form-container h2 {
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+        color: #38bdf8;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 2rem;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #a0aec0;
+    }
+
+    .form-control {
+        background-color: #1f2937;
+        border: none;
+        color: #f1f5f9;
+        padding-left: 2.75rem;
+        border-radius: 8px;
+        height: 45px;
+        transition: background-color 0.3s ease;
+    }
+
+    .form-control:focus {
+        background-color: #334155;
+        color: #fff;
+        box-shadow: 0 0 0 0.2rem rgba(56, 189, 248, 0.5);
+        border: none;
+    }
+
+    textarea.form-control {
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+        height: auto;
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    .input-icon {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #38bdf8;
+        font-size: 1.2rem;
+        pointer-events: none;
+    }
+
+    .input-group {
+        position: relative;
+        margin-bottom: 1.5rem;
+    }
+
+    .btn-submit {
+        background-color: #38bdf8;
+        border: none;
+        font-weight: 600;
+        padding: 10px 28px;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .btn-submit:hover {
+        background-color: #0ea5e9;
+    }
+
+    .error-list {
+        background-color: #b91c1c;
+        color: #fee2e2;
+        padding: 1rem 1.25rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+    }
+</style>
+
+<div class="form-container">
+    <h2><i class="bi bi-pencil-square"></i> Add New Post</h2>
+
+    {% if form.errors %}
+    <div class="error-list">
+        <ul class="mb-0">
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <form id="postForm" method="POST" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+
+        <div class="input-group">
+            <i class="bi bi-card-text input-icon"></i>
+            <input type="text" id="title" name="title" class="form-control" placeholder="Post Title" required />
+        </div>
+
+        <div class="input-group">
+            <i class="bi bi-journal-text input-icon"></i>
+            <textarea id="description" name="description" class="form-control" placeholder="Post Description" required></textarea>
+        </div>
+
+        <div class="input-group">
+            <i class="bi bi-image input-icon"></i>
+            <input type="file" id="image" name="image" class="form-control" required />
+        </div>
+
+        <div class="input-group">
+            <i class="bi bi-link-45deg input-icon"></i>
+            <input type="url" id="link" name="redirect_link" class="form-control" placeholder="Platform Link" required />
+        </div>
+
+        <button type="submit" class="btn btn-submit">
+            <i class="bi bi-send-fill"></i> Submit Post
+        </button>
+    </form>
+</div>
+
+{% endblock %}

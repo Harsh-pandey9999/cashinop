@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Allow: /about-us/
+Allow: /contact/
+Allow: /signin/
+Allow: /signup/
+
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /user-dashboard/
+
+Sitemap: http://127.0.0.1:8000/sitemap.xml

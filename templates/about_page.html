@@ -1,0 +1,395 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Us{% endblock %}
+
+{% block main_content %}
+<!-- Hero Section -->
+<section class="section hero-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h1 class="display-4 fw-bold mb-4">About Casino Partners</h1>
+                <p class="lead mb-4">Your trusted partner in online gaming solutions. We provide innovative and secure gaming experiences for players worldwide.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mission Section -->
+<section class="section mission-section">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="feature-icon mb-4">
+                            <i class="fas fa-bullseye fa-3x"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Our Mission</h3>
+                        <p class="mb-0">To provide innovative and secure gaming solutions that empower our partners to deliver exceptional gaming experiences.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="feature-icon mb-4">
+                            <i class="fas fa-eye fa-3x"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Our Vision</h3>
+                        <p class="mb-0">To be the leading provider of gaming solutions, setting new standards in innovation, security, and user experience.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="feature-icon mb-4">
+                            <i class="fas fa-heart fa-3x"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Our Values</h3>
+                        <p class="mb-0">Integrity, innovation, and excellence in everything we do, putting our partners and their players first.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Sections -->
+<section class="section about-sections">
+    <div class="container">
+        {% for about in abouts %}
+        <div class="row mb-5 align-items-center">
+            <div class="col-lg-6 {% cycle '' 'order-lg-2' %}">
+                <div class="about-image-wrapper">
+                    {% if about.image %}
+                    <img src="{{ about.image.url }}" alt="{{ about.title }}" class="img-fluid rounded-4 shadow-lg">
+                    {% else %}
+                    <div class="placeholder-image rounded-4 shadow-lg">
+                        <i class="fas fa-image fa-4x"></i>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-6 {% cycle '' 'order-lg-1' %}">
+                <div class="about-content">
+                    <h2 class="h3 mb-4">{{ about.title }}</h2>
+                    <div class="mb-4">{{ about.content|safe }}</div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="section team-section">
+    <div class="container">
+        <h2 class="text-center mb-5">Our Leadership Team</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card team-card">
+                    <div class="card-body text-center">
+                        <div class="team-image mb-4">
+                            <img src="{% static 'img/team/ceo.jpg' %}" alt="John Doe" class="rounded-circle">
+                        </div>
+                        <h3 class="h4 mb-2">John Doe</h3>
+                        <p class="text-muted mb-3">CEO & Founder</p>
+                        <div class="social-links">
+                            <a href="#" class="me-2"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card team-card">
+                    <div class="card-body text-center">
+                        <div class="team-image mb-4">
+                            <img src="{% static 'img/team/cto.jpg' %}" alt="Jane Smith" class="rounded-circle">
+                        </div>
+                        <h3 class="h4 mb-2">Jane Smith</h3>
+                        <p class="text-muted mb-3">CTO</p>
+                        <div class="social-links">
+                            <a href="#" class="me-2"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card team-card">
+                    <div class="card-body text-center">
+                        <div class="team-image mb-4">
+                            <img src="{% static 'img/team/operations.jpg' %}" alt="Mike Johnson" class="rounded-circle">
+                        </div>
+                        <h3 class="h4 mb-2">Mike Johnson</h3>
+                        <p class="text-muted mb-3">Head of Operations</p>
+                        <div class="social-links">
+                            <a href="#" class="me-2"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section cta-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="mb-4">Ready to Partner With Us?</h2>
+                <p class="lead mb-4">Join thousands of successful partners who trust us with their gaming business.</p>
+                <a href="{% url 'contact_page' %}" class="btn btn-primary btn-lg">Get in Touch</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .hero-section {
+        padding-top: 8rem;
+        background: linear-gradient(135deg, var(--current-bg) 0%, var(--current-card) 100%);
+    }
+
+    .mission-section .card {
+        border: none;
+        background: linear-gradient(135deg, var(--current-card), var(--current-bg));
+        transition: transform 0.3s ease;
+    }
+
+    .mission-section .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .feature-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, var(--current-primary), var(--current-secondary));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        color: white;
+        box-shadow: var(--current-glow);
+    }
+
+    .about-sections {
+        background: var(--current-bg);
+    }
+
+    .about-image-wrapper {
+        position: relative;
+        z-index: 1;
+    }
+
+    .about-image-wrapper::before {
+        content: '';
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        width: 100%;
+        height: 100%;
+        background: var(--current-primary);
+        border-radius: 15px;
+        z-index: -1;
+        opacity: 0.1;
+    }
+
+    .placeholder-image {
+        width: 100%;
+        height: 300px;
+        background: var(--current-card);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--current-text);
+    }
+
+    .team-section .card {
+        border: none;
+        background: linear-gradient(135deg, var(--current-card), var(--current-bg));
+        transition: transform 0.3s ease;
+    }
+
+    .team-section .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .team-image img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border: 5px solid var(--current-primary);
+        box-shadow: var(--current-glow);
+    }
+
+    .social-links a {
+        color: var(--current-text);
+        font-size: 1.2rem;
+        transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+        color: var(--current-primary);
+    }
+
+    .cta-section {
+        background: linear-gradient(135deg, var(--current-primary) 0%, var(--current-secondary) 100%);
+        color: white;
+    }
+
+    .cta-section .btn-primary {
+        background: white;
+        color: var(--current-primary);
+        border: none;
+    }
+
+    .cta-section .btn-primary:hover {
+        background: var(--current-card);
+        color: var(--current-primary);
+    }
+
+    @media (max-width: 991.98px) {
+        .hero-section {
+            padding-top: 6rem;
+            text-align: center;
+        }
+
+        .about-image-wrapper {
+            margin-bottom: 2rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Animate numbers
+function animateNumbers() {
+  const stats = document.querySelectorAll('[data-count]');
+  
+  stats.forEach(stat => {
+    const target = parseInt(stat.getAttribute('data-count'));
+    const duration = 2000; // 2 seconds
+    const step = target / (duration / 16); // 60fps
+    let current = 0;
+    
+    const updateNumber = () => {
+      current += step;
+      if (current < target) {
+        stat.textContent = Math.floor(current);
+        requestAnimationFrame(updateNumber);
+      } else {
+        stat.textContent = target;
+      }
+    };
+    
+    updateNumber();
+  });
+}
+
+// Intersection Observer for stats animation
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateNumbers();
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+// Observe stats section
+const statsSection = document.querySelector('.grid-cols-4');
+if (statsSection) {
+  observer.observe(statsSection);
+}
+</script>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(234, 179, 8, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(234, 179, 8, 0.7);
+}
+
+/* Card hover effects */
+.group:hover .group-hover\:scale-110 {
+  transform: scale(1.1);
+}
+
+/* Image hover effect */
+.group:hover img {
+  transform: scale(1.1);
+}
+
+/* Button hover effects */
+a:hover {
+  transform: translateY(-2px);
+}
+
+/* Gradient text animation */
+.text-gradient {
+  background: linear-gradient(to right, #fbbf24, #d97706);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient 3s ease infinite;
+  background-size: 200% 200%;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+</style>
+{% endblock %}

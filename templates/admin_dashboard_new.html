@@ -1,0 +1,592 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --admin-primary: #2c3e50;
+        --admin-secondary: #34495e;
+        --admin-accent: #e67e22;
+        --admin-success: #27ae60;
+        --admin-warning: #f39c12;
+        --admin-danger: #c0392b;
+        --admin-light: #ecf0f1;
+        --admin-dark: #2c3e50;
+    }
+
+    .admin-dashboard {
+        background: var(--admin-primary);
+        min-height: 100vh;
+    }
+
+    .admin-sidebar {
+        background: var(--admin-secondary);
+        min-height: 100vh;
+        padding: 1.5rem;
+        position: fixed;
+        width: 250px;
+        transition: all 0.3s ease;
+        z-index: 1030;
+    }
+
+    .admin-main {
+        margin-left: 250px;
+        padding: 2rem;
+        transition: all 0.3s ease;
+    }
+
+    .admin-card {
+        background: var(--admin-secondary);
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 1.5rem;
+        overflow: hidden;
+    }
+
+    .admin-card-header {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1.25rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .admin-card-body {
+        padding: 1.25rem;
+    }
+
+    .stat-card {
+        background: var(--admin-secondary);
+        border-radius: 10px;
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        transition: transform 0.2s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .stat-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+    }
+
+    .quick-action-item {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: background 0.2s ease;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .quick-action-item:hover {
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--admin-accent);
+    }
+
+    .nav-link {
+        color: var(--admin-light);
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .nav-link:hover, .nav-link.active {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--admin-accent);
+        transform: translateX(5px);
+    }
+
+    .nav-link i {
+        width: 20px;
+        text-align: center;
+    }
+
+    .nav-section {
+        margin-bottom: 1.5rem;
+    }
+
+    .nav-section-title {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        color: var(--admin-light);
+        opacity: 0.7;
+        padding: 0 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .btn-admin {
+        background: var(--admin-accent);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+    }
+
+    .btn-admin:hover {
+        background: #d35400;
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    .status-badge {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.875rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .status-badge.success { background: rgba(39, 174, 96, 0.2); color: #27ae60; }
+    .status-badge.warning { background: rgba(243, 156, 18, 0.2); color: #f39c12; }
+    .status-badge.danger { background: rgba(192, 57, 43, 0.2); color: #c0392b; }
+
+    .admin-header {
+        width: 100%;
+        background: var(--admin-secondary);
+        color: var(--admin-light);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 1040;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .admin-header-left {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .admin-header-logo {
+        height: 40px;
+        margin-right: 0.5rem;
+    }
+    .admin-header-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--admin-light);
+        margin: 0;
+    }
+    .admin-header-search {
+        flex: 1;
+        margin: 0 2rem;
+        max-width: 400px;
+    }
+    .admin-header-search input {
+        width: 100%;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        border: none;
+        outline: none;
+        background: var(--admin-light);
+        color: var(--admin-dark);
+    }
+    .admin-header-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .admin-header .hamburger {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--admin-light);
+        font-size: 1.5rem;
+        cursor: pointer;
+        margin-right: 1rem;
+    }
+
+    @media (max-width: 992px) {
+        .admin-sidebar {
+            transform: translateX(-100%);
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            z-index: 1050;
+        }
+        .admin-sidebar.show {
+            transform: translateX(0);
+        }
+        .admin-main {
+            margin-left: 0;
+            padding: 1rem;
+        }
+        .admin-header {
+            padding: 1rem;
+        }
+        .admin-header .hamburger {
+            display: block;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="admin-dashboard">
+    <!-- Header -->
+    <header class="admin-header">
+        <div class="admin-header-left">
+            <button id="sidebarCollapseBtn" class="hamburger" type="button">
+                <i class="fas fa-bars"></i>
+            </button>
+            {% if site_settings and site_settings.logo %}
+                <img src="{{ site_settings.logo.url }}" alt="Logo" class="admin-header-logo">
+            {% endif %}
+            <span class="admin-header-title">Admin Panel</span>
+        </div>
+        <form class="admin-header-search" method="get" action="{% url 'admin_dashboard_new' %}">
+            <input type="text" name="q" placeholder="Search..." value="{{ request.GET.q|default:'' }}">
+        </form>
+        <div class="admin-header-actions">
+            <a href="/" class="btn-admin">View Site</a>
+            <a href="{% url 'logout' %}" class="btn-admin">Logout</a>
+        </div>
+    </header>
+    <!-- Sidebar -->
+    <div class="admin-sidebar">
+        <div class="d-flex align-items-center mb-4">
+            {% if site_settings and site_settings.logo %}
+                <img src="{{ site_settings.logo.url }}" alt="Logo" height="40" class="me-2">
+            {% endif %}
+            <h4 class="text-light mb-0">Admin Panel</h4>
+        </div>
+        
+        <nav class="nav flex-column">
+            <div class="nav-section">
+                <div class="nav-section-title">Main</div>
+                <a href="{% url 'admin_dashboard_new' %}" class="nav-link {% if request.path == '/admin/dashboard' %}active{% endif %}">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="{% url 'posts' %}" class="nav-link {% if request.path == '/admin/posts' %}active{% endif %}">
+                    <i class="fas fa-dice"></i>
+                    <span>Casino Cards</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">User Management</div>
+                <a href="{% url 'manage_users' %}" class="nav-link {% if request.path == '/admin/users' %}active{% endif %}">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span>
+                </a>
+                <a href="{% url 'approve_users' %}" class="nav-link {% if request.path == '/admin/approve' %}active{% endif %}">
+                    <i class="fas fa-user-check"></i>
+                    <span>Approvals</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Settings</div>
+                <a href="{% url 'site_settings_update' %}" class="nav-link {% if request.path == '/admin/settings' %}active{% endif %}">
+                    <i class="fas fa-cog"></i>
+                    <span>Site Settings</span>
+                </a>
+                <a href="{% url 'admin_logs' %}" class="nav-link {% if request.path == '/admin/logs' %}active{% endif %}">
+                    <i class="fas fa-history"></i>
+                    <span>System Logs</span>
+                </a>
+            </div>
+
+            <div class="nav-section mt-auto">
+                <a href="{% url 'admin_logout' %}" class="nav-link text-danger">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="admin-main">
+        <!-- Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="text-light mb-1">Welcome back, {{ request.user.username }}!</h2>
+                <p class="text-muted mb-0">Here's what's happening with your site.</p>
+            </div>
+            <div class="d-flex gap-2">
+                <button class="btn btn-admin d-md-none" id="sidebarCollapseBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <a href="{% url 'add_post' %}" class="btn btn-admin">
+                    <i class="fas fa-plus-circle me-2"></i> New Card
+                </a>
+            </div>
+        </div>
+
+        <!-- System Status -->
+        <div class="admin-card mb-4">
+            <div class="admin-card-header d-flex justify-content-between align-items-center">
+                <h4 class="text-light mb-0"><i class="fas fa-server me-2"></i>System Status</h4>
+                <span class="text-muted">Last updated: {% now "F j, Y, g:i a" %}</span>
+            </div>
+            <div class="admin-card-body">
+                <div class="row g-3">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="d-flex align-items-center">
+                            <div class="status-badge success me-2">
+                                <i class="fas fa-check-circle"></i> Online
+                            </div>
+                            <span class="text-muted">Website Status</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="d-flex align-items-center">
+                            <div class="status-badge success me-2">
+                                <i class="fas fa-database"></i> Connected
+                            </div>
+                            <span class="text-muted">Database</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="d-flex align-items-center">
+                            <div class="status-badge success me-2">
+                                <i class="fas fa-shield-alt"></i> Secure
+                            </div>
+                            <span class="text-muted">Security</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="d-flex align-items-center">
+                            {% if site_settings.maintenance_mode %}
+                            <div class="status-badge warning me-2">
+                                <i class="fas fa-tools"></i> Maintenance
+                            </div>
+                            {% else %}
+                            <div class="status-badge success me-2">
+                                <i class="fas fa-users"></i> Public
+                            </div>
+                            {% endif %}
+                            <span class="text-muted">Site Mode</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3 mb-3">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(52, 152, 219, 0.2);">
+                        <i class="fas fa-users text-info"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h3 class="text-light mb-1">{{ total_users|default:0 }}</h3>
+                        <p class="text-muted mb-0">Total Users</p>
+                    </div>
+                    <a href="{% url 'manage_users' %}" class="btn btn-sm btn-admin">Manage</a>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(241, 196, 15, 0.2);">
+                        <i class="fas fa-user-check text-warning"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h3 class="text-light mb-1">{{ pending_users|default:0 }}</h3>
+                        <p class="text-muted mb-0">Pending Approvals</p>
+                    </div>
+                    <a href="{% url 'approve_users' %}" class="btn btn-sm btn-admin">Review</a>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(46, 204, 113, 0.2);">
+                        <i class="fas fa-dice text-success"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h3 class="text-light mb-1">{{ total_posts|default:0 }}</h3>
+                        <p class="text-muted mb-0">Casino Cards</p>
+                    </div>
+                    <a href="{% url 'posts' %}" class="btn btn-sm btn-admin">View</a>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(155, 89, 182, 0.2);">
+                        <i class="fas fa-check-circle text-purple"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h3 class="text-light mb-1">{{ active_posts|default:0 }}</h3>
+                        <p class="text-muted mb-0">Active Cards</p>
+                    </div>
+                    <a href="{% url 'posts' %}" class="btn btn-sm btn-admin">Manage</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="row">
+            <!-- Analytics Chart -->
+            <div class="col-lg-8 mb-4">
+                <div class="admin-card h-100">
+                    <div class="admin-card-header d-flex justify-content-between align-items-center">
+                        <h4 class="text-light mb-0"><i class="fas fa-chart-line me-2"></i>Visitor Analytics</h4>
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-admin dropdown-toggle" type="button" id="timeRangeDropdown" data-bs-toggle="dropdown">
+                                Last 7 Days
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="timeRangeDropdown">
+                                <li><a class="dropdown-item active" href="#">Last 7 Days</a></li>
+                                <li><a class="dropdown-item" href="#">Last 30 Days</a></li>
+                                <li><a class="dropdown-item" href="#">This Month</a></li>
+                                <li><a class="dropdown-item" href="#">Custom Range</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="admin-card-body">
+                        <canvas id="visitorChart" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="col-lg-4 mb-4">
+                <div class="admin-card h-100">
+                    <div class="admin-card-header">
+                        <h4 class="text-light mb-0"><i class="fas fa-bolt me-2"></i>Quick Actions</h4>
+                    </div>
+                    <div class="admin-card-body p-0">
+                        <div class="quick-actions-list">
+                            <a href="{% url 'add_post' %}" class="quick-action-item">
+                                <div class="stat-icon" style="background: rgba(46, 204, 113, 0.2);">
+                                    <i class="fas fa-plus-circle text-success"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-0 text-light">Add New Casino Card</h6>
+                                    <small class="text-muted">Create a new casino affiliate card</small>
+                                </div>
+                                <i class="fas fa-chevron-right text-muted"></i>
+                            </a>
+                            <a href="{% url 'approve_users' %}" class="quick-action-item">
+                                <div class="stat-icon" style="background: rgba(52, 152, 219, 0.2);">
+                                    <i class="fas fa-user-check text-info"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-0 text-light">Approve Pending Users</h6>
+                                    <small class="text-muted">{{ pending_users|default:0 }} users waiting</small>
+                                </div>
+                                <i class="fas fa-chevron-right text-muted"></i>
+                            </a>
+                            <a href="{% url 'site_settings_update' %}" class="quick-action-item">
+                                <div class="stat-icon" style="background: rgba(241, 196, 15, 0.2);">
+                                    <i class="fas fa-cog text-warning"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-0 text-light">Update Site Settings</h6>
+                                    <small class="text-muted">Modify global configuration</small>
+                                </div>
+                                <i class="fas fa-chevron-right text-muted"></i>
+                            </a>
+                            <a href="/" target="_blank" class="quick-action-item">
+                                <div class="stat-icon" style="background: rgba(155, 89, 182, 0.2);">
+                                    <i class="fas fa-external-link-alt text-purple"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-0 text-light">View Live Site</h6>
+                                    <small class="text-muted">Open in new tab</small>
+                                </div>
+                                <i class="fas fa-chevron-right text-muted"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Sidebar toggle for mobile
+    const sidebarToggle = document.getElementById('sidebarCollapseBtn');
+    const sidebar = document.querySelector('.admin-sidebar');
+    
+    if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('show');
+        });
+    }
+
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', function(event) {
+        if (window.innerWidth < 992 && 
+            !sidebar.contains(event.target) && 
+            !sidebarToggle.contains(event.target) && 
+            sidebar.classList.contains('show')) {
+            sidebar.classList.remove('show');
+        }
+    });
+
+    // Visitor Chart
+    const ctx = document.getElementById('visitorChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: {{ chart_labels|safe }},
+            datasets: [{
+                label: 'Visitors',
+                data: {{ chart_data|safe }},
+                borderColor: '#e67e22',
+                backgroundColor: 'rgba(230, 126, 34, 0.1)',
+                tension: 0.4,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)'
+                    },
+                    ticks: {
+                        color: '#95a5a6'
+                    }
+                },
+                x: {
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)'
+                    },
+                    ticks: {
+                        color: '#95a5a6'
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
+{% endblock %}

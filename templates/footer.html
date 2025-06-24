@@ -1,0 +1,203 @@
+<footer class="footer py-5 mt-5">
+  <div class="container">
+    <div class="row g-4">
+      <!-- Company Info -->
+      <div class="col-lg-4 col-md-6">
+        <div class="footer-brand mb-4">
+          <a href="/" class="fw-bold text-gradient fs-4 d-inline-block mb-3">Casino Partners</a>
+          <p class="text-muted mb-4">Your trusted partner in online gaming solutions. We provide innovative and secure gaming experiences for players worldwide.</p>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-lg-2 col-md-6">
+        <h5 class="footer-heading mb-4">Quick Links</h5>
+        <ul class="footer-links list-unstyled">
+          <li><a href="/about/"><i class="fas fa-chevron-right"></i> About Us</a></li>
+          <li><a href="/contact/"><i class="fas fa-chevron-right"></i> Contact</a></li>
+          <li><a href="/terms/"><i class="fas fa-chevron-right"></i> Terms</a></li>
+          <li><a href="/privacy/"><i class="fas fa-chevron-right"></i> Privacy</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="footer-heading mb-4">Contact Info</h5>
+        <ul class="footer-contact list-unstyled">
+          <li><i class="fas fa-envelope"></i> <a href="mailto:info@casinopartners.com">info@casinopartners.com</a></li>
+          <li><i class="fas fa-phone"></i> <a href="tel:+1234567890">+1 (234) 567-890</a></li>
+          <li><i class="fas fa-map-marker-alt"></i> 123 Gaming Street, Las Vegas, NV</li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="footer-heading mb-4">Newsletter</h5>
+        <p class="text-muted mb-3">Subscribe to our newsletter for updates and exclusive offers.</p>
+        <form class="newsletter-form">
+          <div class="input-group mb-3">
+            <input type="email" class="form-control" placeholder="Enter your email" aria-label="Email address">
+            <button class="btn btn-primary" type="submit">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-bottom mt-5 pt-4 border-top">
+      <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start">
+          <p class="mb-0">&copy; {{ year|default:2025 }} Casino Partners. All rights reserved.</p>
+        </div>
+        <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+          <div class="footer-bottom-links">
+            <a href="/terms/">Terms</a>
+            <a href="/privacy/">Privacy</a>
+            <a href="/cookies/">Cookies</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+.footer {
+  background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+  border-top: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.02);
+}
+
+.footer-brand .text-gradient {
+  background: linear-gradient(90deg, #4a90e2 0%, #2c3e50 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.footer-heading {
+  color: #2c3e50;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer-links li {
+  margin-bottom: 0.75rem;
+}
+
+.footer-links a {
+  color: #6c757d;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-links a:hover {
+  color: #4a90e2;
+  transform: translateX(5px);
+}
+
+.footer-contact li {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #6c757d;
+}
+
+.footer-contact a {
+  color: #6c757d;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-contact a:hover {
+  color: #4a90e2;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f8f9fa;
+  color: #6c757d;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background: #4a90e2;
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.newsletter-form .form-control {
+  border: 1px solid #e9ecef;
+  padding: 0.75rem 1rem;
+  border-radius: 8px 0 0 8px;
+}
+
+.newsletter-form .btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+  background: linear-gradient(90deg, #4a90e2 0%, #2c3e50 100%);
+  border: none;
+}
+
+.footer-bottom {
+  color: #6c757d;
+}
+
+.footer-bottom-links {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.footer-bottom-links a {
+  color: #6c757d;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-bottom-links a:hover {
+  color: #4a90e2;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    text-align: center;
+  }
+  
+  .footer-contact li {
+    justify-content: center;
+  }
+  
+  .social-links {
+    justify-content: center;
+  }
+  
+  .footer-bottom-links {
+    margin-top: 1rem;
+  }
+}
+</style> 

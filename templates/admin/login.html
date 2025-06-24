@@ -1,0 +1,223 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static "admin/css/login.css" %}">
+<style>
+    /* Modern Login Styles */
+    body.login {
+        background: #f8f9fa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+    }
+    
+    #header {
+        display: none;
+    }
+    
+    #container {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        padding: 40px;
+        margin: 0 auto;
+    }
+    
+    .login #content {
+        padding: 0;
+    }
+    
+    .login-form {
+        text-align: center;
+    }
+    
+    .login-logo {
+        margin-bottom: 30px;
+    }
+    
+    .login-logo img {
+        max-width: 120px;
+        height: auto;
+    }
+    
+    .login-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #333;
+        margin: 0 0 30px;
+    }
+    
+    .form-row {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+    
+    .form-row label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #555;
+    }
+    
+    .form-row input[type="text"],
+    .form-row input[type="password"] {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 15px;
+        transition: border-color 0.3s;
+    }
+    
+    .form-row input[type="text"]:focus,
+    .form-row input[type="password"]:focus {
+        border-color: #4a90e2;
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+    }
+    
+    .submit-row {
+        margin-top: 30px;
+    }
+    
+    .submit-row input[type="submit"] {
+        width: 100%;
+        background: #4a90e2;
+        color: white;
+        border: none;
+        padding: 12px;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    .submit-row input[type="submit"]:hover {
+        background: #3a7bc8;
+    }
+    
+    .login-footer {
+        margin-top: 20px;
+        font-size: 13px;
+        color: #888;
+    }
+    
+    .login-footer a {
+        color: #4a90e2;
+        text-decoration: none;
+    }
+    
+    .login-footer a:hover {
+        text-decoration: underline;
+    }
+    
+    .errornote {
+        background: #fee2e2;
+        color: #dc2626;
+        padding: 12px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        text-align: left;
+    }
+    
+    .errorlist {
+        color: #dc2626;
+        margin: 5px 0 0;
+        padding: 0;
+        list-style: none;
+        font-size: 13px;
+    }
+    
+    @media (max-width: 480px) {
+        #container {
+            padding: 30px 20px;
+        }
+        
+        .login-title {
+            font-size: 20px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} login{% endblock %}
+
+{% block usertools %}{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block nav-sidebar %}{% endblock %}
+
+{% block content_title %}{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+<div class="login-form">
+    <div class="login-logo">
+        <div style="font-size: 32px; font-weight: bold; color: #4a90e2;">CASINO</div>
+    </div>
+    
+    <h1 class="login-title">Admin Login</h1>
+    
+    {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+            <p class="errornote">
+                {{ error }}
+            </p>
+        {% endfor %}
+    {% endif %}
+    
+    {% if user.is_authenticated %}
+        <p class="errornote">
+            {% blocktranslate with username=request.user.get_username trimmed %}
+                You are authenticated as {{ username }}, but are not authorized to
+                access this page.
+            {% endblocktranslate %}
+        </p>
+    {% endif %}
+    
+    <form action="{{ app_path }}" method="post" id="login-form">
+        {% csrf_token %}
+        
+        <div class="form-row">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+            {{ form.username.errors }}
+        </div>
+        
+        <div class="form-row">
+            {{ form.password.label_tag }}
+            {{ form.password }}
+            {{ form.password.errors }}
+            <input type="hidden" name="next" value="{{ next }}">
+        </div>
+        
+        <div class="submit-row">
+            <input type="submit" value="{% translate 'Log in' %}">
+        </div>
+        
+        {% url 'admin_password_reset' as password_reset_url %}
+        {% if password_reset_url %}
+            <div class="login-footer">
+                <a href="{{ password_reset_url }}">{% translate 'Forgot your password?' %}</a>
+            </div>
+        {% endif %}
+    </form>
+    
+    <div class="login-footer">
+        {% now "Y" %} &copy; Casino Admin. All rights reserved.
+    </div>
+</div>
+{% endblock %}

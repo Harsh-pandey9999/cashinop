@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">CSRF Verification Failed</h4>
+                </div>
+                <div class="card-body">
+                    <p class="lead">Sorry, your request could not be processed.</p>
+                    <p>The security token for your request was invalid or expired.</p>
+                    <p>This usually happens when:</p>
+                    <ul>
+                        <li>Your session has expired</li>
+                        <li>You've been inactive for too long</li>
+                        <li>You're using an outdated form</li>
+                    </ul>
+                    <div class="mt-4">
+                        <a href="javascript:history.back()" class="btn btn-secondary">Go Back</a>
+                        <a href="{% url 'home' %}" class="btn btn-primary">Return to Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

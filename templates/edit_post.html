@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<script src="https://cdn.tailwindcss.com"></script>
+<div class="flex justify-center mt-10">
+  <div class="w-full max-w-2xl bg-white shadow-md rounded-lg p-8">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">✏️ Edit Post</h2>
+
+    {% if messages %}
+      <div class="mb-4 p-4 bg-red-100 text-red-700 rounded">
+        <ul class="list-disc pl-5">
+          {% for error in messages %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data" class="bg-gray-900 p-8 rounded-lg shadow-lg">
+      {% csrf_token %}
+
+      <div class="mb-4">
+        <label for="title" class="text-gray-300 text-lg">Post Title</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          class="mt-2 w-full px-4 py-2 bg-gray-700 text-white rounded-lg"
+          value="{{ post.title }}"
+          required
+        />
+      </div>
+
+      <div class="mb-4">
+        <label for="description" class="text-gray-300 text-lg">Description</label>
+        <textarea
+          id="description"
+          name="description"
+          rows="4"
+          class="mt-2 w-full px-4 py-2 bg-gray-700 text-white rounded-lg"
+          required
+        >{{ post.description }}</textarea>
+      </div>
+
+      <div class="mb-4">
+        <label for="image" class="text-gray-300 text-lg">Image</label>
+        <input
+          type="file"
+          id="image"
+          name="image"
+          class="mt-2 w-full px-4 py-2 bg-gray-700 text-white rounded-lg"
+        />
+        {% if post.image %}
+          <p class="text-gray-300 mt-1">Current image: {{ post.image.url }}</p>
+        {% endif %}
+      </div>
+
+      <div class="mb-4">
+        <label for="redirect_link" class="text-gray-300 text-lg">Platform Link</label>
+        <input
+          type="url"
+          id="redirect_link"
+          name="redirect_link"
+          class="mt-2 w-full px-4 py-2 bg-gray-700 text-white rounded-lg"
+          value="{{ post.redirect_link }}"
+          required
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="bg-yellow-600 text-white py-2 px-4 rounded-lg hover:bg-yellow-700 transition"
+      >
+        Update Post
+      </button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

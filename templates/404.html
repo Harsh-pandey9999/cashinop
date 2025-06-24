@@ -1,0 +1,35 @@
+{% extends "base_public_new.html" %}
+{% load static %}
+
+{% block title %}Page Not Found - Casino Partners{% endblock %}
+
+{% block main_content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-warning text-dark py-3">
+                    <h2 class="mb-0 text-center">Page Not Found</h2>
+                </div>
+                <div class="card-body p-5 text-center">
+                    <div class="mb-4">
+                        <i class="fas fa-exclamation-triangle fa-5x text-warning mb-4"></i>
+                        <h1 class="display-1 fw-bold mb-3">404</h1>
+                        <h3 class="mb-4">Oops! The page you're looking for doesn't exist.</h3>
+                        <p class="lead mb-5">We couldn't find the page you were looking for. It might have been moved, deleted, or never existed.</p>
+                        
+                        <div class="d-flex justify-content-center gap-3">
+                            <a href="{% url 'index' %}" class="btn btn-primary">
+                                <i class="fas fa-home me-2"></i> Return to Home
+                            </a>
+                            <a href="{% url 'contact_page' %}" class="btn btn-outline-secondary">
+                                <i class="fas fa-envelope me-2"></i> Contact Support
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,455 @@
+{% load static %}
+<link rel="icon" type="image/x-icon" href="{% static 'img/favico.ico' %}">
+<style>
+    /* Glassmorphic Header Styles */
+    .floating-navbar {
+        background: rgba(26, 42, 108, 0.9) !important; /* More opaque background */
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease-in-out;
+        transform: translateZ(0);
+        will-change: transform, box-shadow;
+        padding: 10px 0;
+    }
+    
+    .floating-navbar.scrolled {
+        background: rgba(26, 42, 108, 0.97) !important;
+        box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.35);
+        transform: translateY(0);
+        padding: 5px 0;
+    }
+    
+    .navbar-toggler {
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 0.5rem 0.75rem;
+        color: white;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+    
+    .navbar-toggler:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+    }
+    
+    .navbar-toggler:focus {
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+        outline: none;
+    }
+    
+    .navbar-nav .nav-link {
+        position: relative;
+        padding: 0.5rem 1rem;
+        margin: 0 0.25rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+    
+    .navbar-nav .nav-link::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #4299e1, #9f7aea);
+        border-radius: 2px;
+        transform: translateX(-50%);
+        transition: all 0.3s ease;
+    }
+    
+    .navbar-nav .nav-link:hover::before {
+        width: 60%;
+    }
+    
+    .navbar-nav .nav-link i {
+        margin-right: 6px;
+        transition: transform 0.3s ease;
+    }
+    
+    .navbar-nav .nav-link:hover i {
+        transform: translateY(-2px);
+    }
+    
+    .brand-logo {
+        height: 50px;
+        width: auto;
+        max-width: 100%;
+        object-fit: contain;
+        transition: all 0.3s ease;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        transform-origin: center;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 5px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .brand-logo:hover {
+        transform: scale(1.05) rotate(-2deg);
+        filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.3));
+        background: rgba(255, 255, 255, 1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .brand-text {
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        background: linear-gradient(45deg, #fff, #e2e8f0);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent; /* Fallback for non-WebKit browsers */
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .brand-text::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #4299e1, #9f7aea);
+        transition: width 0.3s ease;
+    }
+    
+    .navbar-brand:hover .brand-text::after {
+        width: 100%;
+    }
+    
+    @media (max-width: 768px) {
+        .navbar-brand {
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            margin-right: 2rem;
+        }
+        .brand-logo {
+            height: 38px;
+        }
+        .brand-text {
+            font-size: 1.2rem;
+        }
+    }
+</style>
+
+<script>
+    // Add floating effect on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+        const navbar = document.querySelector('.floating-navbar');
+        let lastScroll = 0;
+        
+        window.addEventListener('scroll', function() {
+            const currentScroll = window.pageYOffset;
+            
+            // Add/remove scrolled class based on scroll position
+            if (currentScroll > 10) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            // Hide/show navbar on scroll direction
+            if (currentScroll <= 0) {
+                navbar.style.transform = 'translateY(0)';
+                return;
+            }
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                // Scrolling down
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                // Scrolling up
+                navbar.style.transform = 'translateY(0)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+        
+        // Mobile menu close on click
+        const navLinks = document.querySelectorAll('.nav-link');
+        const menuToggle = document.getElementById('navbarNav');
+        const bsCollapse = new bootstrap.Collapse(menuToggle, {toggle: false});
+        
+        navLinks.forEach(l => l.addEventListener('click', () => {
+            if (menuToggle.classList.contains('show')) {
+                bsCollapse.toggle();
+            }
+        }));
+    });
+</script>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top floating-navbar">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}" style="padding: 5px 0;">
+            <div class="logo-container d-flex align-items-center">
+                <img src="{% static 'img/site_logo.jpeg' %}" 
+                     alt="Cashino Partners" 
+                     class="brand-logo">
+                <span class="brand-text ms-3">
+                    {{ site_settings.site_name|default:'Cashino Partners' }}
+                </span>
+            </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}"><i class="fas fa-home"></i> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about_page' %}"><i class="fas fa-info-circle"></i> About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contact_page' %}"><i class="fas fa-envelope"></i> Contact</a>
+                </li>
+                {% if user.is_authenticated %}
+                    {% if user.is_staff or user.is_superuser %}
+                        <!-- Admin Navigation -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'admin_dashboard' %}"><i class="fas fa-tachometer-alt"></i> Admin Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin"><i class="fas fa-cog"></i> Admin Panel</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'admin_logout' %}"><i class="fas fa-sign-out-alt"></i> Admin Logout</a>
+                        </li>
+                    {% else %}
+                        <!-- User Navigation -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'user_dashboard' %}"><i class="fas fa-tachometer-alt"></i> My Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'user_profile' %}"><i class="fas fa-user"></i> My Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'user_clicks' %}"><i class="fas fa-mouse-pointer"></i> My Activity</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'blog_list' %}"><i class="fas fa-blog"></i> Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </li>
+                    {% endif %}
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signin' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary ms-2 glow-effect" href="{% url 'signup' %}"><i class="fas fa-user-plus"></i> Sign Up</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<style>
+.floating-navbar {
+    background: linear-gradient(135deg, #1a2a6c 0%, #2c5282 50%, #4299e1 100%);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    z-index: 1050;
+    transition: all 0.3s ease;
+    padding: 1rem 0;
+}
+
+.floating-navbar.scrolled {
+    background: linear-gradient(135deg, #1a2a6c 0%, #2c5282 50%, #4299e1 100%);
+    padding: 0.5rem 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.brand-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, #fff, #e2e8f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.brand-logo {
+    filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.3));
+    transition: transform 0.3s ease;
+}
+
+.brand-logo:hover {
+    transform: scale(1.05);
+}
+
+.floating-navbar .nav-link {
+    color: #fff !important;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    padding: 0.5rem 1rem;
+    margin: 0 0.2rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.floating-navbar .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #4299e1;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.floating-navbar .nav-link:hover::before {
+    width: 80%;
+}
+
+.floating-navbar .nav-link.active {
+    color: #4299e1 !important;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.floating-navbar .btn-primary {
+    background: linear-gradient(45deg, #4299e1, #2c5282);
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.floating-navbar .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #4299e1, #2c5282, #1a2a6c);
+    z-index: -1;
+    border-radius: 26px;
+    animation: glowing 2s linear infinite;
+}
+
+.floating-navbar .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(66, 153, 225, 0.4);
+}
+
+@keyframes glowing {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@media (max-width: 991.98px) {
+    .floating-navbar {
+        padding: 0.5rem 0;
+    }
+    
+    .floating-navbar .navbar-collapse {
+        background: rgba(26, 42, 108, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        margin-top: 1rem;
+        padding: 1rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .floating-navbar .nav-link {
+        margin: 0.5rem 0;
+        text-align: center;
+    }
+    
+    .floating-navbar .navbar-nav {
+        margin-left: auto;
+        gap: 1rem;
+        align-items: center;
+    }
+    
+    .floating-navbar .btn-primary {
+        margin: 0.5rem auto;
+        display: block;
+        width: 80%;
+    }
+    
+    .brand-text {
+        font-size: 1.2rem;
+    }
+}
+
+/* Add smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.querySelector('.navbar');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    // Scroll effect
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+    
+    // Active link highlighting
+    const currentPath = window.location.pathname;
+    navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
+        }
+    });
+    
+    // Hover animations
+    navLinks.forEach(link => {
+        link.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px)';
+        });
+        link.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+    
+    // Mobile menu close on click
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            if (navbarCollapse.classList.contains('show')) {
+                navbarToggler.click();
+            }
+        });
+    });
+});
+</script>

@@ -1,0 +1,59 @@
+# Django and Core Dependencies
+Django>=5.1,<6.0
+mysqlclient>=2.2.0  # MySQL adapter for Python
+whitenoise>=6.6.0  # For static files
+python-dotenv>=1.0.0  # For environment variables
+gunicorn>=21.2.0  # WSGI HTTP Server
+psycopg2-binary>=2.9.9  # PostgreSQL adapter (if needed)
+dj-database-url>=2.1.0  # For DATABASE_URL parsing
+
+# Security
+django-axes>=6.0.0  # For login security
+django-csp>=3.7  # Content Security Policy
+django-cors-headers>=4.3.1  # CORS headers
+django-ratelimit>=4.1.0  # Rate limiting
+
+# Admin and UI
+django-jazzmin>=2.6.0  # Admin UI
+django-import-export>=3.3.6  # Data import/export
+django-admin-rangefilter>=0.8.0  # Date range filter
+django-ckeditor-5>=0.2.12  # Rich text editor (CKEditor 5)
+crispy-bootstrap5>=2024.2  # Form styling
+django-robots>=5.0.0  # Robots.txt
+django-simple-history>=3.4.0  # Model history
+
+# Performance and Caching
+django-cacheops>=6.1.0  # Query caching
+django-redis>=5.4.0  # Redis cache backend
+redis>=5.0.1  # Redis client
+
+# Monitoring and Debugging (Development Only)
+django-debug-toolbar>=4.3.0; python_version < "3.12"  # Debug toolbar
+sentry-sdk>=1.40.0  # Error tracking
+
+# Production Tools
+Pillow>=10.2.0  # Image processing
+python-memcached>=1.59  # Memcached support
+uwsgi>=2.0.24  # WSGI server (alternative to gunicorn)
+supervisor>=4.2.5  # Process management
+
+# Security and Performance
+django-storages>=1.14.2  # Storage backends
+django-compressor>=4.4  # Static file compression
+django-cleanup>=8.0.0  # Automatic file cleanup
+django-maintenance-mode>=0.20.0  # Maintenance mode
+django-sslserver>=0.22  # SSL development server
+
+# Documentation
+django-extensions>=3.2.3  # Development utilities
+django-docs>=0.1.0  # Documentation generator
+
+# Testing
+coverage>=7.4.1  # Code coverage
+pytest>=8.0.0  # Testing framework
+pytest-django>=4.8.0  # Django test integration
+factory-boy>=3.3.0  # Test factories
+faker>=22.6.0  # Fake data generation
+
+# Django REST Framework
+djangorestframework>=3.15.1

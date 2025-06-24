@@ -1,0 +1,548 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="section hero-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h1 class="display-4 fw-bold mb-4 text-gradient">Terms of Service</h1>
+                <p class="lead mb-4">Last updated: {{ current_date|date:"F d, Y" }}</p>
+                <div class="terms-nav">
+                    <a href="#introduction" class="btn btn-outline-primary">Introduction</a>
+                    <a href="#definitions" class="btn btn-outline-primary">Definitions</a>
+                    <a href="#accounts" class="btn btn-outline-primary">Accounts</a>
+                    <a href="#intellectual-property" class="btn btn-outline-primary">Intellectual Property</a>
+                    <a href="#user-conduct" class="btn btn-outline-primary">User Conduct</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Terms Content -->
+<section class="section terms-content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <!-- Introduction -->
+                <div id="introduction" class="terms-section animate-on-scroll">
+                    <div class="section-header">
+                        <h2>Introduction</h2>
+                        <div class="section-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                    </div>
+                    <div class="section-content">
+                        <p>Welcome to Casino Partners. These Terms of Service ("Terms") govern your access to and use of our website, services, and platform. By accessing or using our services, you agree to be bound by these Terms.</p>
+                        <div class="info-box">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <p>Please read these Terms carefully before using our services. If you do not agree to these Terms, you may not access or use our services.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Definitions -->
+                <div id="definitions" class="terms-section animate-on-scroll">
+                    <div class="section-header">
+                        <h2>Definitions</h2>
+                        <div class="section-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                    </div>
+                    <div class="section-content">
+                        <div class="definition-list">
+                            <div class="definition-item">
+                                <h3>"Service"</h3>
+                                <p>Refers to the Casino Partners platform, including all features, content, and services available through our website.</p>
+                            </div>
+                            <div class="definition-item">
+                                <h3>"User"</h3>
+                                <p>Any individual or entity that accesses or uses our Service.</p>
+                            </div>
+                            <div class="definition-item">
+                                <h3>"Content"</h3>
+                                <p>Any information, text, graphics, or other materials uploaded, downloaded, or appearing on the Service.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Accounts -->
+                <div id="accounts" class="terms-section animate-on-scroll">
+                    <div class="section-header">
+                        <h2>User Accounts</h2>
+                        <div class="section-icon">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                    </div>
+                    <div class="section-content">
+                        <div class="requirements-list">
+                            <div class="requirement-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <h3>Account Creation</h3>
+                                    <p>You must be at least 18 years old to create an account. You are responsible for maintaining the security of your account.</p>
+                                </div>
+                            </div>
+                            <div class="requirement-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <h3>Account Information</h3>
+                                    <p>You must provide accurate and complete information when creating your account and keep it updated.</p>
+                                </div>
+                            </div>
+                            <div class="requirement-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <h3>Account Security</h3>
+                                    <p>You are responsible for all activities that occur under your account. Notify us immediately of any unauthorized use.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Intellectual Property -->
+                <div id="intellectual-property" class="terms-section animate-on-scroll">
+                    <div class="section-header">
+                        <h2>Intellectual Property</h2>
+                        <div class="section-icon">
+                            <i class="fas fa-copyright"></i>
+                        </div>
+                    </div>
+                    <div class="section-content">
+                        <div class="ip-rights">
+                            <div class="ip-section">
+                                <h3>Our Rights</h3>
+                                <p>All content, features, and functionality of our Service are owned by Casino Partners and are protected by international copyright, trademark, and other intellectual property laws.</p>
+                            </div>
+                            <div class="ip-section">
+                                <h3>Your Rights</h3>
+                                <p>You retain all rights to your content. By submitting content to our Service, you grant us a worldwide, non-exclusive license to use, reproduce, and distribute your content.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Conduct -->
+                <div id="user-conduct" class="terms-section animate-on-scroll">
+                    <div class="section-header">
+                        <h2>User Conduct</h2>
+                        <div class="section-icon">
+                            <i class="fas fa-gavel"></i>
+                        </div>
+                    </div>
+                    <div class="section-content">
+                        <div class="conduct-rules">
+                            <div class="rule-item">
+                                <div class="rule-icon">
+                                    <i class="fas fa-ban"></i>
+                                </div>
+                                <div class="rule-content">
+                                    <h3>Prohibited Activities</h3>
+                                    <ul>
+                                        <li>Violating any applicable laws or regulations</li>
+                                        <li>Impersonating others or providing false information</li>
+                                        <li>Interfering with the proper functioning of the Service</li>
+                                        <li>Attempting to gain unauthorized access</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="rule-item">
+                                <div class="rule-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="rule-content">
+                                    <h3>Acceptable Use</h3>
+                                    <ul>
+                                        <li>Using the Service for lawful purposes</li>
+                                        <li>Respecting other users' rights</li>
+                                        <li>Maintaining account security</li>
+                                        <li>Reporting violations or issues</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Termination -->
+                <div id="termination" class="terms-section animate-on-scroll">
+                    <div class="section-header">
+                        <h2>Termination</h2>
+                        <div class="section-icon">
+                            <i class="fas fa-power-off"></i>
+                        </div>
+                    </div>
+                    <div class="section-content">
+                        <div class="termination-info">
+                            <div class="termination-item">
+                                <h3>Account Termination</h3>
+                                <p>We reserve the right to terminate or suspend your account at any time, with or without cause, and without prior notice.</p>
+                            </div>
+                            <div class="termination-item">
+                                <h3>Effect of Termination</h3>
+                                <p>Upon termination, your right to use the Service will immediately cease, and you must cease all use of the Service.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Limitation of Liability -->
+                <div id="limitation" class="terms-section animate-on-scroll">
+                    <div class="section-header">
+                        <h2>Limitation of Liability</h2>
+                        <div class="section-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                    </div>
+                    <div class="section-content">
+                        <div class="liability-info">
+                            <div class="warning-box">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <p>To the maximum extent permitted by law, Casino Partners shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the Service.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Changes to Terms -->
+                <div id="changes" class="terms-section animate-on-scroll">
+                    <div class="section-header">
+                        <h2>Changes to Terms</h2>
+                        <div class="section-icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                    </div>
+                    <div class="section-content">
+                        <div class="changes-info">
+                            <p>We reserve the right to modify these Terms at any time. We will notify you of any changes by posting the new Terms on this page and updating the "Last updated" date.</p>
+                            <div class="notification-box">
+                                <i class="fas fa-bell"></i>
+                                <p>Your continued use of the Service after any such changes constitutes your acceptance of the new Terms.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div id="contact" class="terms-section animate-on-scroll">
+                    <div class="section-header">
+                        <h2>Contact Information</h2>
+                        <div class="section-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                    </div>
+                    <div class="section-content">
+                        <div class="contact-info">
+                            <p>If you have any questions about these Terms, please contact us:</p>
+                            <div class="contact-details">
+                                <div class="contact-item">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>Email: support@casinopartners.com</span>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fas fa-phone"></i>
+                                    <span>Phone: +1 (555) 123-4567</span>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Address: 123 Gaming Street, Las Vegas, NV 89101</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Hero Section */
+.hero-section {
+    padding: 120px 0 60px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.terms-nav {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+/* Terms Content */
+.terms-content {
+    padding: 60px 0;
+    background: #fff;
+}
+
+.terms-section {
+    margin-bottom: 60px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.terms-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.section-header h2 {
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.section-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.section-content {
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* Info Boxes */
+.info-box, .warning-box, .notification-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    margin: 20px 0;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.info-box i, .warning-box i, .notification-box i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.warning-box i {
+    color: #ffc107;
+}
+
+/* Definition List */
+.definition-list {
+    display: grid;
+    gap: 20px;
+}
+
+.definition-item {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.definition-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+/* Requirements List */
+.requirements-list {
+    display: grid;
+    gap: 20px;
+}
+
+.requirement-item {
+    display: flex;
+    gap: 15px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.requirement-item i {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+/* IP Rights */
+.ip-rights {
+    display: grid;
+    gap: 20px;
+}
+
+.ip-section {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+/* Conduct Rules */
+.conduct-rules {
+    display: grid;
+    gap: 20px;
+}
+
+.rule-item {
+    display: flex;
+    gap: 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.rule-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.rule-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0 0;
+}
+
+.rule-content ul li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.rule-content ul li:before {
+    content: "•";
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+}
+
+/* Termination Info */
+.termination-info {
+    display: grid;
+    gap: 20px;
+}
+
+.termination-item {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+/* Contact Info */
+.contact-info {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.contact-details {
+    display: grid;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-item i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 991.98px) {
+    .hero-section {
+        padding: 100px 0 40px;
+    }
+    
+    .terms-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .hero-section {
+        padding: 80px 0 30px;
+    }
+    
+    .requirement-item, .rule-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .rule-icon {
+        margin: 0 auto;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Intersection Observer for animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    document.querySelectorAll('.animate-on-scroll').forEach((el) => observer.observe(el));
+
+    // Smooth scroll for navigation
+    document.querySelectorAll('.terms-nav a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            targetElement.scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+});
+</script>
+{% endblock %} 

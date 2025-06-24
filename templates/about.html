@@ -1,0 +1,882 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="section hero-section bg-dark text-white py-5">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="display-4 fw-bold mb-4 text-gradient">About Us</h1>
+                <p class="lead mb-4">Pioneering the future of online gaming with innovation and excellence</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Story Section -->
+<section class="section story-section bg-light">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2 class="text-gradient">Our Story</h2>
+            <p class="lead">From humble beginnings to industry leadership</p>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="story-content animate-on-scroll">
+                    <h3 class="mb-4">A Journey of Innovation</h3>
+                    <p>Founded in 2010, Casino Partners began with a simple mission: to revolutionize the online gaming industry through innovation and excellence. Over the years, we've grown from a small team of passionate individuals to a global leader in gaming solutions.</p>
+                    <p>Our commitment to quality, security, and user experience has helped us build lasting relationships with partners worldwide. Today, we continue to push boundaries and set new standards in the industry.</p>
+                    <div class="story-milestones mt-4">
+                        <div class="milestone animate-on-scroll">
+                            <div class="milestone-year">2010</div>
+                            <div class="milestone-text">Company Founded</div>
+                        </div>
+                        <div class="milestone animate-on-scroll">
+                            <div class="milestone-year">2015</div>
+                            <div class="milestone-text">Global Expansion</div>
+                        </div>
+                        <div class="milestone animate-on-scroll">
+                            <div class="milestone-year">2020</div>
+                            <div class="milestone-text">Platform Innovation</div>
+                        </div>
+                        <div class="milestone animate-on-scroll">
+                            <div class="milestone-year">2024</div>
+                            <div class="milestone-text">Industry Leadership</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="story-image animate-on-scroll">
+                    <img src="{% static 'img/about-story.jpg' %}" alt="Our Story" class="img-fluid rounded-4 shadow-lg">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mission & Vision Section -->
+<section class="section mission-vision-section">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card mission-card animate-on-scroll">
+                    <div class="card-body">
+                        <div class="mission-icon">
+                            <i class="fas fa-bullseye fa-3x"></i>
+                        </div>
+                        <h3 class="mb-4">Our Mission</h3>
+                        <p>To provide innovative and secure gaming solutions that empower our partners to deliver exceptional experiences to players worldwide. We strive to be at the forefront of technological advancement while maintaining the highest standards of integrity and customer service.</p>
+                        <ul class="mission-list">
+                            <li><i class="fas fa-check"></i> Innovation in Gaming</li>
+                            <li><i class="fas fa-check"></i> Security First</li>
+                            <li><i class="fas fa-check"></i> Customer Excellence</li>
+                            <li><i class="fas fa-check"></i> Global Reach</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card vision-card animate-on-scroll">
+                    <div class="card-body">
+                        <div class="vision-icon">
+                            <i class="fas fa-eye fa-3x"></i>
+                        </div>
+                        <h3 class="mb-4">Our Vision</h3>
+                        <p>To be the global leader in online gaming solutions, recognized for our innovation, reliability, and commitment to excellence. We envision a future where gaming brings people together and creates opportunities for growth and entertainment.</p>
+                        <ul class="vision-list">
+                            <li><i class="fas fa-check"></i> Industry Leadership</li>
+                            <li><i class="fas fa-check"></i> Technological Excellence</li>
+                            <li><i class="fas fa-check"></i> Global Impact</li>
+                            <li><i class="fas fa-check"></i> Sustainable Growth</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="section testimonials-section py-5">
+    <div class="container">
+        <div class="section-title text-center mb-5">
+            <h2 class="text-gradient">What Our Players Say</h2>
+            <p class="lead">Hear from our satisfied community members</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex mb-3">
+                            <i class="fas fa-quote-left text-muted me-2"></i>
+                            <div class="ms-2">
+                                <p class="mb-0">"The best gaming platform I've ever used. The variety of games is amazing!"</p>
+                                <div class="d-flex align-items-center mt-3">
+                                    <div class="me-3">
+                                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="User" class="rounded-circle" width="50">
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0">Sarah Johnson</h6>
+                                        <small class="text-muted">Regular Player</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex mb-3">
+                            <i class="fas fa-quote-left text-muted me-2"></i>
+                            <div class="ms-2">
+                                <p class="mb-0">"Incredible user experience and the support team is always helpful. 5 stars!"</p>
+                                <div class="d-flex align-items-center mt-3">
+                                    <div class="me-3">
+                                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="User" class="rounded-circle" width="50">
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0">Michael Chen</h6>
+                                        <small class="text-muted">VIP Member</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex mb-3">
+                            <i class="fas fa-quote-left text-muted me-2"></i>
+                            <div class="ms-2">
+                                <p class="mb-0">"The mobile experience is flawless. I can play anywhere, anytime."</p>
+                                <div class="d-flex align-items-center mt-3">
+                                    <div class="me-3">
+                                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="User" class="rounded-circle" width="50">
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0">Emily Rodriguez</h6>
+                                        <small class="text-muted">Mobile Gamer</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values Section -->
+<section class="section values-section bg-light">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2 class="text-gradient">Our Values</h2>
+            <p class="lead">The principles that guide our success</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="card value-card animate-on-scroll">
+                    <div class="card-body text-center">
+                        <div class="value-icon">
+                            <i class="fas fa-handshake fa-3x"></i>
+                        </div>
+                        <h3>Integrity</h3>
+                        <p>We conduct our business with honesty, transparency, and ethical standards.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card value-card animate-on-scroll">
+                    <div class="card-body text-center">
+                        <div class="value-icon">
+                            <i class="fas fa-lightbulb fa-3x"></i>
+                        </div>
+                        <h3>Innovation</h3>
+                        <p>We constantly push boundaries to create better gaming experiences.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card value-card animate-on-scroll">
+                    <div class="card-body text-center">
+                        <div class="value-icon">
+                            <i class="fas fa-users fa-3x"></i>
+                        </div>
+                        <h3>Collaboration</h3>
+                        <p>We work together to achieve common goals and drive success.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card value-card animate-on-scroll">
+                    <div class="card-body text-center">
+                        <div class="value-icon">
+                            <i class="fas fa-chart-line fa-3x"></i>
+                        </div>
+                        <h3>Excellence</h3>
+                        <p>We strive for the highest quality in everything we do.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Technology Section -->
+<section class="section technology-section py-5">
+    <div class="container">
+        <div class="section-title text-center mb-5">
+            <h2 class="text-gradient">Our Technology</h2>
+            <p class="lead">Powered by cutting-edge solutions for superior performance</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="tech-icon mb-4">
+                            <i class="fas fa-shield-alt fa-3x text-primary"></i>
+                        </div>
+                        <h4>Advanced Security</h4>
+                        <p>State-of-the-art encryption and security protocols to protect user data and transactions.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="tech-icon mb-4">
+                            <i class="fas fa-tachometer-alt fa-3x text-primary"></i>
+                        </div>
+                        <h4>High Performance</h4>
+                        <p>Optimized platform for lightning-fast loading times and seamless gameplay.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="tech-icon mb-4">
+                            <i class="fas fa-mobile-alt fa-3x text-primary"></i>
+                        </div>
+                        <h4>Mobile First</h4>
+                        <p>Fully responsive design that works perfectly across all devices and screen sizes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Community Section -->
+<section class="section community-section position-relative overflow-hidden py-6">
+    <div class="position-absolute w-100 h-100 bg-primary bg-opacity-10" style="top: 0; left: 0; z-index: 0;"></div>
+    <div class="position-absolute end-0 top-0 w-50 h-100 bg-gradient-primary opacity-10" style="z-index: 0; clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);"></div>
+    
+    <div class="container position-relative" style="z-index: 1;">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="position-relative">
+                    <div class="position-absolute top-0 start-0 translate-middle bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 80px; height: 80px; margin-top: -20px; margin-left: -20px;">
+                        <i class="fas fa-users fa-2x"></i>
+                    </div>
+                    <h2 class="display-5 fw-bold mb-4">Join Our Thriving <span class="text-gradient">Community</span></h2>
+                    <p class="lead mb-4 text-muted">Become part of an exclusive network of gaming enthusiasts, developers, and industry professionals. Connect, compete, and grow with like-minded individuals.</p>
+                    
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-4">
+                            <div class="text-center p-3 bg-white rounded-3 shadow-sm h-100">
+                                <div class="display-5 fw-bold text-primary mb-2">50K+</div>
+                                <div class="text-uppercase small fw-bold">Active Users</div>
+                                <div class="progress mt-2" style="height: 4px;">
+                                    <div class="progress-bar bg-primary" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center p-3 bg-white rounded-3 shadow-sm h-100">
+                                <div class="display-5 fw-bold text-primary mb-2">100+</div>
+                                <div class="text-uppercase small fw-bold">Games</div>
+                                <div class="progress mt-2" style="height: 4px;">
+                                    <div class="progress-bar bg-warning" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center p-3 bg-white rounded-3 shadow-sm h-100">
+                                <div class="display-5 fw-bold text-primary mb-2">24/7</div>
+                                <div class="text-uppercase small fw-bold">Support</div>
+                                <div class="progress mt-2" style="height: 4px;">
+                                    <div class="progress-bar bg-success" style="width: 95%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="{% url 'signup' %}" class="btn btn-primary btn-lg px-4 shadow-sm">
+                            <i class="fas fa-user-plus me-2"></i> Join Now - It's Free
+                        </a>
+                        <a href="#testimonials" class="btn btn-outline-primary btn-lg px-4">
+                            <i class="fas fa-play-circle me-2"></i> Watch Demo
+                        </a>
+                    </div>
+                    
+                    <div class="mt-4 d-flex align-items-center">
+                        <div class="d-flex" style="margin-right: -15px;">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" class="rounded-circle border border-3 border-white" width="40" style="margin-right: -15px;" alt="User">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" class="rounded-circle border border-3 border-white" width="40" style="margin-right: -15px;" alt="User">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" class="rounded-circle border border-3 border-white" width="40" style="margin-right: -15px;" alt="User">
+                            <div class="rounded-circle border border-3 border-white bg-light d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                <small class="fw-bold text-muted">+47</small>
+                            </div>
+                        </div>
+                        <div class="ms-3">
+                            <div class="text-muted small">Trusted by 50,000+ users worldwide</div>
+                            <div class="d-flex align-items-center mt-1">
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="ms-2 small text-muted">4.8/5 from 2,500+ reviews</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="position-relative">
+                    <div class="position-relative rounded-4 overflow-hidden shadow-lg" style="transform: perspective(1000px) rotateY(5deg);">
+                        <img src="https://images.unsplash.com/photo-1531403007395-8c930e8be123?q=80&w=2071&auto=format&fit=crop" alt="Gaming Community" class="img-fluid">
+                        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-40 d-flex align-items-center justify-content-center">
+                            <a href="#" class="btn btn-primary btn-lg rounded-circle" style="width: 70px; height: 70px; padding: 0;">
+                                <i class="fas fa-play fs-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Floating Elements -->
+                    <div class="position-absolute" style="top: -20px; left: -20px; z-index: -1;">
+                        <div class="bg-primary bg-opacity-10 rounded-circle" style="width: 150px; height: 150px;"></div>
+                    </div>
+                    <div class="position-absolute" style="bottom: -30px; right: -30px; z-index: -1;">
+                        <div class="bg-warning bg-opacity-10 rounded-circle" style="width: 200px; height: 200px;"></div>
+                    </div>
+                </div>
+                
+                <!-- Stats Cards -->
+                <div class="row g-3 mt-4">
+                    <div class="col-6">
+                        <div class="bg-white p-3 rounded-3 shadow-sm text-center">
+                            <div class="text-primary mb-1"><i class="fas fa-trophy fa-2x"></i></div>
+                            <h5 class="mb-1">Daily Tournaments</h5>
+                            <p class="small text-muted mb-0">Compete and win</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="bg-white p-3 rounded-3 shadow-sm text-center">
+                            <div class="text-primary mb-1"><i class="fas fa-comments fa-2x"></i></div>
+                            <h5 class="mb-1">Live Chat</h5>
+                            <p class="small text-muted mb-0">Connect with players</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+                            <img src="{% static 'img/team-2.jpg' %}" alt="Sarah Johnson" class="rounded-circle mb-4">
+                        </div>
+                        <h3>Sarah Johnson</h3>
+                        <p class="text-muted">Chief Technology Officer</p>
+                        <p class="mb-4">Sarah drives our technological innovation and ensures we stay ahead of industry trends.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card team-card animate-on-scroll">
+                    <div class="card-body text-center">
+                        <div class="team-image-wrapper">
+                            <img src="{% static 'img/team-3.jpg' %}" alt="Michael Chen" class="rounded-circle mb-4">
+                        </div>
+                        <h3>Michael Chen</h3>
+                        <p class="text-muted">Chief Operations Officer</p>
+                        <p class="mb-4">Michael oversees our global operations and ensures smooth delivery of our services.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Achievements Section -->
+<section class="section achievements-section bg-light">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2 class="text-gradient">Our Achievements</h2>
+            <p class="lead">Milestones that define our success</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="achievement-card text-center animate-on-scroll">
+                    <div class="achievement-icon">
+                        <i class="fas fa-trophy fa-3x"></i>
+                    </div>
+                    <h3 class="counter">50+</h3>
+                    <p>Industry Awards</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="achievement-card text-center animate-on-scroll">
+                    <div class="achievement-icon">
+                        <i class="fas fa-globe fa-3x"></i>
+                    </div>
+                    <h3 class="counter">100+</h3>
+                    <p>Global Partners</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="achievement-card text-center animate-on-scroll">
+                    <div class="achievement-icon">
+                        <i class="fas fa-users fa-3x"></i>
+                    </div>
+                    <h3 class="counter">1M+</h3>
+                    <p>Happy Players</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="achievement-card text-center animate-on-scroll">
+                    <div class="achievement-icon">
+                        <i class="fas fa-star fa-3x"></i>
+                    </div>
+                    <h3 class="counter">99%</h3>
+                    <p>Customer Satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section cta-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="mb-4 text-gradient">Join Our Journey</h2>
+                <p class="lead mb-4">Be part of our success story and grow your gaming business with us.</p>
+                <div class="cta-buttons">
+                    <a href="{% url 'signup' %}" class="btn btn-primary btn-lg glow-effect">Get Started</a>
+                    <a href="{% url 'contact_page' %}" class="btn btn-outline-primary btn-lg">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* General Styles */
+.section {
+    padding: 80px 0;
+    position: relative;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title h2 {
+    margin-bottom: 15px;
+}
+
+/* Hero Section */
+.hero-section {
+    padding-top: 120px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.about-hero-image {
+    position: relative;
+}
+
+.about-hero-image img {
+    transition: transform 0.3s ease;
+}
+
+.about-hero-image:hover img {
+    transform: scale(1.02);
+}
+
+/* Story Section */
+.story-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.story-milestones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.milestone {
+    background: #fff;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.milestone:hover {
+    transform: translateY(-5px);
+}
+
+.milestone-year {
+    font-weight: 700;
+    color: #4a90e2;
+    font-size: 1.2rem;
+}
+
+.milestone-text {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+/* Mission & Vision Cards */
+.mission-card, .vision-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    height: 100%;
+}
+
+.mission-card:hover, .vision-card:hover {
+    transform: translateY(-5px);
+}
+
+.mission-icon, .vision-icon {
+    color: #4a90e2;
+    margin-bottom: 20px;
+}
+
+.mission-list, .vision-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.mission-list li, .vision-list li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mission-list i, .vision-list i {
+    color: #4a90e2;
+}
+
+/* Values Section */
+.value-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.value-icon {
+    color: #4a90e2;
+    margin-bottom: 20px;
+}
+
+/* Team Section */
+.team-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.tech-icon {
+    color: #6c63ff;
+    margin-bottom: 1rem;
+}
+
+/* Community Section */
+.community-section {
+    position: relative;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    overflow: hidden;
+}
+
+.community-section .text-gradient {
+    background: linear-gradient(90deg, #4e54c8 0%, #8f94fb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.community-section .bg-gradient-primary {
+    background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 100%);
+}
+
+.community-section .progress {
+    background-color: rgba(78, 84, 200, 0.1);
+    border-radius: 10px;
+}
+
+.community-section .progress-bar {
+    border-radius: 10px;
+}
+
+.community-section .btn-primary {
+    background: linear-gradient(90deg, #4e54c8 0%, #8f94fb 100%);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.community-section .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(78, 84, 200, 0.2);
+}
+
+.community-section .btn-outline-primary {
+    border: 2px solid #4e54c8;
+    color: #4e54c8;
+    transition: all 0.3s ease;
+}
+
+.community-section .btn-outline-primary:hover {
+    background: #4e54c8;
+    color: white;
+}
+
+.community-section img {
+    transition: all 0.3s ease;
+}
+
+.community-section img:hover {
+    transform: scale(1.02);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991.98px) {
+    .community-section {
+        text-align: center;
+    }
+    
+    .community-section .d-flex {
+        justify-content: center;
+    }
+    
+    .community-section .position-absolute.start-0.translate-middle {
+        position: relative !important;
+        transform: none !important;
+        margin: 0 auto 1.5rem !important;
+        display: inline-flex;
+    }
+}
+
+.testimonials-section .card {
+    border: none;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.testimonials-section .card:hover {
+    transform: translateY(-5px);
+}
+
+.hero-section {
+    background: linear-gradient(135deg, #2b2d42 0%, #1a1a2e 100%);
+}
+
+.tech-icon {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+}
+
+.team-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 5px solid #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.social-link {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+    color: #6c757d;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background: #4a90e2;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+/* Achievements Section */
+.achievement-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.achievement-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.achievement-icon {
+    color: #4a90e2;
+    margin-bottom: 20px;
+}
+
+.counter {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+/* Animations */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 991.98px) {
+    .section {
+        padding: 60px 0;
+    }
+    
+    .hero-section {
+        padding-top: 100px;
+    }
+    
+    .story-milestones {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .section {
+        padding: 40px 0;
+    }
+    
+    .section-title {
+        margin-bottom: 40px;
+    }
+    
+    .team-image-wrapper {
+        width: 120px;
+        height: 120px;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    // Observe all elements with animate-on-scroll class
+    document.querySelectorAll('.animate-on-scroll').forEach((el) => observer.observe(el));
+
+    // Counter animation
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+        const target = parseInt(counter.innerText);
+        let count = 0;
+        const duration = 2000; // 2 seconds
+        const increment = target / (duration / 16); // 60fps
+
+        const updateCount = () => {
+            if (count < target) {
+                count += increment;
+                counter.innerText = Math.ceil(count);
+                requestAnimationFrame(updateCount);
+            } else {
+                counter.innerText = target;
+            }
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    updateCount();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        observer.observe(counter);
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,225 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<div class="blog-hero">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h1 class="display-4 text-white mb-4">{{ post.title }}</h1>
+                <div class="blog-meta text-white-50">
+                    <span class="me-3">
+                        <i class="far fa-user me-1"></i>
+                        {{ post.author.get_full_name|default:post.author.username }}
+                    </span>
+                    <span class="me-3">
+                        <i class="far fa-calendar-alt me-1"></i>
+                        {{ post.published_at|date:"F d, Y" }}
+                    </span>
+                    <span>
+                        <i class="far fa-eye me-1"></i>
+                        {{ post.view_count }} views
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    {% if not user.is_authenticated %}
+    <div class="alert alert-warning">
+        <h4 class="alert-heading">Authentication Required</h4>
+        <p>Please <a href="{% url 'signin' %}?next={{ request.path }}" class="alert-link">sign in</a> to access the blog content.</p>
+    </div>
+    {% else %}
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <article class="blog-content">
+                {% if post.featured_image %}
+                <div class="featured-image mb-4">
+                    <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="img-fluid rounded">
+                </div>
+                {% endif %}
+
+                <div class="content">
+                    {{ post.content|safe }}
+                </div>
+
+                {% if post.meta_keywords %}
+                <div class="tags mt-4">
+                    {% for keyword in post.meta_keywords.split %}
+                    <span class="badge bg-light text-dark me-2 mb-2">{{ keyword }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% if user.is_staff %}
+                <div class="admin-actions mt-4 pt-4 border-top">
+                    <a href="{% url 'blog_edit' post.slug %}" class="btn btn-outline-primary me-2">
+                        <i class="fas fa-edit me-1"></i>Edit
+                    </a>
+                    <a href="{% url 'blog_delete' post.slug %}" class="btn btn-outline-danger" onclick="return confirm('Are you sure you want to delete this post?')">
+                        <i class="fas fa-trash-alt me-1"></i>Delete
+                    </a>
+                </div>
+                {% endif %}
+            </article>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+.blog-hero {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    padding: 80px 0;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.blog-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1920&q=80') center/cover;
+    opacity: 0.1;
+}
+
+.blog-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.blog-content .featured-image {
+    margin: -2rem -2rem 2rem -2rem;
+    border-radius: 1rem 1rem 0 0;
+    overflow: hidden;
+}
+
+.blog-content .featured-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.blog-content .content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+}
+
+.blog-content .content h2 {
+    font-size: 1.8rem;
+    margin: 2rem 0 1rem;
+    color: #1a1a1a;
+}
+
+.blog-content .content h3 {
+    font-size: 1.5rem;
+    margin: 1.5rem 0 1rem;
+    color: #1a1a1a;
+}
+
+.blog-content .content p {
+    margin-bottom: 1.5rem;
+}
+
+.blog-content .content ul, 
+.blog-content .content ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.blog-content .content li {
+    margin-bottom: 0.5rem;
+}
+
+.blog-content .content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+}
+
+.blog-content .content blockquote {
+    border-left: 4px solid #1a1a1a;
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #666;
+}
+
+.blog-content .tags .badge {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    background: #f8f9fa;
+    color: #1a1a1a;
+    transition: all 0.3s ease;
+}
+
+.blog-content .tags .badge:hover {
+    background: #e9ecef;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .blog-hero {
+        padding: 60px 0;
+    }
+    
+    .blog-content {
+        padding: 1.5rem;
+    }
+    
+    .blog-content .featured-image {
+        margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+    }
+    
+    .blog-content .content {
+        font-size: 1rem;
+    }
+    
+    .blog-content .content h2 {
+        font-size: 1.6rem;
+    }
+    
+    .blog-content .content h3 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .blog-hero {
+        padding: 40px 0;
+    }
+    
+    .blog-content {
+        padding: 1rem;
+    }
+    
+    .blog-content .featured-image {
+        margin: -1rem -1rem 1rem -1rem;
+    }
+    
+    .blog-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .blog-meta span {
+        display: block;
+        margin: 0.25rem 0;
+    }
+}
+</style>
+{% endblock %} 

@@ -1,0 +1,553 @@
+{% extends "base_public_new.html" %}
+{% load static %}
+
+{% block title %}Contact Us - Casino Partners{% endblock %}
+
+{% block main_content %}
+<!-- Hero Section -->
+<section class="contact-hero">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8">
+                <h1 class="display-4 fw-bold mb-4 animate-on-scroll">Get in Touch</h1>
+                <p class="lead mb-5 animate-on-scroll">We're here to help and answer any questions you might have. We look forward to hearing from you.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Contact Info Cards -->
+            <div class="col-lg-4">
+                <div class="contact-info-wrapper">
+                    <div class="contact-info-card animate-on-scroll">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Our Location</h3>
+                        {% if contact.address %}
+                        <p>{{ contact.address }}</p>
+                        {% else %}
+                        <p>123 Gaming Street, Las Vegas, NV</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="contact-info-card animate-on-scroll">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email Us</h3>
+                        {% if contact.email %}
+                        <p><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></p>
+                        {% else %}
+                        <p><a href="mailto:info@casinopartners.com">info@casinopartners.com</a></p>
+                        {% endif %}
+                    </div>
+
+                    <div class="contact-info-card animate-on-scroll">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h3>Call Us</h3>
+                        {% if contact.phone %}
+                        <p><a href="tel:{{ contact.phone }}">{{ contact.phone }}</a></p>
+                        {% else %}
+                        <p><a href="tel:+1234567890">+1 (234) 567-890</a></p>
+                        {% endif %}
+                    </div>
+
+                    {% if site_settings %}
+                    <div class="social-links animate-on-scroll">
+                        <h3>Connect With Us</h3>
+                        <div class="social-icons">
+                            {% if site_settings.facebook_url %}
+                            <a href="{{ site_settings.facebook_url }}" target="_blank" class="social-icon" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            {% endif %}
+                            
+                            {% if site_settings.twitter_url %}
+                            <a href="{{ site_settings.twitter_url }}" target="_blank" class="social-icon" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            {% endif %}
+                            
+                            {% if site_settings.instagram_url %}
+                            <a href="{{ site_settings.instagram_url }}" target="_blank" class="social-icon" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            {% endif %}
+                            
+                            {% if site_settings.linkedin_url %}
+                            <a href="{{ site_settings.linkedin_url }}" target="_blank" class="social-icon" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            {% endif %}
+                            
+                            {% if site_settings.telegram_url %}
+                            <a href="{{ site_settings.telegram_url }}" target="_blank" class="social-icon" aria-label="Telegram">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="col-lg-8">
+                <div class="contact-form-wrapper animate-on-scroll">
+                    <h2 class="mb-4">Send Us a Message</h2>
+                    <form id="contactForm" method="post" action="#" class="contact-form">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name" class="form-label">Your Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="subject" class="form-label">Subject</label>
+                                    <input type="text" class="form-control" id="subject" name="subject" required>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-lg w-100">
+                                    <span class="btn-text">Send Message</span>
+                                    <i class="fas fa-paper-plane ms-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section section py-5">
+    <div class="container">
+        <div class="section-title text-center mb-5">
+            <h2 class="text-gradient">Frequently Asked Questions</h2>
+            <p class="lead">Find quick answers to common questions</p>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item mb-3">
+                        <h3 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                How can I contact customer support?
+                            </button>
+                        </h3>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                You can reach our customer support team 24/7 through the contact form above, or by emailing us directly at support@casinopartners.com. We typically respond within 1-2 business hours.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item mb-3">
+                        <h3 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                What are your business hours?
+                            </button>
+                        </h3>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Our customer support is available 24/7. For other business inquiries, our office hours are Monday to Friday, 9:00 AM to 6:00 PM (GMT).
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item mb-3">
+                        <h3 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                How can I join your affiliate program?
+                            </button>
+                        </h3>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                To join our affiliate program, please visit our Affiliates page and fill out the application form. Our team will review your application and get back to you within 1-2 business days.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Additional Contact Options -->
+<section class="contact-options-section section py-5 bg-light">
+    <div class="container">
+        <div class="section-title text-center mb-5">
+            <h2 class="text-gradient">More Ways to Reach Us</h2>
+            <p class="lead">We're here to help with any questions or concerns</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="contact-option-card text-center p-4 h-100">
+                    <div class="icon-wrapper mb-3">
+                        <i class="fas fa-headset fa-3x text-primary"></i>
+                    </div>
+                    <h3>Live Chat</h3>
+                    <p class="mb-3">Chat with our support team in real-time for immediate assistance.</p>
+                    <a href="#" class="btn btn-outline-primary">Start Chat</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="contact-option-card text-center p-4 h-100">
+                    <div class="icon-wrapper mb-3">
+                        <i class="fas fa-file-alt fa-3x text-primary"></i>
+                    </div>
+                    <h3>Help Center</h3>
+                    <p class="mb-3">Browse our knowledge base for answers to common questions.</p>
+                    <a href="#" class="btn btn-outline-primary">Visit Help Center</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="contact-option-card text-center p-4 h-100">
+                    <div class="icon-wrapper mb-3">
+                        <i class="fas fa-comments fa-3x text-primary"></i>
+                    </div>
+                    <h3>Community Forum</h3>
+                    <p class="mb-3">Connect with other players and share your experiences.</p>
+                    <a href="#" class="btn btn-outline-primary">Join Community</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Hero Section */
+.contact-hero {
+    padding: 100px 0 60px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    text-align: center;
+}
+
+/* Contact Section */
+.contact-section {
+    padding: 80px 0;
+    background: #ffffff;
+}
+
+/* Contact Info Cards */
+.contact-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.contact-info-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.contact-info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.icon-wrapper {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #4a90e2 0%, #2c3e50 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 24px;
+}
+
+.contact-info-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.contact-info-card p {
+    color: #6c757d;
+    margin-bottom: 0;
+}
+
+.contact-info-card a {
+    color: #6c757d;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-info-card a:hover {
+    color: #4a90e2;
+}
+
+/* Social Links */
+.social-links {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.social-links h3 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    background: #f8f9fa;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background: #4a90e2;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+/* Contact Form */
+.contact-form-wrapper {
+    background: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.contact-form-wrapper h2 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    color: #2c3e50;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.form-control {
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 12px 15px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 0.2rem rgba(74,144,226,0.25);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #4a90e2 0%, #2c3e50 100%);
+    border: none;
+    padding: 15px 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(74,144,226,0.3);
+}
+
+/* FAQ Section Styles */
+.faq-section {
+    background: #ffffff;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: rgba(74, 144, 226, 0.1);
+    color: #1a2a6c;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    border-color: #dee2e6;
+}
+
+.accordion-item {
+    border: 1px solid #dee2e6;
+    border-radius: 8px !important;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.accordion-button {
+    font-weight: 600;
+    padding: 1.25rem;
+}
+
+/* Contact Options Section */
+.contact-options-section {
+    background: #f8f9fa;
+}
+
+.contact-option-card {
+    background: #fff;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.contact-option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.contact-option-card .icon-wrapper {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(74, 144, 226, 0.1);
+    border-radius: 50%;
+}
+
+.contact-option-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #1a2a6c;
+}
+
+.contact-option-card p {
+    color: #6c757d;
+    margin-bottom: 1.5rem;
+}
+
+/* Animations */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 991.98px) {
+    .contact-hero {
+        padding: 80px 0 40px;
+    }
+    
+    .contact-section {
+        padding: 60px 0;
+    }
+    
+    .contact-form-wrapper {
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .contact-hero {
+        padding: 60px 0 30px;
+    }
+    
+    .contact-section {
+        padding: 40px 0;
+    }
+    
+    .contact-form-wrapper {
+        padding: 30px;
+    }
+    
+    .social-icons {
+        justify-content: center;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    // Observe all elements with animate-on-scroll class
+    document.querySelectorAll('.animate-on-scroll').forEach((el) => observer.observe(el));
+
+    // Form submission handling
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Add loading state to button
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Sending...';
+            submitBtn.disabled = true;
+
+            // Simulate form submission (replace with actual form submission)
+            setTimeout(() => {
+                submitBtn.innerHTML = '<i class="fas fa-check me-2"></i>Message Sent!';
+                submitBtn.classList.add('btn-success');
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.classList.remove('btn-success');
+                    submitBtn.disabled = false;
+                }, 3000);
+            }, 1500);
+        });
+    }
+});
+</script>
+{% endblock %}

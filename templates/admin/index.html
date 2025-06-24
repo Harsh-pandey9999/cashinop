@@ -1,0 +1,12 @@
+{% extends "admin/index.html" %}
+{% load i18n static %}
+
+{% block content %}
+    {% if not user.is_authenticated or not user.is_staff %}
+        <div class="errornote">
+            <p>You don't have permission to access the admin dashboard.</p>
+        </div>
+    {% else %}
+        {{ block.super }}
+    {% endif %}
+{% endblock %}

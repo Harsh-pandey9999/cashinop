@@ -1,0 +1,49 @@
+{% extends "admin/change_form.html" %}
+{% load i18n admin_urls static %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+    /* Custom styles for About admin */
+    .content {
+        margin: 20px auto;
+        max-width: 1200px;
+        padding: 20px;
+    }
+    .card {
+        box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2);
+        margin-bottom: 20px;
+        background: #fff;
+        border-radius: 4px;
+    }
+    .card-header {
+        padding: 15px 20px;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    .card-body {
+        padding: 20px;
+    }
+    /* Ensure proper layout with the sidebar */
+    .content-wrapper {
+        margin-left: 0 !important;
+    }
+    .main-header {
+        margin-left: 0 !important;
+    }
+</style>
+{% endblock %}
+
+{% block sidebar %}{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">{% if change %}{% trans 'Edit About Section' %}{% else %}{% trans 'Add New About Section' %}{% endif %}</h3>
+        </div>
+        <div class="card-body">
+            {{ block.super }}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon/favicon.png' %}" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .body-bg {
+            background-color: #21c4e8;
+            background-image: linear-gradient(315deg, #9921e8 0%, #5f72be 74%);
+        }
+        .form-input {
+            background-color: #f8f9fa;
+            border-radius: 0.375rem;
+            padding: 0.75rem;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        .form-input:focus-within {
+            border-left: 4px solid #8b5cf6;
+            box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+        }
+        .form-input input {
+            width: 100%;
+            outline: none;
+            border: none;
+            background: transparent;
+        }
+        .form-input label {
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: #4b5563;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .btn-primary {
+            background-color: #8b5cf6;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        .btn-primary:hover {
+            background-color: #7c3aed;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .alert {
+            border-radius: 0.375rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        .alert-error {
+            background-color: #fee2e2;
+            border: 1px solid #ef4444;
+            color: #b91c1c;
+        }
+        .alert-success {
+            background-color: #dcfce7;
+            border: 1px solid #22c55e;
+            color: #15803d;
+        }
+    </style>
+</head>
+
+<body class="body-bg min-h-screen pt-12 md:pt-20 pb-6 px-2 md:px-0" style="font-family:'Lato',sans-serif;">
+    <header class="max-w-lg mx-auto">
+        <a href="#">
+            <h1 class="text-4xl font-bold text-white text-center">Register</h1>
+        </a>
+    </header>
+
+    <main class="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl">
+        <section>
+            <h3 class="font-bold text-2xl">Welcome to Casino</h3>
+            <p class="text-gray-600 pt-2">Register your account.</p>
+        </section>
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert {% if message.tags == 'error' %}alert-error{% elif message.tags == 'success' %}alert-success{% else %}bg-blue-100 border border-blue-400 text-blue-700{% endif %}" role="alert">
+            <span class="block sm:inline">{{ message }}</span>
+            <button type="button" class="absolute top-0 right-0 p-2" onclick="this.parentElement.style.display='none';">
+                <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+            </button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <section class="mt-10">
+            <form class="flex flex-col" method="POST" action="{% url 'signup' %}">
+                {% csrf_token %}
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div class="form-input">
+                        <label for="first_name">First Name</label>
+                        <input type="text" id="first_name" name="first_name" placeholder="Enter your first name" required>
+                    </div>
+                    <div class="form-input">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" id="last_name" name="last_name" placeholder="Enter your last name" required>
+                    </div>
+                </div>
+                
+                <div class="form-input mb-4">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Choose a username" required>
+                </div>
+                
+                <div class="form-input mb-4">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                </div>
+                
+                <div class="form-input mb-4">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Choose a secure password" required>
+                </div>
+                
+                <div class="form-input mb-6">
+                    <label for="password2">Confirm Password</label>
+                    <input type="password" id="password2" name="password2" placeholder="Confirm your password" required>
+                </div>
+                <button class="btn-primary" type="submit">
+                    <span class="flex items-center justify-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                        Create Account
+                    </span>
+                </button>
+            </form>
+        </section>
+    </main>
+    <div class="max-w-lg mx-auto text-center mt-12 mb-6">
+<<<<<<< HEAD
+        <p class="text-white">Already have an account? <a href="signin" class="font-bold hover:underline">Sign In</a>.</p>
+=======
+        <p class="text-white">Already have an account? <a href="{% url 'signin' %}" class="font-bold hover:underline">Sign In</a>.</p>
+>>>>>>> e2fe89af (Initial commit with cleaned .gitignore)
+    </div>
+    <footer class="max-w-lg mx-auto flex justify-center text-white">
+        <a href="#" class="hover:underline">Contact</a>
+        <span class="mx-3">•</span>
+        <a href="#" class="hover:underline">Privacy</a>
+    </footer>
+</body>
+
+</html>
