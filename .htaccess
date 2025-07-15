@@ -1,0 +1,81 @@
+# Enable URL rewriting
+RewriteEngine On
+
+# Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Redirect www to non-www
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# Passenger configuration
+<IfModule mod_passenger.c>
+    PassengerAppRoot /home/cashinop/public_html
+    PassengerBaseURI /
+    PassengerPython /home/cashinop/venv/bin/python
+    PassengerAppType wsgi
+    PassengerStartupFile passenger_wsgi.py
+    PassengerLogLevel 3
+    PassengerLogFile /home/cashinop/logs/passenger.log
+    
+    # Set environment variables
+    SetEnv DJANGO_SETTINGS_MODULE Casino.settings
+    SetEnv PYTHONPATH /home/cashinop/public_html
+    SetEnv PYTHONUNBUFFERED 1
+</IfModule>
+
+# Static files and media
+Alias /static/ /home/cashinop/public_html/staticfiles/
+Alias /media/ /home/cashinop/public_html/media/
+
+<Directory /home/cashinop/public_html/staticfiles>
+    Require all granted
+</Directory>
+
+<Directory /home/cashinop/public_html/media>
+    Require all granted
+</Directory>
+
+# Disable directory browsing
+Options -Indexes
+
+# Protect sensitive files
+<FilesMatch "^(\.|~$|#.*#$|\.py[co]|\.sw[op]|/\..*|.*\.log|/passenger_wsgi\.py\.*)$">
+    Require all denied
+</FilesMatch>
+
+# Set default charset
+AddDefaultCharset UTF-8
+
+# Enable compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+</IfModule>
+
+# Caching for static files
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/x-icon "access plus 1 year"
+    ExpiresDefault "access plus 2 days"
+</IfModule>
+
+# Set cache control for static files
+<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
+    Header set Cache-Control "max-age=604800, public"
+</FilesMatch>

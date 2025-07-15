@@ -20,8 +20,8 @@ class SecurityMiddleware(MiddlewareMixin):
         if request.path.startswith('/admin/login/'):
             return None
 
-        # Enforce HTTPS
-        if not request.is_secure() and not settings.DEBUG:
+        # Enforce HTTPS in production only
+        if not request.is_secure() and not settings.DEBUG and not settings.IS_DEVELOPMENT:
             raise PermissionDenied(_("HTTPS is required for this application."))
 
         # Add security headers
@@ -29,8 +29,8 @@ class SecurityMiddleware(MiddlewareMixin):
         request.META['HTTP_X_CONTENT_TYPE_OPTIONS'] = 'nosniff'
         request.META['HTTP_X_XSS_PROTECTION'] = '1; mode=block'
         
-        # Set secure cookie flags
-        if not settings.DEBUG:
+        # Set secure cookie flags in production only
+        if not settings.DEBUG and not settings.IS_DEVELOPMENT:
             request.session.set_expiry(settings.SESSION_COOKIE_AGE)
             request.session.set_cookie(
                 'sessionid',

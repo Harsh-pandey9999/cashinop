@@ -173,18 +173,70 @@ def signin(request):
 
 
 
-@login_required(login_url="/signin/")
+from django.views.decorators.http import require_http_methods
+
+@require_http_methods(["GET", "POST"])
 def logout(request):
-    auth.logout(request)
-    return redirect("signin")
+    """
+    Handle user logout and redirect to homepage.
+    """
+    # Always redirect to the homepage after logout
+    next_page = 'index'
+    
+    try:
+        # Log the logout attempt
+        if request.user.is_authenticated:
+            logger.info(f"User {request.user.username} logged out from IP: {get_client_ip(request)}")
+        
+        # Perform the logout
+        auth.logout(request)
+        
+        # Clear session data
+        if hasattr(request, 'session'):
+            request.session.flush()
+        
+        # Add a success message
+        messages.success(request, 'You have been successfully logged out.')
+        
+    except Exception as e:
+        logger.error(f"Error during logout: {str(e)}")
+        messages.error(request, 'There was an error during logout.')
+    
+    # Force redirect to the homepage
+    return redirect(next_page)
 
 
 
 
+@require_http_methods(["GET", "POST"])
 @superuser_or_staff_required
 def admin_logout(request):
-    auth.logout(request)
-    return redirect("index")
+    """
+    Handle admin logout and redirect to homepage.
+    """
+    # Always redirect to the homepage after logout
+    next_page = 'index'
+    
+    try:
+        if request.user.is_authenticated:
+            logger.info(f"Admin {request.user.username} logged out from IP: {get_client_ip(request)}")
+        
+        # Perform the logout
+        auth.logout(request)
+        
+        # Clear session data
+        if hasattr(request, 'session'):
+            request.session.flush()
+            
+        # Add a success message
+        messages.success(request, 'You have been successfully logged out.')
+        
+    except Exception as e:
+        logger.error(f"Error during admin logout: {str(e)}")
+        messages.error(request, 'There was an error during logout.')
+    
+    # Force redirect to the homepage
+    return redirect(next_page)
 
 # locked with admin login 
 # also new user approval
@@ -246,92 +298,10 @@ def admin_0_dashboard(request):
 
 @superuser_or_staff_required
 def admin_dashboard(request):
-    # Basic statistics
-    total_users = User.objects.count()
-    pending_users = CasinoUser.objects.filter(is_approved=False).count()
-    total_posts = GameCards.objects.count()
-    active_posts = GameCards.objects.filter(active=True).count()
-    
-    # Get site settings
-    site_settings = SiteSettings.objects.first()
-    if not site_settings:
-        site_settings = SiteSettings.objects.create()
-    
-    # Get Django version
-    import django
-    django_version = django.get_version()
-    
-    # Get CSRF trusted origins from settings
-    csrf_trusted_origins = getattr(settings, 'CSRF_TRUSTED_ORIGINS', [])
-    
-    # Analytics data (dummy data - in a real app, this would come from the database)
-    # Visitor analytics for the chart
-    visitor_labels = []
-    visitor_counts = []
-    for i in range(7):
-        day = now().date() - timedelta(days=6 - i)
-        visitor_labels.append(day.strftime('%a %d'))
-        visitor_counts.append(100 + i * 15)
-    
-    # Recent admin activities (dummy data - in a real app, this would come from the database)
-    recent_activities = [
-        {
-            'user': request.user.username,
-            'action': 'Logged in',
-            'timestamp': now() - timedelta(minutes=5),
-            'status': 'success'
-        },
-        {
-            'user': 'System',
-            'action': 'Updated site settings',
-            'timestamp': now() - timedelta(hours=2),
-            'status': 'info'
-        },
-        {
-            'user': 'Admin',
-            'action': 'Added new casino card',
-            'timestamp': now() - timedelta(days=1),
-            'status': 'success'
-        },
-        {
-            'user': 'User123',
-            'action': 'Requested approval',
-            'timestamp': now() - timedelta(days=2),
-            'status': 'warning'
-        }
-    ]
-    
-    # Card click statistics (dummy data - in a real app, this would come from the database)
-    total_clicks = 642
-    total_views = 2458
-    unique_visitors = 1842
-    avg_duration = '2m 45s'
-    bounce_rate = '32.8%'
-    
-    context = {
-        # Basic statistics
-        'total_users': total_users,
-        'pending_users': pending_users,
-        'total_posts': total_posts,
-        'active_posts': active_posts,
-        
-        # Site settings
-        'site_settings': site_settings,
-        'django_version': django_version,
-        'csrf_trusted_origins': '\n'.join(csrf_trusted_origins),
-        
-        # Analytics data
-        'visitor_labels': visitor_labels,
-        'visitor_counts': visitor_counts,
-        'recent_activities': recent_activities,
-        'total_clicks': total_clicks,
-        'total_views': total_views,
-        'unique_visitors': unique_visitors,
-        'avg_duration': avg_duration,
-        'bounce_rate': bounce_rate,
-    }
-    
-    return render(request, 'dashboard.html', context)
+    """
+    Redirect to Django admin dashboard
+    """
+    return redirect('/admin/')
 
 @superuser_or_staff_required
 def admin_dashboard_new(request):

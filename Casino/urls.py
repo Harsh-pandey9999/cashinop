@@ -16,13 +16,16 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls.i18n import i18n_patterns
 from django.contrib.sitemaps.views import sitemap
 from django.views.generic.base import TemplateView
 from django.views.i18n import set_language
+from django.views.static import serve
 from Core.views import custom_csrf_failure
+from . import views
 
 # Import sitemaps
 from .sitemaps import StaticSitemap, GameCardsSitemap, AboutSitemap
@@ -45,14 +48,16 @@ urlpatterns = [
     # i18n patterns
     path('i18n/', include('django.conf.urls.i18n')),
     
-    # Admin URLs
-    path('admin/', custom_admin_site.urls),
-    
     # Core URLs
     path('', include('Core.urls')),
+    # Core Settings URLs
+    path('', include('core_settings.urls')),
     
     # Authentication URLs
     path('accounts/', include('django.contrib.auth.urls')),
+    
+    # Admin URLs (using namespace to prevent conflicts)
+    path('admin/', custom_admin_site.urls),
     
     # SEO URLs
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),

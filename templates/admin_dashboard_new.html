@@ -309,10 +309,12 @@
             </div>
 
             <div class="nav-section mt-auto">
-                <a href="{% url 'admin_logout' %}" class="nav-link text-danger">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>Logout</span>
-                </a>
+                <form action="{% url 'admin_logout' %}" method="post" class="w-100">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-link text-danger w-100 text-start" style="background: none; border: none; padding: 0.5rem 1rem;">
+                        <i class="fas fa-sign-out-alt me-2"></i>Logout
+                    </button>
+                </form>
             </div>
         </nav>
     </div>

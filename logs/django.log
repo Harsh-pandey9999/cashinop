@@ -9558,3 +9558,740 @@ Traceback (most recent call last):
     raise TemplateDoesNotExist(template_name, chain=chain)
 django.template.exceptions.TemplateDoesNotExist: contact_page.html
 ERROR 2025-06-23 22:38:37,948 basehttp 48480 137179607070272 "GET /contact/ HTTP/1.1" 500 98268
+ERROR 2025-07-03 14:53:39,058 basehttp 133628 138866037093952 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:53:39,259 basehttp 133628 138866037093952 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:53:46,638 basehttp 133628 138866037093952 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:53:46,641 basehttp 133628 138866037093952 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:53:48,125 basehttp 133628 138866037093952 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:53:48,129 basehttp 133628 138866037093952 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:53:49,195 basehttp 133628 138866037093952 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:53:49,202 basehttp 133628 138866037093952 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:53:49,959 basehttp 133628 138866037093952 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:53:49,964 basehttp 133628 138866037093952 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:53:50,267 basehttp 133628 138866037093952 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:53:50,272 basehttp 133628 138866037093952 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:53:51,213 basehttp 133628 138866037093952 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:53:51,218 basehttp 133628 138866037093952 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:53:58,163 basehttp 133628 138866037093952 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:53:58,166 basehttp 133628 138866037093952 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:54:03,032 basehttp 133628 138866037093952 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:54:03,036 basehttp 133628 138865956353600 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:54:03,719 basehttp 133628 138865956353600 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:54:03,722 basehttp 133628 138865956353600 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:54:04,237 basehttp 133628 138865956353600 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:54:04,241 basehttp 133628 138865956353600 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:55:42,315 basehttp 139109 129974584473152 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:55:42,319 basehttp 139109 129974584473152 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:57:46,298 basehttp 143289 132404061664832 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:57:46,352 basehttp 143289 132404061664832 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:57:49,483 basehttp 143289 132404061664832 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:57:49,485 basehttp 143289 132404053272128 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:57:49,955 basehttp 143289 132404053272128 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:57:49,960 basehttp 143289 132404053272128 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:03,906 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:03,924 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:04,756 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:04,760 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:05,285 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:05,291 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:05,882 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:05,888 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:06,357 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:06,362 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:06,741 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:06,747 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:07,010 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:07,018 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:07,225 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:07,233 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:07,472 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:07,489 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:07,697 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:07,702 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:08,291 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:08,296 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:08,708 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:08,714 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:09,047 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:09,050 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:09,464 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:09,468 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:10,840 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:10,844 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:11,924 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:11,928 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:17,890 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 14:59:17,894 basehttp 146726 131318188865088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 15:00:39,407 basehttp 150057 128099357292096 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 15:00:39,443 basehttp 150057 128099357292096 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 15:00:40,122 basehttp 150057 128099357292096 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 15:00:40,125 basehttp 150057 128099357292096 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 15:00:40,582 basehttp 150057 128099357292096 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 15:00:40,586 basehttp 150057 128099357292096 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 15:00:40,854 basehttp 150057 128099357292096 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 15:00:40,858 basehttp 150057 128099357292096 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 15:00:41,105 basehttp 150057 128099357292096 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 15:00:41,110 basehttp 150057 128099357292096 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 15:00:41,318 basehttp 150057 128099357292096 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 15:00:41,324 basehttp 150057 128099357292096 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 15:00:41,619 basehttp 150057 128099357292096 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 15:00:41,624 basehttp 150057 128099357292096 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 15:00:41,838 basehttp 150057 128099357292096 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 15:00:41,844 basehttp 150057 128099357292096 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 15:00:42,087 basehttp 150057 128099357292096 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 15:00:42,092 basehttp 150057 128099357292096 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 15:00:42,262 basehttp 150057 128099357292096 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 15:00:42,268 basehttp 150057 128099357292096 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 15:00:42,458 basehttp 150057 128099357292096 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 15:00:42,463 basehttp 150057 128099357292096 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 15:00:42,833 basehttp 150057 128099357292096 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-03 15:00:42,843 basehttp 150057 128099357292096 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-07-04 08:53:55,871 basehttp 12167 132805636912704 "GET / HTTP/1.1" 500 59
+ERROR 2025-07-04 08:53:57,454 basehttp 12167 132805636912704 "GET /favicon.ico HTTP/1.1" 500 59
+ERROR 2025-07-04 08:54:55,550 basehttp 12808 137146519254592 "GET / HTTP/1.1" 500 59
+ERROR 2025-07-04 08:54:56,350 basehttp 12808 137146519254592 "GET /favicon.ico HTTP/1.1" 500 59
+ERROR 2025-07-04 08:54:59,264 basehttp 12808 137146519254592 "GET / HTTP/1.1" 500 59
+ERROR 2025-07-04 08:54:59,843 basehttp 12808 137146519254592 "GET /favicon.ico HTTP/1.1" 500 59
+ERROR 2025-07-04 08:56:19,491 basehttp 12808 137146519254592 "GET / HTTP/1.1" 500 59
+ERROR 2025-07-04 08:56:19,912 basehttp 12808 137146519254592 "GET /favicon.ico HTTP/1.1" 500 59
+ERROR 2025-07-04 08:56:20,441 basehttp 12808 137146519254592 "GET / HTTP/1.1" 500 59
+ERROR 2025-07-04 08:56:20,781 basehttp 12808 137146519254592 "GET /favicon.ico HTTP/1.1" 500 59
+ERROR 2025-07-04 08:56:21,111 basehttp 12808 137146519254592 "GET / HTTP/1.1" 500 59
+ERROR 2025-07-04 08:56:21,415 basehttp 12808 137146519254592 "GET /favicon.ico HTTP/1.1" 500 59
+ERROR 2025-07-04 08:56:21,879 basehttp 12808 137146519254592 "GET / HTTP/1.1" 500 59
+ERROR 2025-07-04 08:56:22,218 basehttp 12808 137146519254592 "GET /favicon.ico HTTP/1.1" 500 59
+ERROR 2025-07-04 08:56:22,814 basehttp 12808 137146519254592 "GET / HTTP/1.1" 500 59
+ERROR 2025-07-04 08:56:23,039 basehttp 12808 137146519254592 "GET /favicon.ico HTTP/1.1" 500 59
+ERROR 2025-07-04 08:57:54,859 log 13395 128757000042048 Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/raptor/Downloads/new-test/Core/views.py", line 93, in index
+    return render(request, "index.html", context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/templatetags/static.py", line 116, in render
+    url = self.url(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/templatetags/static.py", line 113, in url
+    return self.handle_simple(path)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/templatetags/static.py", line 129, in handle_simple
+    return staticfiles_storage.url(path)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/contrib/staticfiles/storage.py", line 203, in url
+    return self._url(self.stored_name, name, force)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/contrib/staticfiles/storage.py", line 182, in _url
+    hashed_name = hashed_name_func(*args)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/contrib/staticfiles/storage.py", line 516, in stored_name
+    raise ValueError(
+ValueError: Missing staticfiles manifest entry for 'img/pattern.png'
+ERROR 2025-07-04 08:57:54,865 basehttp 13395 128757000042048 "GET / HTTP/1.1" 500 35267
+ERROR 2025-07-04 09:02:28,744 log 13626 128439223830080 Internal Server Error: /admin/login/
+Traceback (most recent call last):
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+sqlite3.IntegrityError: NOT NULL constraint failed: axes_accesslog.session_hash
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/contrib/admin/sites.py", line 440, in login
+    return LoginView.as_view(**defaults)(request)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/views/decorators/debug.py", line 143, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/contrib/auth/views.py", line 88, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/contrib/auth/views.py", line 107, in form_valid
+    auth_login(self.request, form.get_user())
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/contrib/auth/__init__.py", line 152, in login
+    user_logged_in.send(sender=user.__class__, request=request, user=user)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 189, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/axes/signals.py", line 33, in handle_user_logged_in
+    AxesProxyHandler.user_logged_in(*args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/axes/helpers.py", line 614, in inner
+    return func(*args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/axes/handlers/proxy.py", line 127, in user_logged_in
+    return cls.get_implementation().user_logged_in(sender, request, user, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/axes/handlers/database.py", line 280, in user_logged_in
+    AccessLog.objects.create(
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/base.py", line 822, in save
+    self.save_base(
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/base.py", line 909, in save_base
+    updated = self._save_table(
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/base.py", line 1071, in _save_table
+    results = self._do_insert(
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/base.py", line 1112, in _do_insert
+    return manager._insert(
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1823, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+django.db.utils.IntegrityError: NOT NULL constraint failed: axes_accesslog.session_hash
+ERROR 2025-07-04 09:02:28,990 log 13626 128439223830080 Internal Server Error: /admin/login/
+Traceback (most recent call last):
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: no such table: casino_systemlog
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/raptor/Downloads/new-test/casino/views.py", line 98, in __call__
+    SystemLog.log(
+  File "/home/raptor/Downloads/new-test/casino/models.py", line 48, in log
+    return cls.objects.create(
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/base.py", line 822, in save
+    self.save_base(
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/base.py", line 909, in save_base
+    updated = self._save_table(
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/base.py", line 1071, in _save_table
+    results = self._do_insert(
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/base.py", line 1112, in _do_insert
+    return manager._insert(
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1823, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: no such table: casino_systemlog
+ERROR 2025-07-04 09:02:28,993 basehttp 13626 128439223830080 "POST /admin/login/?next=/admin/ HTTP/1.1" 500 182788
+ERROR 2025-07-04 09:04:41,331 log 14115 135496202180160 Internal Server Error: /admin/login/
+Traceback (most recent call last):
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+sqlite3.IntegrityError: NOT NULL constraint failed: axes_accesslog.session_hash
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/contrib/admin/sites.py", line 440, in login
+    return LoginView.as_view(**defaults)(request)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/views/decorators/debug.py", line 143, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/contrib/auth/views.py", line 88, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/contrib/auth/views.py", line 107, in form_valid
+    auth_login(self.request, form.get_user())
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/contrib/auth/__init__.py", line 152, in login
+    user_logged_in.send(sender=user.__class__, request=request, user=user)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 189, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/axes/signals.py", line 33, in handle_user_logged_in
+    AxesProxyHandler.user_logged_in(*args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/axes/helpers.py", line 614, in inner
+    return func(*args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/axes/handlers/proxy.py", line 127, in user_logged_in
+    return cls.get_implementation().user_logged_in(sender, request, user, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/axes/handlers/database.py", line 280, in user_logged_in
+    AccessLog.objects.create(
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/base.py", line 822, in save
+    self.save_base(
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/base.py", line 909, in save_base
+    updated = self._save_table(
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/base.py", line 1071, in _save_table
+    results = self._do_insert(
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/base.py", line 1112, in _do_insert
+    return manager._insert(
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1823, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+django.db.utils.IntegrityError: NOT NULL constraint failed: axes_accesslog.session_hash
+ERROR 2025-07-04 09:04:41,414 basehttp 14115 135496202180160 "POST /admin/login/?next=/admin/ HTTP/1.1" 500 277842
+ERROR 2025-07-04 09:26:27,575 log 16637 130186219229184 Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: no such table: core_settings_sitesettings
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/contrib/admin/sites.py", line 259, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/contrib/admin/sites.py", line 240, in inner
+    return view(request, *args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/contrib/admin/sites.py", line 553, in index
+    app_list = self.get_app_list(request)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/contrib/admin/sites.py", line 537, in get_app_list
+    app_dict = self._build_app_dict(request, app_label)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/contrib/admin/sites.py", line 483, in _build_app_dict
+    perms = model_admin.get_model_perms(request)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/contrib/admin/options.py", line 779, in get_model_perms
+    "add": self.has_add_permission(request),
+  File "/home/raptor/Downloads/new-test/core_settings/admin.py", line 10, in has_add_permission
+    return not SiteSettings.objects.exists()
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/query.py", line 1288, in exists
+    return self.query.has_results(using=self.db)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/sql/query.py", line 659, in has_results
+    return compiler.has_results()
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1530, in has_results
+    return bool(self.execute_sql(SINGLE))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: no such table: core_settings_sitesettings
+ERROR 2025-07-04 09:26:27,605 basehttp 16637 130186219229184 "GET /admin/ HTTP/1.1" 500 188054
+ERROR 2025-07-15 11:00:28,939 log 23853 130753048344128 Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/raptor/Downloads/new-test/Core/views.py", line 93, in index
+    return render(request, "index.html", context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 210, in render
+    return template.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 173, in render
+    return self._render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'admin_dashboard' not found. 'admin_dashboard' is not a valid view function or pattern name.
+ERROR 2025-07-15 11:00:28,984 basehttp 23853 130753048344128 "GET / HTTP/1.1" 500 236214
+ERROR 2025-07-15 11:00:34,244 log 23853 130753048344128 Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/raptor/Downloads/new-test/Core/views.py", line 93, in index
+    return render(request, "index.html", context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 210, in render
+    return template.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 173, in render
+    return self._render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'admin_dashboard' not found. 'admin_dashboard' is not a valid view function or pattern name.
+ERROR 2025-07-15 11:00:34,247 basehttp 23853 130753048344128 "GET / HTTP/1.1" 500 236610
+ERROR 2025-07-15 11:00:35,894 log 23853 130753048344128 Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/raptor/Downloads/new-test/Core/views.py", line 93, in index
+    return render(request, "index.html", context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 210, in render
+    return template.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 173, in render
+    return self._render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'admin_dashboard' not found. 'admin_dashboard' is not a valid view function or pattern name.
+ERROR 2025-07-15 11:00:35,897 basehttp 23853 130753048344128 "GET / HTTP/1.1" 500 236610
+ERROR 2025-07-15 11:03:07,705 log 24311 137161382815296 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/raptor/Downloads/new-test/Core/views.py", line 52, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/home/raptor/Downloads/new-test/Core/views.py", line 475, in admin_dashboard_new
+    return render(request, 'admin_dashboard_new.html', context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'admin_dashboard_new' not found. 'admin_dashboard_new' is not a valid view function or pattern name.
+ERROR 2025-07-15 11:03:07,743 basehttp 24311 137161382815296 "GET /dashboard/ HTTP/1.1" 500 236354
+ERROR 2025-07-15 11:04:58,220 log 24660 127843174446656 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/raptor/Downloads/new-test/Core/views.py", line 52, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/home/raptor/Downloads/new-test/Core/views.py", line 386, in admin_dashboard
+    return render(request, 'dashboard.html', context)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/raptor/Downloads/new-test/venv/lib/python3.10/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: dashboard.html
+ERROR 2025-07-15 11:04:58,222 basehttp 24660 127843174446656 "GET /dashboard/ HTTP/1.1" 500 119810

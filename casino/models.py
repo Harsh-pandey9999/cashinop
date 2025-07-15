@@ -1,4 +1,8 @@
+from django.db import models
 from django.utils import timezone
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class SystemLog(models.Model):
@@ -24,7 +28,7 @@ class SystemLog(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     level = models.CharField(max_length=10, choices=LOG_LEVELS, default='INFO')
     action = models.CharField(max_length=10, choices=ACTION_TYPES)
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='casino_system_logs')
     ip_address = models.GenericIPAddressField(null=True, blank=True)
     message = models.TextField()
     details = models.JSONField(null=True, blank=True)

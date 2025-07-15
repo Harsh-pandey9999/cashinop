@@ -4,6 +4,11 @@ from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.shortcuts import render, redirect
+from .models import SystemLog
+
+# Check if user is admin
+def is_admin(user):
+    return user.is_authenticated and user.is_staff
 
 @login_required
 @user_passes_test(is_admin)
